@@ -29,8 +29,8 @@ Widget button(context,
                   Navigator.pushNamed(context, navigateTo ?? '');
                 },
             buttonColor ??  colorsBucket!.primary,
-            width ?? 297,
-            height ?? 52,
+            width ?? 335,
+            height ?? 47,
             widget ??
                  InterText(text,textColor: textColor ??  colorsBucket!.titleSoft,textFontSize:  fontSize??14,
            textFontWeight:  fontWeight ?? FontWeight.w400,textAlign: TextAlign.center,),
@@ -67,7 +67,7 @@ Widget buttonNoPositioned(BuildContext context,
         },
         
     buttonColor ??  colorsBucket!.primary,
-    width ?? 400,
+    width ?? 335,
     height ?? 47,
     widget ??
         InterText(text!,textColor: textColor ??  colorsBucket!.titleSoft,textFontSize:  fontSize??14,

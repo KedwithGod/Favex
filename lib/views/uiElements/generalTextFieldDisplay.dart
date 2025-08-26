@@ -316,7 +316,7 @@ class FormattedTextFields extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: [
-              S(h: 4),
+              S(h: 5),
               S(
                 h: calculateErrorTextHeight(errorText!, context),
                 w: 343,

@@ -58,7 +58,7 @@ class AppColors {
     borderDisabled: Color.fromRGBO(242, 242, 247, 1),
     alertHard: Color.fromRGBO(248, 52, 70, 1),
     primaryLemon: Color.fromRGBO(235, 248, 238, 1),
-    primarySoft: Color.fromRGBO(34, 133, 94, 1),
+    primarySoft: Color.fromRGBO(249, 250, 251, 1),
     borderBlack: Color.fromRGBO(21, 27, 31, 1)
     
   );
@@ -77,7 +77,7 @@ class AppColors {
     borderDisabled: Color.fromRGBO(80, 80, 80, 1), // Darker border for disabled
     alertHard: Color.fromRGBO(248, 52, 70, 1), // Keep alert color
     primaryLemon: Color.fromRGBO(70, 70, 70, 1), // Darker shade for primary lemon
-    primarySoft: Color.fromRGBO(34, 133, 94, 1), // Keep primary soft color
+    primarySoft: Color.fromRGBO(34, 43, 36, 1), // Keep primary soft color
     borderBlack: Color.fromRGBO(255, 255, 255, 0.1), // Light border for contrast
  
     

@@ -14,38 +14,36 @@ class LoginPage extends StatelessWidget {
               rowPositioned(
                   top: 30,
                   bottom: 20,
-                  child: SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        // logo
-                        const SvgImage(path: 'logo', height: 38, width: 160),
-                        S(h: 20),
-                        // title
-                        InterText(
-                          textBucket!.welcomeMessage,
-                          textFontSize: 18,
-                          textFontWeight: FontWeight.w700,
-                        ),
-                    
-                        // subtitle
-                        S(h: 6),
-                        S(
-                            h: 38,
-                            w: 237,
-                            child: InterText(
-                              textBucket!.welcomeMessageSubtitle,
-                              noOfTextLine: 2,
-                              textFontSize: 12,
-                              textColor: colorsBucket!.subtitle,
-                              textAlign: TextAlign.center,
-                            )),
-                    
-                        S(h: 67),
-                    
-                        S(
-                          h: 470,
-                          w: 335,
-                          child: Column(
+                  child: S(
+                    h: 700,
+                    w: 335,
+                    child: SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          // logo
+                          const SvgImage(path: 'logo', height: 38, width: 160),
+                          S(h: 20),
+                          // title
+                          InterText(
+                            textBucket!.welcomeMessage,
+                            textFontSize: 18,
+                            textFontWeight: FontWeight.w700,
+                          ),
+
+                          // subtitle
+                          S(h: 6),
+                          InterText(
+                            textBucket!.welcomeMessageSubtitle,
+                            noOfTextLine: 2,
+                            textFontSize: 12,
+                            textColor: colorsBucket!.subtitle,
+                            textAlign: TextAlign.center,
+                          ),
+
+                          S(h: 67),
+
+                          Column(
+                            
                             children: [
                               // email
                               Row(
@@ -60,10 +58,22 @@ class LoginPage extends StatelessWidget {
                               FormattedTextFields(
                                 textFieldController: model.emailController,
                                 textFieldHint: textBucket!.enterEmail,
-                                onChangedFunction: (onchange) {},
+                                onChangedFunction: (onchange) { model.onChangedFunctionEmail();},
                                 errorText: model.emailErrorText,
                                 errorTextActive: model.emailErrorBool,
                                 focusNode: model.emailFocusNode,
+                                suffixIcon: model.emailNotValid?S(): Container(
+                                      width: sS(context)
+                                          .cW(width: 24), // Control width
+                                      height: sS(context)
+                                          .cH(height: 24), // Control height
+                                      alignment: Alignment.center,
+                                      child: const SvgImage(
+                                        path: 'check',
+                                        height: 20,
+                                        width: 20,
+                                       
+                                      )),
                               ),
                               S(h: 24),
                               // password
@@ -76,30 +86,37 @@ class LoginPage extends StatelessWidget {
                                 ],
                               ),
                               S(h: 10),
-                    
+
                               FormattedTextFields(
                                 textFieldController: model.passwordController,
-                                onChangedFunction: (value) {},
+                                onChangedFunction: (value) {model.onChangedFunctionPassword();},
                                 errorTextActive: model.passwordErrorBool,
                                 focusNode: model.passwordFocusNode,
                                 textFieldHint: textBucket!.enterPassword,
                                 errorText: model.passwordErrorText,
-                                obscureText: true,
-                                suffixIcon: Container(
-                                    width: sS(context)
-                                        .cW(width: 24), // Control width
-                                    height: sS(context)
-                                        .cH(height: 24), // Control height
-                                    alignment: Alignment.center,
-                                    child: SvgImage(
-                                      path: 'eye',
-                                      height: 20,
-                                      width: 20,
-                                      colorFilter: ColorFilter.mode(
-                                          colorsBucket!.primary, BlendMode.srcIn),
-                                    )),
+                                obscureText: model.showPasswordBool,
+                                suffixIcon:  GestureDetector(
+                                onTap: () {
+                                  model.showPassword();
+                                },
+                                  child: Container(
+                                      width: sS(context)
+                                          .cW(width: 24), // Control width
+                                      height: sS(context)
+                                          .cH(height: 24), // Control height
+                                      alignment: Alignment.center,
+                                      child: SvgImage(
+                                        path: model.passwordNotValid?'eye':'check',
+                                        height: 20,
+                                        width: 20,
+                                        colorFilter:model.passwordNotValid?ColorFilter.mode(
+                                            model.showPasswordBool
+                                        ?  colorsBucket!.borderMid: colorsBucket!.primary,
+                                            BlendMode.srcIn):null,
+                                      )),
+                                ),
                               ),
-                    
+
                               // forgot password
                               S(
                                 h: 24,
@@ -112,6 +129,7 @@ class LoginPage extends StatelessWidget {
                                   InterText(
                                     textBucket!.resetIt,
                                     textColor: colorsBucket!.primary,
+                                    textFontWeight: FontWeight.w600,
                                   ),
                                 ],
                               ),
@@ -121,14 +139,16 @@ class LoginPage extends StatelessWidget {
                               ),
                               buttonNoPositioned(context,
                                   text: textBucket!.login,
-                                  textColor: colorsBucket!.subtitle,
-                                  buttonColor: colorsBucket!.disabled),
+                                  navigator: (){model.revalidateAllFields(context);},
+                                  textColor:  model.emailNotValid ==false && model.passwordNotValid ==false? colorsBucket!.primarySoft:colorsBucket!.subtitle,
+                                  buttonColor: model.emailNotValid ==false && model.passwordNotValid ==false?colorsBucket!.primary: colorsBucket!.disabled),
                               S(
                                 h: 24,
                               ),
                               // sign in with
                               Row(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
                                 children: [
                                   GeneralContainer(
                                       height: 0.1,
@@ -147,12 +167,13 @@ class LoginPage extends StatelessWidget {
                               S(
                                 h: 20,
                               ),
-                    
+
                               // icon links
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  const SvgImage(path: 'google', height: 50, width: 50),
+                                  const SvgImage(
+                                      path: 'google', height: 50, width: 50),
                                   S(
                                     w: 12,
                                   ),
@@ -161,27 +182,36 @@ class LoginPage extends StatelessWidget {
                                   S(
                                     w: 12,
                                   ),
-                                  const SvgImage(path: 'apple', height: 50, width: 50),
+                                  const SvgImage(
+                                      path: 'apple', height: 50, width: 50),
                                 ],
                               ),
-                            
-                    
+
+                              S(
+                                h: 40,
+                              ),
+
                               // sign up
-                              //  Row(
-                              //   mainAxisAlignment: MainAxisAlignment.center,
-                              //   children: [
-                              //     InterText(textBucket!.noAccount, textFontSize: 12,),
-                              //     S(w: 5),
-                              //     InterText(
-                              //       textBucket!.signUp,
-                              //       textColor: colorsBucket!.primary,textFontSize: 12,
-                              //     ),
-                              //   ],
-                              // ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  InterText(
+                                    textBucket!.noAccount,
+                                    textFontSize: 12,
+                                  ),
+                                  S(w: 5),
+                                  InterText(
+                                    textBucket!.signUp,
+                                    textColor:  colorsBucket!.primary,
+                                    textFontSize: 12,
+                                    textFontWeight: FontWeight.w600,
+                                  ),
+                                ],
+                              ),
                             ],
-                          ),
-                        )
-                      ],
+                          )
+                        ],
+                      ),
                     ),
                   ))
             ],

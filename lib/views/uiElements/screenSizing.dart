@@ -45,8 +45,8 @@ class ScreenSize {
       return MediaQuery.of(context!).size.width * (width! / 1250);
     }
 
-    return MediaQuery.of(context!).size.width < 430
-        ? MediaQuery.of(context!).size.width * (width! / 430)
+    return MediaQuery.of(context!).size.width < 375
+        ? MediaQuery.of(context!).size.width * (width! / 375)
         : width!;
   }
 }
