@@ -1,6 +1,8 @@
 
 
 
+
+
 import 'imports/generalImport.dart';
 
 final navigatorKey = GlobalKey<NavigatorState>();
@@ -24,6 +26,11 @@ final router = GoRouter(
         name: lockScreenPageRoute,
         path: '/lock_screen',
         builder: (context, state) => const LockScreenPage(
+                         )),
+     GoRoute(
+        name: dashboardPageRoute,
+        path: '/dashboard',
+        builder: (context, state) => const DashboardPage(
                          )),
 
   ],

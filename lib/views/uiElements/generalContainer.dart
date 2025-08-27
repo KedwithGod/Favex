@@ -11,6 +11,7 @@ class GeneralContainer extends StatelessWidget {
   final BoxFit? boxFit;
   final BoxShape? shape;
   final List<BoxShadow>? boxShadow;
+  final bool? noAdaptivness;
 
   final String? image;
   final Widget? child;
@@ -45,11 +46,12 @@ class GeneralContainer extends StatelessWidget {
     this.leftMargin = 0,
     this.topMargin = 0,
     this.rightMargin = 0,
-    this.bottomMargin = 0,
+    this.bottomMargin = 0, this.noAdaptivness=false,
   });
 
   @override
   Widget build(BuildContext context) {
+  
     // Calculate adaptive values
     final adaptiveHeight = sS(context).cH(height: height);
     final adaptiveWidth = sS(context).cW(width: width);
@@ -58,10 +60,11 @@ class GeneralContainer extends StatelessWidget {
     final adaptiveTopRight = sS(context).cH(height: topRight);
     final adaptiveBottomLeft = sS(context).cH(height: bottomLeft);
     final adaptiveBottomRight = sS(context).cH(height: bottomRight);
+   
 
     return Container(
-      height: adaptiveHeight,
-      width: adaptiveWidth,
+      height:noAdaptivness==true?height: adaptiveHeight,
+      width: noAdaptivness==true?width: adaptiveWidth,
       margin: EdgeInsets.fromLTRB(
         sS(context).cW(width: leftMargin),
         sS(context).cH(height: topMargin),
@@ -77,6 +80,7 @@ class GeneralContainer extends StatelessWidget {
       decoration: noDecoration
           ? BoxDecoration(color: color)
           : BoxDecoration(
+            
               image: image != null
                   ? DecorationImage(
                       image: (isNetworkImage
@@ -97,6 +101,7 @@ class GeneralContainer extends StatelessWidget {
                         )),
               color: color,
               boxShadow: boxShadow,
+              
               border: Border.all(
                 color: borderColor??colorsBucket!.borderMid,
                 width: borderWidth,

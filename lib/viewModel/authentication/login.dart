@@ -3,6 +3,7 @@ import '/model/utilities/imports/generalImport.dart';
 class LoginViewModel extends BaseModel{
 
   // password
+  
 
 
   showPassword() {
@@ -125,4 +126,8 @@ class LoginViewModel extends BaseModel{
      
     }
   }
+
+
+
+  
 }

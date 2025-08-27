@@ -3,124 +3,6 @@
 import '../../../model/utilities/imports/generalImport.dart';
 
 
-class PinTextField extends StatelessWidget {
-  final TextInputType keyInputType;
-  final TextEditingController textFieldController;
-  final int textFieldLineSpan;
-  final String textFieldLabel;
-  final String textFieldHint;
-  final dynamic functionValue;
-  final double height;
-  final double width;
-  final Color containerColor;
-  final bool greyBackground;
-  final FocusNode focus;
-  final Function onFieldSubmitted;
-  final int maxIndex;
-  final bool? errorTextActive;
-
-  const PinTextField(
-      this.keyInputType,
-      this.textFieldController,
-      this.textFieldLabel,
-      this.textFieldHint,
-      this.functionValue,
-      this.textFieldLineSpan,
-      this.height,
-      this.width,
-      this.containerColor,
-      this.greyBackground,
-      this.focus,
-      this.onFieldSubmitted,
-      this.maxIndex,
-      {super.key,
-      this.errorTextActive});
-
-  @override
-  Widget build(BuildContext context) {
-    Size dynamicSize = MediaQuery.of(context).size;
-    Orientation orientation = MediaQuery.of(context).orientation;
-    return Container(
-      height: sS(context).cH(height: height),
-      width: sS(context).cW(width: width),
-      decoration: BoxDecoration(
-        color: containerColor,
-        borderRadius: BorderRadius.circular(
-            MediaQuery.of(context).size.height * (4 / 932)),
-      ),
-      alignment: Alignment.center,
-      child: Align(
-        alignment: Alignment.center,
-        child: TextFormField(
-          textAlignVertical: TextAlignVertical.bottom,
-          inputFormatters: [
-            LengthLimitingTextInputFormatter(1),
-            FilteringTextInputFormatter.digitsOnly
-          ],
-          cursorColor:  colorsBucket!.primary,
-          keyboardType: keyInputType,
-          controller: textFieldController,
-          maxLines: textFieldLineSpan,
-          focusNode: focus,
-          textInputAction:
-              maxIndex == 4 ? TextInputAction.done : TextInputAction.done,
-          onChanged: (change) {
-            onFieldSubmitted();
-          },
-          style: GoogleFonts.inter(
-              textStyle: TextStyle(
-                  color:  colorsBucket!.title,
-                  fontSize: orientation == Orientation.portrait
-                      ? sS(context).cH(height: 30)
-                      : dynamicSize.width * (16 / 932),
-                  fontWeight: FontWeight.w500)),
-          autocorrect: true,
-          decoration: InputDecoration(
-              floatingLabelBehavior: FloatingLabelBehavior.never,
-              labelText: textFieldLabel,
-              hintStyle: GoogleFonts.inter(
-                  textStyle: TextStyle(
-                      fontSize: orientation == Orientation.portrait
-                          ? MediaQuery.of(context).size.height * (30 / 932)
-                          : dynamicSize.width * (16 / 932),
-                      color:  colorsBucket!.subtitle,
-                      fontWeight: FontWeight.w500)),
-              hintText: textFieldHint,
-              labelStyle: GoogleFonts.inter(
-                  textStyle: TextStyle(
-                      fontSize: orientation == Orientation.portrait
-                          ? MediaQuery.of(context).size.height * (15 / 932)
-                          : dynamicSize.width * (16 / 800),
-                      color: const Color.fromRGBO(186, 186, 186, 1.0),
-                      fontWeight: FontWeight.w500)),
-              contentPadding: EdgeInsets.fromLTRB(
-                  MediaQuery.of(context).size.width * (15 / 390),
-                  MediaQuery.of(context).size.height * (5 / 844),
-                  MediaQuery.of(context).size.width * (2 / 390),
-                  MediaQuery.of(context).size.height * (5 / 932)),
-              enabledBorder: OutlineInputBorder(
-                  borderSide:  BorderSide(
-                      color: colorsBucket!.borderMid, width: 1.0, style: BorderStyle.solid),
-                  borderRadius: BorderRadius.circular(
-                    orientation == Orientation.portrait
-                        ? MediaQuery.of(context).size.height * (4 / 932)
-                        : dynamicSize.width * (4 / 800),
-                  )),
-              focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(
-                      color: errorTextActive == true ? colorsBucket!.alertHard :  colorsBucket!.borderBlack,
-                      width: 1.0,
-                      style: BorderStyle.solid),
-                  borderRadius: BorderRadius.circular(
-                    orientation == Orientation.portrait
-                        ? MediaQuery.of(context).size.height * (4 / 932)
-                        : dynamicSize.width * (4 / 932),
-                  ))),
-        ),
-      ),
-    );
-  }
-}
 
 class FormattedTextFields extends StatelessWidget {
   final TextInputType? keyInputType;
@@ -133,14 +15,14 @@ class FormattedTextFields extends StatelessWidget {
       cursorColor,
       hintColor,
       labelColor,
-      outLineBorderColor,
+      outLineBorderColor,fillColor,
       focusBorderColor;
-  final bool? noBorder, autoFocus, obscureText, readOnly;
+  final bool? noBorder, autoFocus, obscureText, readOnly,filled;
   final Function(dynamic)? onChangedFunction;
   final Function? onTap, onEditingComplete;
   final List<TextInputFormatter>? inputFormatters;
   final bool errorTextActive;
-  final String? errorText;
+  final String? errorText,obscuringCharacter;
   final FocusNode? focusNode;
   final Widget? prefixIcon, suffixIcon,suffix;
   final Widget? prefix;
@@ -196,7 +78,7 @@ class FormattedTextFields extends StatelessWidget {
     this.textAlign,
     this.contentPadding,
     this.onEditingComplete,
-    this.errorText,
+    this.errorText, this.fillColor, this.filled, this.obscuringCharacter
   }) : super(key: key);
 
   @override
@@ -230,7 +112,7 @@ class FormattedTextFields extends StatelessWidget {
                 onTap: () {
                   if (onTap != null) onTap!();
                 },
-
+                
                 onChanged: onChangedFunction!, // this function to validate the
 
                 // text field as the user types in it
@@ -241,10 +123,12 @@ class FormattedTextFields extends StatelessWidget {
                 textInputAction: textInputAction ?? TextInputAction.done,
                 keyboardType: keyInputType?? TextInputType.text,
                 obscureText: obscureText ?? false,
-                obscuringCharacter: '*',
+                
+                
+                obscuringCharacter: obscuringCharacter??'*',
                 controller: textFieldController,
                 textAlign: textAlign ?? TextAlign.start,
-                textAlignVertical: TextAlignVertical.center,
+                textAlignVertical: TextAlignVertical.center                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              ,
                 enableInteractiveSelection: enableInteractiveSelection,
                 minLines: textFieldMinLineSpan,
                 maxLines: textFieldLineSpan ?? 1,
@@ -261,6 +145,8 @@ class FormattedTextFields extends StatelessWidget {
                         fontWeight: textFontWeight ?? FontWeight.w400)),
                 decoration: InputDecoration(
                     prefixIcon: prefixIcon,
+                    filled: filled??false,
+                    fillColor: fillColor??colorsBucket!.transparent,
                     suffix:suffix,
                     suffixIcon: suffixIcon,
                     prefix: prefix,
@@ -299,6 +185,7 @@ class FormattedTextFields extends StatelessWidget {
                            sS(context).cH(height: borderRadius ?? 16))),
                     focusedBorder: OutlineInputBorder(
                         borderSide: BorderSide(
+                          
                             color: errorTextActive == true
                                 ? colorsBucket!.alertHard
                                 : focusBorderColor ??  colorsBucket!.borderBlack,

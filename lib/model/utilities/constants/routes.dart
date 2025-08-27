@@ -2,3 +2,5 @@
 
 const String loginPageRoute = 'loginPage';
 const String lockScreenPageRoute = 'loginScreenPage';
+const String verifyEmailPageRoute = 'verifyEmailPage';
+const String dashboardPageRoute = 'verifyEmailPage';

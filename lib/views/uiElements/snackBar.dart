@@ -1,17 +1,30 @@
 import '../../../model/utilities/imports/generalImport.dart';
 
-snackBarWidget(BuildContext context, {required String text, Color? color}) {
-  SnackBar snackBar = SnackBar(
-    content: InterText(
-      text,
-      noOfTextLine: 3,
-      textFontSize: 10,
-      textAlign: TextAlign.center,
+void snackBarWidget(
+  BuildContext context, {
+  required String text,
+  String? title,
+  Color? color,
+  VoidCallback? action, // Add an optional callback parameter
+}) {
+  Flushbar(
+    backgroundColor: color ?? colorsBucket!.backgroundMid,
+    title: title ?? '',
+    titleColor: colorsBucket!.primary,
+    messageColor: colorsBucket!.title,
+    message: text,
+    flushbarPosition: FlushbarPosition.TOP,
+    duration: const Duration(seconds: 2),
+    padding: EdgeInsets.symmetric(
+      horizontal: sS(context).cW(width: 30),
+      vertical: sS(context).cH(height: 16),
     ),
-    backgroundColor: colorsBucket!.white,
-  );
-
-// Find the ScaffoldMessenger in the widget tree
-// and use it to show a SnackBar.
-  return ScaffoldMessenger.of(context).showSnackBar(snackBar);
+  ).show(context).then((_) {
+    print('next action');
+    // Execute the action if provided
+    if (action != null) {
+      print('action');
+      action();
+    }
+  });
 }

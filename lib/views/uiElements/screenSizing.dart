@@ -15,7 +15,17 @@ class ScreenSize {
   // text scale factor
   TextScaler get tsf => MediaQuery.of(context!).textScaler;
 
-  double removeWidthAdjustment() => (430 / MediaQuery.of(context!).size.width);
+  double removeWidthAdjustment() {
+
+    if (MediaQuery.of(context!).size.width >= 730) {
+      return (730 / MediaQuery.of(context!).size.width);
+    }
+    else if (MediaQuery.of(context!).size.width >= 1250) {
+      return (1250 / MediaQuery.of(context!).size.width);
+    }
+
+    return (375 / MediaQuery.of(context!).size.width);
+    }
 
   // calculated height
   double cH({double? height}) =>
@@ -45,8 +55,6 @@ class ScreenSize {
       return MediaQuery.of(context!).size.width * (width! / 1250);
     }
 
-    return MediaQuery.of(context!).size.width < 375
-        ? MediaQuery.of(context!).size.width * (width! / 375)
-        : width!;
+    return  MediaQuery.of(context!).size.width * (width! / 375);
   }
 }

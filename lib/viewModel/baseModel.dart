@@ -6,6 +6,7 @@ class BaseModel extends ChangeNotifier {
   // timer
   int counter = 5 * 60; // 5 minutes in seconds
   Timer? timer;
+  String testUser = 'Kingdammy';
 
     // Maps for colors
   static const Map<String, AppColors> colorMap = {
@@ -79,11 +80,6 @@ setAppColors(BuildContext context) async {
 
 
 
-  void showSnackBar(BuildContext context, String message) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text(message)),
-    );
-  }
 
   @override
   void dispose() {
@@ -140,20 +136,8 @@ setAppColors(BuildContext context) async {
     otpFocusNode.notifyListeners();
   }
 
-// show flush bar
-  showFlushbar(BuildContext context, String message) {
-    return Flushbar(
-      //
-      backgroundColor: colorsBucket!.borderBlack,
-      messageColor: colorsBucket!.white,
-      message: message,
-      flushbarPosition: FlushbarPosition.TOP,
-      duration: const Duration(seconds: 3),
-      padding: EdgeInsets.symmetric(
-          horizontal: sS(context).cW(width: 30),
-          vertical: sS(context).cH(height: 16)),
-    ).show(context);
-  }
+
+
 
 
 
