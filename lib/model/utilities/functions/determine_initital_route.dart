@@ -1,4 +1,4 @@
-import '../imports/generalImport.dart';
+import '../imports/shared.dart';
 
 Future<String> determineInitialRoute() async {
 
@@ -11,5 +11,5 @@ Future<String> determineInitialRoute() async {
     }
 
     // Check if user is admin by looking at user data
-  return '/lock_screen';
+  return '/';
 }

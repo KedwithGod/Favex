@@ -1,7 +1,7 @@
 
 
 
-import '../imports/generalImport.dart';
+import '../imports/shared.dart';
 
 class AppColors {
   // common colors (don’t change across themes)

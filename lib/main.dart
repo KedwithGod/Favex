@@ -1,5 +1,5 @@
 
-import 'model/utilities/imports/generalImport.dart';
+import 'model/utilities/imports/shared.dart';
 
 void main() {
   runApp(const MyApp());

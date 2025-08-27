@@ -1,6 +1,6 @@
 // terms and condition
 // const baseSiteUrl = 'http://localhost:8069/';
-import '../../imports/generalImport.dart';
+import '../../imports/shared.dart';
 
 String siteBaseSiteUrl() {
   if (Platform.isAndroid) {

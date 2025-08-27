@@ -1,7 +1,7 @@
 // constants of string
 // screen sizing
 
-import '../../imports/generalImport.dart';
+import '../../imports/shared.dart';
 
 
 

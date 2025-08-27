@@ -1,6 +1,6 @@
 
 
-import '../imports/generalImport.dart';
+import '../imports/shared.dart';
 
 class LocalStorage {
 //set String into shared preferences like this

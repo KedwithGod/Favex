@@ -1,4 +1,4 @@
-import '../../../model/utilities/imports/generalImport.dart';
+import '../../../model/utilities/imports/shared.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});

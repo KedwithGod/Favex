@@ -3,7 +3,7 @@
 
 
 
-import 'imports/generalImport.dart';
+import 'imports/shared.dart';
 
 final navigatorKey = GlobalKey<NavigatorState>();
 final router = GoRouter(

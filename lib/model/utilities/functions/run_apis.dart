@@ -1,4 +1,4 @@
-import '../imports/generalImport.dart';
+import '../imports/shared.dart';
 
 Future<bool> runFunctionForApi(
   BuildContext context, {

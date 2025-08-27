@@ -1,5 +1,5 @@
 // calculate text height
-import '../imports/generalImport.dart';
+import '../imports/shared.dart';
 
 double calculateErrorTextHeight(String errorText, BuildContext context) {
   if (errorText.isEmpty) {

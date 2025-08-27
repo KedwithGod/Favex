@@ -1,1 +1,0 @@
-export '../../../model/services/generalService/general_service.dart';

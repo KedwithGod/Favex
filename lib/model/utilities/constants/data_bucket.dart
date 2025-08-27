@@ -1,6 +1,6 @@
 
 
-import '../imports/generalImport.dart';
+import '../imports/shared.dart';
 
 AppColors? colorsBucket;
 AppTexts? textBucket;

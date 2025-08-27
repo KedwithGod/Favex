@@ -1,6 +1,6 @@
 
 
-import '../../../model/utilities/imports/generalImport.dart';
+import '../../../model/utilities/imports/shared.dart';
 
 class LockScreenPage extends StatelessWidget {
   const LockScreenPage({super.key});

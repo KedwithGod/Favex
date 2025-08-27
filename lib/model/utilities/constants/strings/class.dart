@@ -1,7 +1,7 @@
 // instantiate classes
 
 
-import '../../imports/generalImport.dart';
+import '../../imports/shared.dart';
 
 ScreenSize sS(
   BuildContext context,
