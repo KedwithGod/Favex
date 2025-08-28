@@ -1,73 +1,83 @@
-// page tab
-
 import '../../../model/utilities/imports/shared.dart';
 
-Widget pageTab(BuildContext context, {double? top, TabEnum? tabEnum}) {
+Widget pageTab(BuildContext context, {double? top, required TabEnum tabEnum}) {
   return Positioned(
     bottom: sS(context).cH(height: 0),
     child: Container(
-      width: sS(context).w,
-      height: sS(context).cH(height: 78),
-      decoration: BoxDecoration(
-        color: colorsBucket!.white,
-        boxShadow: [
-          BoxShadow(
-            color: Color(int.parse('0x3F000000')),
-            blurRadius: 20,
-            offset: const Offset(0, 4),
-            spreadRadius: 0,
-          )
-        ],
-      ),
-      padding: EdgeInsets.only(top: sS(context).cH(height: 9.5)),
-      child: const Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+      height: sS(context).cH(height: 80),
+      width: 375,
+      color: colorsBucket!.white,
+      child: Row(
+        spacing: sS(context).cW(width: 20),
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          // dashboard page
-          // tabWidget(context,
-          //     image: tabEnum == TabEnum.dashboard
-          //         ? "dashboardSelected"
-          //         : "dashboardUnselected",
-          //     isSelected: tabEnum == TabEnum.dashboard ? true : false,
-          //     left: 26,
-          //     label: "Dashboard",
-          //     navigation: tabEnum == TabEnum.dashboard
-          //         ? () {}
-          //         : () {
-          //             context.goNamed(dashboardPageRoute);
-          //           }),
-          // inventory page
-        
+          // Dashboard page
+          _buildTab(
+            context,
+            tabEnum: tabEnum,
+            tab: TabEnum.home,
+            image: tabEnum == TabEnum.home ? "home_colored" : "home",
+            label: textBucket!.home,
+          ),
+          _buildTab(
+            context,
+            tabEnum: tabEnum,
+            tab: TabEnum.history,
+            image: tabEnum == TabEnum.history ? "history_colored" : "history",
+            label: textBucket!.history,
+          ),
+          _buildTab(
+            context,
+            tabEnum: tabEnum,
+            tab: TabEnum.card,
+            image: tabEnum == TabEnum.card ? "card_colored" : "card",
+            label: textBucket!.card,
+          ),
+          _buildTab(
+            context,
+            tabEnum: tabEnum,
+            tab: TabEnum.rate,
+            image: tabEnum == TabEnum.rate ? "rate_colored" : "rates",
+            label: textBucket!.rates,
+          ),
+          _buildTab(
+            context,
+            tabEnum: tabEnum,
+            tab: TabEnum.account,
+            image: tabEnum == TabEnum.account ? "account_colored" : "account",
+            label: textBucket!.account,
+          ),
         ],
       ),
     ),
   );
 }
 
-Widget tabWidget(context,
-    {required String image,
-    required String label,
-    required bool isSelected,
-    double? left,
-    double? right,
-    Function? navigation}) {
+Widget _buildTab(BuildContext context, {required TabEnum tabEnum, required TabEnum tab, required String image, required String label}) {
+  bool isSelected = tabEnum == tab;
+
   return InkWell(
     onTap: () {
-      navigation!();
+      if (!isSelected) {
+        context.goNamed(tab.route); // Assuming each TabEnum has a route associated with it
+      }
     },
-    child: Column(
-      //mainAxisSize: MainAxisSize.min,
-      //mainAxisAlignment: MainAxisAlignment.end,
-      children: [
-        // dashboard page
-        SvgPicture.asset("assets/svg/$image.svg",
-            height: sS(context).cH(height: 22)),
-        S(h: 10),
-        //label
-        InterText(label,textColor:  isSelected ?  colorsBucket!.primary :  colorsBucket!.disabled,
-            textFontWeight:  FontWeight.w500, ),
-        // indicator
-      ],
+    child: S(
+      w: 55,
+      h: 63,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          SvgPngImage(path: image, height: 24, width: 24),
+          S(h: 5),
+          InterText(
+            label,
+            textColor: isSelected ? colorsBucket!.primary : colorsBucket!.contentDisabled,
+            textFontSize: 12,
+            textFontWeight: FontWeight.w400,
+          ),
+        ],
+      ),
     ),
   );
 }

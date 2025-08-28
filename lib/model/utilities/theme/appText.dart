@@ -88,6 +88,11 @@ class AppTexts {
   final String pinNotMatchError;
   final String confirmTransactionPin;
   final String enableBiometric;
+  final String home;
+  final String history;
+  final String card;
+  final String rates;
+  final String account;
   const AppTexts( {
     required this.welcomeMessage,
     required this.emailAddress,
@@ -170,6 +175,11 @@ class AppTexts {
     required this.pinNotMatchError,
     required this.confirmTransactionPin,
     required this.enableBiometric,
+    required this.home,
+    required this.history,
+    required this.card,
+    required this.rates,
+    required this.account,
   });
 
   // English Language
@@ -255,6 +265,11 @@ class AppTexts {
     pinNotMatchError: 'PIN not match, please try again.',
     confirmTransactionPin: 'Confirm Transaction Pin',
     enableBiometric: 'Enable Biometric',
+    home: 'Home',
+    history: 'History',
+    card: 'Card',
+    rates: 'Rates',
+    account: 'Account',
   );
 
   // Spanish Language (example)
@@ -340,6 +355,11 @@ class AppTexts {
     pinNotMatchError: 'La clave de PIN no coincide, por favor inténtalo de nuevo.',
     confirmTransactionPin: 'Confirmar Transacción PIN: \\*Para confirmar la transacción, ingrese su PIN\\*.',
     enableBiometric: 'Habilitar Biométrica',
+    home: 'Casa',
+    history: 'Historia',
+    card: 'Tarjeta (in Spanish)',
+    rates: 'Tasas',
+    account: 'Cuenta (Masculino) or Cuenta (Femenino), dependiendo de su idioma.',
   );
 
   // Add more languages as needed

@@ -12,6 +12,7 @@ class BaseUi extends StatelessWidget {
   final Function? onRefreshFunction;
   final bool refreshedEnabled;
   final Color? containerColor;
+  final Widget? bottomNavigationBar;
 
   const BaseUi(
       {Key? key,
@@ -23,7 +24,7 @@ class BaseUi extends StatelessWidget {
       this.safeBottom,
       this.refreshedEnabled = true,
       this.onRefreshFunction,
-      this.containerColor})
+      this.containerColor, this.bottomNavigationBar})
       : super(key: key);
 
   @override
@@ -83,6 +84,7 @@ class BaseUi extends StatelessWidget {
                             ),
                           ),
                           floatingActionButton: floatingActionButton,
+                          bottomNavigationBar:bottomNavigationBar,
                         ),
                       ),
                     ));

@@ -26,6 +26,7 @@ class AppColors {
   final Color primarySoft;
   final Color borderBlack;
   final Color disabled;
+  final Color contentDisabled;
 
 
 
@@ -33,6 +34,7 @@ class AppColors {
     required this.title,
     required this.titleSoft,
     required this.subtitle,
+    required this.contentDisabled,
     required this.backgroundMid,
     required this.primary,
     required this.backgroundDisabled,
@@ -59,7 +61,7 @@ class AppColors {
     alertHard: Color.fromRGBO(248, 52, 70, 1),
     primaryLemon: Color.fromRGBO(235, 248, 238, 1),
     primarySoft: Color.fromRGBO(249, 250, 251, 1),
-    borderBlack: Color.fromRGBO(21, 27, 31, 1)
+    borderBlack: Color.fromRGBO(21, 27, 31, 1), contentDisabled: Color.fromRGBO(152, 162, 179, 1)
     
   );
 
@@ -79,6 +81,7 @@ class AppColors {
     primaryLemon: Color.fromRGBO(70, 70, 70, 1), // Darker shade for primary lemon
     primarySoft: Color.fromRGBO(34, 43, 36, 1), // Keep primary soft color
     borderBlack: Color.fromRGBO(255, 255, 255, 0.1), // Light border for contrast
+    contentDisabled: Color.fromRGBO(71, 84, 103, 1)
  
     
   );

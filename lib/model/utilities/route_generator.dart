@@ -23,9 +23,9 @@ final router = GoRouter(
         path: '/lock_screen',
         builder: (context, state) => const LockScreenPage()),
     GoRoute(
-        name: dashboardPageRoute,
-        path: '/dashboard',
-        builder: (context, state) => const DashboardPage()),
+        name: HomePageRoute,
+        path: '/home',
+        builder: (context, state) => const HomePage()),
     GoRoute(
         name: emailEntryPageRoute,
         path: '/email_entry',

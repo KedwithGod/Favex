@@ -63,7 +63,7 @@ class EnableBiometricPage extends StatelessWidget {
                               navigator: () {
                             openBiometric(context, action: () {
                                 // Navigate to another page or perform another action
-                              context.goNamed(dashboardPageRoute);
+                              context.goNamed(HomePageRoute);
                             });
                           }),
                           S(h: 10),
@@ -72,7 +72,7 @@ class EnableBiometricPage extends StatelessWidget {
                               textColor: colorsBucket!.primary,
                               buttonColor: colorsBucket!.white,
                               borderColor: colorsBucket!.primary,
-                              navigateTo: dashboardPageRoute),
+                              navigateTo: HomePageRoute),
                         ],
                       ),
                     ),

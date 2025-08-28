@@ -94,7 +94,7 @@ class _PinCodeFieldsState extends State<PinCodeFields> {
     openBiometric(context,action: () {
       print('action called');
       // Navigate to another page or perform another action
-      context.goNamed(dashboardPageRoute);
+      context.goNamed(HomePageRoute);
     });
   }
 

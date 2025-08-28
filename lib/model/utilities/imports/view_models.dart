@@ -14,4 +14,7 @@ export '../../../view_models/forgot_password/create_new_password.dart';
 export '/view_models/sign_up/email_verification.dart';
 export '/view_models/sign_up/create_account.dart';
 export '/view_models/sign_up/create_password.dart';
-export 'package:favex/view_models/sign_up/create_transaction_pin.dart';
+export '/view_models/sign_up/create_transaction_pin.dart';
+
+// dashboard
+export 'package:favex/view_models/dashboard/home.dart';

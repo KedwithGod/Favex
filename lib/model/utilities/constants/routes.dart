@@ -3,7 +3,7 @@
 const String loginPageRoute = 'loginPage';
 const String lockScreenPageRoute = 'loginScreenPage';
 const String emailVeificationPageRoute = 'emailVeificationPageRoute';
-const String dashboardPageRoute = 'dashboardPageRoute';
+const String HomePageRoute = 'HomePageRoute';
 const String emailEntryPageRoute = 'emailEntryPageRoute';
 const String enterOTPCodePageRoute = 'enterOTPCodePageRoute';
 const String createPasswordPageRoute = 'createPasswordPageRoute';
