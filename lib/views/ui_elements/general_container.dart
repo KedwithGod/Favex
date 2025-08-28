@@ -103,7 +103,7 @@ class GeneralContainer extends StatelessWidget {
               boxShadow: boxShadow,
               
               border: Border.all(
-                color: borderColor??colorsBucket!.borderMid,
+                color: borderColor??colorsBucket!.transparent,
                 width: borderWidth,
                 style: borderStyle ?? BorderStyle.solid,
               ),

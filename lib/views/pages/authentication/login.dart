@@ -21,7 +21,7 @@ class LoginPage extends StatelessWidget {
                       child: Column(
                         children: [
                           // logo
-                          const SvgImage(path: 'logo', height: 38, width: 160),
+                          const SvgPngImage(path: 'logo', height: 38, width: 160),
                           S(h: 20),
                           // title
                           InterText(
@@ -68,7 +68,7 @@ class LoginPage extends StatelessWidget {
                                       height: sS(context)
                                           .cH(height: 24), // Control height
                                       alignment: Alignment.center,
-                                      child: const SvgImage(
+                                      child: const SvgPngImage(
                                         path: 'check',
                                         height: 20,
                                         width: 20,
@@ -105,7 +105,7 @@ class LoginPage extends StatelessWidget {
                                       height: sS(context)
                                           .cH(height: 24), // Control height
                                       alignment: Alignment.center,
-                                      child: SvgImage(
+                                      child: SvgPngImage(
                                         path: model.passwordNotValid?'eye':'check',
                                         height: 20,
                                         width: 20,
@@ -172,17 +172,17 @@ class LoginPage extends StatelessWidget {
                               Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  const SvgImage(
+                                  const SvgPngImage(
                                       path: 'google', height: 50, width: 50),
                                   S(
                                     w: 12,
                                   ),
-                                  const SvgImage(
+                                  const SvgPngImage(
                                       path: 'facebook', height: 50, width: 50),
                                   S(
                                     w: 12,
                                   ),
-                                  const SvgImage(
+                                  const SvgPngImage(
                                       path: 'apple', height: 50, width: 50),
                                 ],
                               ),

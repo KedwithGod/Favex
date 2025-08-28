@@ -1,5 +1,3 @@
-
-
 import '../model/utilities/imports/shared.dart';
 
 class BaseModel extends ChangeNotifier {
@@ -8,7 +6,7 @@ class BaseModel extends ChangeNotifier {
   Timer? timer;
   String testUser = 'Kingdammy';
 
-    // Maps for colors
+  // Maps for colors
   static const Map<String, AppColors> colorMap = {
     "light": AppColors.light,
     "dark": AppColors.dark,
@@ -36,34 +34,126 @@ class BaseModel extends ChangeNotifier {
   String passwordErrorText = '';
   bool passwordNotValid = true;
 
-setAppColors(BuildContext context) async {
-  String? theme = await LocalStorage.getString(themePS);
-  String? language = await LocalStorage.getString(languagePS);
-
-  // Set colors based on theme
-  if (theme == null || theme.isEmpty || !colorMap.containsKey(theme)) {
-    colorsBucket = colorMap["light"]!; // Default to light
-  } else {
-    colorsBucket = colorMap[theme]!;
+  showPassword() {
+    showPasswordBool = !showPasswordBool;
+    notifyListeners();
   }
 
-  // Set texts based on language
-  if (language == null || language.isEmpty || !textMap.containsKey(language)) {
-    textBucket = textMap["english"]!; // Default to English
-  } else {
-    textBucket = textMap[language]!;
-  }
-}
+  // email address
 
-  void startTimer() {
-    const oneSecond = Duration(seconds: 1);
-    timer = Timer.periodic(oneSecond, (Timer timer) {
-      if (counter > 0) {
-        counter--;
-      } else {
-        timer.cancel();
+  void unfocusAllNodes(String clearKey) {
+    clearKey == 'password' ? '' : passwordErrorBool = false;
+    clearKey == 'password' ? '' : passwordFocusNode.unfocus();
+    clearKey == 'email' ? '' : emailErrorBool = false;
+    clearKey == 'email' ? '' : emailFocusNode.unfocus();
+  }
+
+  // validate email
+  validateEmail() {
+    unfocusAllNodes('email');
+    if (isValidEmail(emailController.text.trim())) {
+      emailErrorBool = false;
+      emailErrorText = "";
+      emailNotValid = false;
+    } else {
+      emailErrorBool = true;
+      emailErrorText = "Please enter a valid email address.";
+      emailNotValid = true;
+    }
+    notifyListeners();
+  }
+
+  validatePassword() {
+    unfocusAllNodes('password');
+    List<dynamic> error = isValidPasswordText(passwordController.text.trim());
+    if (error[0] == true) {
+      passwordErrorBool = false;
+      passwordErrorText = '';
+      passwordNotValid = false;
+      showPasswordBool = true;
+      notifyListeners();
+    } else {
+      passwordErrorBool = true;
+      passwordErrorText = error[1];
+      passwordNotValid = true;
+      notifyListeners();
+    }
+  }
+
+  // change password function
+  onChangedFunctionPassword() {
+    passwordFocusNode.addListener(() {
+      if (passwordFocusNode.hasFocus == false) {
+        passwordErrorBool = false;
+        notifyListeners();
       }
     });
+    validatePassword();
+  }
+
+  // email onchanged function
+  onChangedFunctionEmail() {
+    emailFocusNode.addListener(() {
+      if (!emailFocusNode.hasFocus) {
+        emailErrorBool = false;
+        notifyListeners();
+      }
+    });
+    // validate the email
+    validateEmail();
+    if (emailController.text.isNotEmpty) {
+      showeaSuffixIcon = true;
+    } else {
+      showeaSuffixIcon = false;
+    }
+    notifyListeners();
+    if (emailController.text.isNotEmpty) {
+      showeaSuffixIcon = true;
+      notifyListeners();
+    }
+    if (emailController.text.isEmpty) {
+      showeaSuffixIcon = false;
+      notifyListeners();
+    }
+  }
+
+  // first login, and filled loginInbuckt
+
+  eaSuffixFunction() {
+    emailController.text = '';
+    showeaSuffixIcon = false;
+    notifyListeners();
+  }
+
+  // remember me logic
+  bool rememberme = true;
+
+  switchRememberMe() {
+    rememberme = !rememberme;
+    notifyListeners();
+  }
+
+  // login function
+
+  setAppColors(BuildContext context) async {
+    String? theme = await LocalStorage.getString(themePS);
+    String? language = await LocalStorage.getString(languagePS);
+
+    // Set colors based on theme
+    if (theme == null || theme.isEmpty || !colorMap.containsKey(theme)) {
+      colorsBucket = colorMap["light"]!; // Default to light
+    } else {
+      colorsBucket = colorMap[theme]!;
+    }
+
+    // Set texts based on language
+    if (language == null ||
+        language.isEmpty ||
+        !textMap.containsKey(language)) {
+      textBucket = textMap["english"]!; // Default to English
+    } else {
+      textBucket = textMap[language]!;
+    }
   }
 
   String formatDuration(Duration duration) {
@@ -78,104 +168,32 @@ setAppColors(BuildContext context) async {
     return "$twoDigitMinutes:$twoDigitSeconds";
   }
 
-
-
-
-  @override
-  void dispose() {
-    timer?.cancel();
-    super.dispose();
-  }
-
   // otp variables
   TextEditingController? otpController;
   bool otpErrorBool = false;
   FocusNode otpFocusNode = FocusNode();
   FocusNode deleteButtonFocusNode = FocusNode();
   String otpValue = '';
+  String otpErrorText = '';
+  String testOTP = '123456';
 
-  otpOnChangedFunction(int index, String value, {bool add = true}) {
-    // save the value and move the cursor forward
-    updateOtpValue(index, value, add);
-    if (index + 1 <= 4) {
-      currentIndex = index + 1;
-    }
-    debugPrint(otpValue);
-  }
+  otpOnChangedFunction(
+    String value,
+  ) {
+    otpErrorBool = false;
 
-  // set texfield index
-  int currentIndex = 0;
-  setCurrentIndex(int index) {
-    {
-      if (otpController == null || otpController!.text.isEmpty) {
-        otpController = TextEditingController();
-      }
-      currentIndex = index;
-      otpFocusNode.notifyListeners();
-    }
+    otpValue = value;
+    notifyListeners();
   }
 
   // update otpvalue
-  updateOtpValue(int index, String value, bool add) {
-    // Convert the string to a list of characters
-    List<String> charList = otpValue.split('');
-
-    // Add a value at a specific index (e.g., index 2)
-    if (add == true) {
-      charList.insert(index, value);
-    }
-
-    // Remove a value at a specific index (e.g., index 1)
-    if (add == false) {
-      charList.removeAt(index);
-    }
-
-    // Convert the list back to a string
-    otpValue = charList.join('');
-    // this allowed to notify listener
-    otpFocusNode.notifyListeners();
-  }
-
-
-
-
-
-
-  // search field variable
-  TextEditingController searchController = TextEditingController();
-  bool searchErrorBool = false;
-  FocusNode searchFocusNode = FocusNode();
-
-
-  // validations for onChan
-  // for showing error text under text fields
-  showErrorText(
-      {required String text,
-      required bool errorBool,
-      TextAlign textAlign = TextAlign.left,
-      double lineLength = 1.0}) {
-    if (errorBool == true) {
-      return Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          S(
-            h: 10 * lineLength,
-            w: 150,
-            child: InterText(text, 
-            textColor: colorsBucket!.alertHard,
-            textFontSize: 6,
-            noOfTextLine: 6,
-                textAlign: textAlign),
-          ),
-          S(h: 4),
-        ],
-      );
+  otpOnCompleteFunction(String value) {
+    if (testOTP == value) {
+      otpErrorBool = false;
     } else {
-      return S();
+      otpErrorBool = true;
+      otpErrorText = textBucket!.incorrectOTPAttempt;
     }
+    notifyListeners();
   }
-
-
-
 }

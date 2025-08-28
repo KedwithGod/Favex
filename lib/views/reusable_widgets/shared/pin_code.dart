@@ -167,10 +167,10 @@ class _PinCodeFieldsState extends State<PinCodeFields> {
                     borderColor: colorsBucket!.transparent,
                     child: Center(
                       child: number == 12
-                          ? const SvgImage(
+                          ? const SvgPngImage(
                               path: 'delete', height: 22, width: 10)
                           : number == 10
-                              ? const SvgImage(
+                              ? const SvgPngImage(
                                   path: 'finger_check', height: 22, width: 10)
                               : number == 11
                                   ? const InterText('0', textFontSize: 22)

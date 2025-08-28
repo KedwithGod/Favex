@@ -13,3 +13,6 @@ export '../../../views/reusable_widgets/shared/page_tab.dart';
 export '../../../views/reusable_widgets/shared/drawer.dart';
 export '../../../views/reusable_widgets/shared/pin_code.dart';
 export '../../../views/reusable_widgets/shared/animation.dart';
+export '../../../views/reusable_widgets/shared/otp_entry.dart';
+export '../../../views/reusable_widgets/shared/action_bottom_sheet.dart';
+

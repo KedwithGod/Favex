@@ -8,9 +8,11 @@ class AppTexts {
   final String welcomeMessage;
   final String emailAddress;
   final String enterEmail;
+  final String emailHint;
   final String password;
   final String enterPassword;
   final String forgotPassword;
+  final String enterOtpEmail;
   final String resetIt;
   final String login;
   final String signInWith;
@@ -27,8 +29,21 @@ class AppTexts {
   final String authorized;
   final String notAuthorized;
   final String biometricAuthentication;
+  final String getOTP;
 
 
+  final String verificationCode;
+  final String enterOtp;
+  final String enterOTPSubtitle;
+  final String didntReceiveAnything;
+  final String resendIn;
+  final String continueText;
+  final String resend;
+  final String incorrectOTPAttempt;
+  final String otpSentEmailSuccess;
+  final String otpVerification;
+  final String otpVerified;
+  final String verificationCompletedPassword;
   const AppTexts( {
     required this.welcomeMessage,
     required this.emailAddress,
@@ -43,6 +58,7 @@ class AppTexts {
     required this.welcomeMessageSubtitle,
     required this.noAccount,
     required this.enterPin, required this.hi, required this.iAmNot,
+    required this.enterOtpEmail,
 
     required this.scanFingerprint ,
     required this.authError ,
@@ -51,7 +67,21 @@ class AppTexts {
     required this.authorized ,
     required this.notAuthorized ,
     required this.biometricAuthentication ,
+    required this.emailHint,
+    required this.getOTP,
  
+    required this.verificationCode,
+    required this.enterOtp,
+    required this.enterOTPSubtitle,
+    required this.didntReceiveAnything,
+    required this.resendIn,
+    required this.continueText,
+    required this.resend,
+    required this.incorrectOTPAttempt,
+    required this.otpSentEmailSuccess,
+    required this.otpVerification,
+    required this.otpVerified,
+    required this.verificationCompletedPassword,
   });
 
   // English Language
@@ -78,6 +108,21 @@ class AppTexts {
     authorized: 'Authorized',
     notAuthorized: 'Not Authorized',
     biometricAuthentication: 'Biometric Authentication',
+    enterOtpEmail: "Enter your account email to receive verification OTP",
+    emailHint:'yourmail@mail.com',
+    getOTP: 'Get OTP',
+    verificationCode: 'Verification code',
+    enterOtp: 'Enter OTP code',
+    enterOTPSubtitle: 'Enter the 6-digit code sent to your mail',
+    didntReceiveAnything: "Didn’t receive anything?",
+    resendIn: 'Resend in',
+    continueText: 'Continue',
+    resend: 'Resend',
+    incorrectOTPAttempt: 'Incorrect OTP. Try again',
+    otpSentEmailSuccess: 'OTP sent successfully to email',
+    otpVerification: 'OTP Verification',
+    otpVerified: 'OTP Verified',
+    verificationCompletedPassword: 'Verification completed. Create a new password to access account',
   );
 
   // Spanish Language (example)
@@ -104,6 +149,21 @@ class AppTexts {
     authorized:'Autorizado',
     notAuthorized:'No Autorizado',
     biometricAuthentication:'Autenticación Biométrica',
+    enterOtpEmail: 'Introduce el correo electrónico de tu cuenta para recibir el código OTP',
+    emailHint:'tucorreo@mail.com',
+    getOTP: 'Obtener OTP',
+    verificationCode: 'Código de verificación',
+    enterOtp: 'Introduce el código OTP',
+    enterOTPSubtitle: 'Introduce el código de 6 dígitos enviado a tu correo',
+    didntReceiveAnything: '¡No recibiste nada?',
+    resendIn: 'Reactiva envío (en español)',
+    continueText: 'Continuar (continua en español)',
+    resend: 'Reenviar',
+    incorrectOTPAttempt: '¡Código OTP incorrecto. Inténtalo de nuevo.',
+    otpSentEmailSuccess: 'ÓTP enviado correctamente a tu correo electrónico',
+    otpVerification: 'Verificación de OTP (One-Time Password)',
+    otpVerified: 'ÓTTP verificado',
+    verificationCompletedPassword: 'La verificación se ha completado. Crea una nueva contraseña para acceder a la cuenta.',
   );
 
   // Add more languages as needed

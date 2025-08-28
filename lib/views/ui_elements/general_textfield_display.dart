@@ -198,7 +198,7 @@ class FormattedTextFields extends StatelessWidget {
           },
         ),
 
-        if (errorTextActive == true) ...[
+        if (errorTextActive == true && errorText!= '') ...[
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,

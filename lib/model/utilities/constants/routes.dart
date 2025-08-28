@@ -3,4 +3,6 @@
 const String loginPageRoute = 'loginPage';
 const String lockScreenPageRoute = 'loginScreenPage';
 const String verifyEmailPageRoute = 'verifyEmailPage';
-const String dashboardPageRoute = 'verifyEmailPage';
+const String dashboardPageRoute = 'dashboardPageRoute';
+const String emailEntryPageRoute = 'emailEntryPageRoute';
+const String enterOTPCodePageRoute = 'enterOTPCodePageRoute';
