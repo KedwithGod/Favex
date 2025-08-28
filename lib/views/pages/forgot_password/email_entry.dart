@@ -12,7 +12,7 @@ class EmailEntryPage extends StatelessWidget {
         builder: (context, model, child) {
           return BaseUi(
             children: [
-              rowPositioned(
+                rowPositioned(
                   top: 0,
                   bottom: 20,
                   child: S(
@@ -28,14 +28,19 @@ class EmailEntryPage extends StatelessWidget {
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                GeneralContainer(
-                                  height: 34,
-                                  width:
-                                      51 * sS(context).removeWidthAdjustment(),
-                                  color: colorsBucket!.backgroundMid,
-                                  borderRadius: 16,
-                                  child: GeneralIconDisplay(LineIcons.arrowLeft,
-                                      colorsBucket!.title, UniqueKey(), 25),
+                                GestureDetector(
+                                    onTap: (){
+                                router.goNamed(loginPageRoute);
+                              },
+                                  child: GeneralContainer(
+                                    height: 34,
+                                    width:
+                                        51 * sS(context).removeWidthAdjustment(),
+                                    color: colorsBucket!.backgroundMid,
+                                    borderRadius: 16,
+                                    child: GeneralIconDisplay(LineIcons.arrowLeft,
+                                        colorsBucket!.title, UniqueKey(), 25),
+                                  ),
                                 ),
                                 S(w: 57),
                                 InterText(textBucket!.forgotPassword),
@@ -110,7 +115,8 @@ class EmailEntryPage extends StatelessWidget {
                                 buttonNoPositioned(context,
                                     text: textBucket!.getOTP, 
                                   textColor:  model.emailNotValid ==false ? colorsBucket!.primarySoft:colorsBucket!.subtitle,
-                                  buttonColor: model.emailNotValid ==false ?colorsBucket!.primary: colorsBucket!.disabled
+                                  buttonColor: model.emailNotValid ==false ?colorsBucket!.primary: colorsBucket!.disabled,
+                                  navigateTo: model.emailNotValid ==false ?enterOTPCodePageRoute:null
                                     )
                               ],
                             ),

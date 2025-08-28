@@ -44,6 +44,12 @@ class AppTexts {
   final String otpVerification;
   final String otpVerified;
   final String verificationCompletedPassword;
+  final String createNewPassword;
+  final String confirm;
+  final String newPassword;
+  final String newPasswordCreated;
+  final String newPasswordCreationCompleted;
+  final String logOut;
   const AppTexts( {
     required this.welcomeMessage,
     required this.emailAddress,
@@ -82,6 +88,12 @@ class AppTexts {
     required this.otpVerification,
     required this.otpVerified,
     required this.verificationCompletedPassword,
+    required this.createNewPassword,
+    required this.confirm,
+    required this.newPassword,
+    required this.newPasswordCreated,
+    required this.newPasswordCreationCompleted,
+    required this.logOut,
   });
 
   // English Language
@@ -123,6 +135,12 @@ class AppTexts {
     otpVerification: 'OTP Verification',
     otpVerified: 'OTP Verified',
     verificationCompletedPassword: 'Verification completed. Create a new password to access account',
+    createNewPassword: 'Create new password',
+    confirm: 'Confirm',
+    newPassword: 'New Password',
+    newPasswordCreated: 'New password created',
+    newPasswordCreationCompleted: 'New password creation completed. Click logout and login with your new password',
+    logOut: 'Log out',
   );
 
   // Spanish Language (example)
@@ -164,6 +182,12 @@ class AppTexts {
     otpVerification: 'Verificación de OTP (One-Time Password)',
     otpVerified: 'ÓTTP verificado',
     verificationCompletedPassword: 'La verificación se ha completado. Crea una nueva contraseña para acceder a la cuenta.',
+    createNewPassword: 'Crear una nueva contraseña',
+    confirm: 'Confirmar',
+    newPassword: 'Nueva contraseña',
+    newPasswordCreated: 'Contraseña nueva creada (Spanish)',
+    newPasswordCreationCompleted: '¡La creación de tu contraseña ha sido completada! Haz clic en "Cerrar sesión" e inicia sesión con tu nueva contraseña.',
+    logOut: 'Cerrar sesión',
   );
 
   // Add more languages as needed

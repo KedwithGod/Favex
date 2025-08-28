@@ -20,7 +20,7 @@ class ConfirmationSheet {
         S(h: 20),
         // eneter otp
         InterText(
-          textBucket!.otpVerified,
+         title?? textBucket!.otpVerified,
           textFontSize: 18,
           textFontWeight: FontWeight.w700,
         ),
@@ -28,13 +28,13 @@ class ConfirmationSheet {
         S(h: 8),
         // eneter otp
         InterText(
-          textBucket!.verificationCompletedPassword,
+         subtitle?? textBucket!.verificationCompletedPassword,
           textFontSize: 12,
           noOfTextLine: 2,
           textAlign: TextAlign.center,
         ),
          S(h: 20),
-         buttonNoPositioned(context, text: textBucket!.continueText),
+         buttonNoPositioned(context, text: buttonText?? textBucket!.continueText, navigator: onPressed),
          S(h: 64),
       ],
     );

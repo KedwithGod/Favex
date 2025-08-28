@@ -65,7 +65,7 @@ class LockScreenPage extends StatelessWidget {
                           S(h: 30),
                           GestureDetector(
                             onTap: () {
-                              context.goNamed(verifyEmailPageRoute);
+                              context.goNamed(emailVeificationPageRoute);
                             },
                             child: InterText(
                               textBucket!.iAmNot + model.testUser,

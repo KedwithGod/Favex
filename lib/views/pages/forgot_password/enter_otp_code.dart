@@ -68,6 +68,9 @@ class EnterOTPCodePage extends StatelessWidget {
                             resendFunction: () {
                               model.sendOtp(context);
                             },
+                            actionButtonFunction:(){
+                              context.goNamed(createPasswordPageRoute);
+                            }
                           ),
                         ],
                       ),

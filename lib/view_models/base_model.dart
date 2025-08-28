@@ -34,6 +34,15 @@ class BaseModel extends ChangeNotifier {
   String passwordErrorText = '';
   bool passwordNotValid = true;
 
+  
+  // confirmPassword
+  TextEditingController confirmPasswordController = TextEditingController();
+  bool confirmPasswordErrorBool = false;
+  String confirmPasswordErrorText = '';
+  bool confirmPasswordNotValid = true;
+  FocusNode confirmPasswordFocusNode = FocusNode();
+  bool showConfirmPasswordBool = true;
+
   showPassword() {
     showPasswordBool = !showPasswordBool;
     notifyListeners();
@@ -46,6 +55,8 @@ class BaseModel extends ChangeNotifier {
     clearKey == 'password' ? '' : passwordFocusNode.unfocus();
     clearKey == 'email' ? '' : emailErrorBool = false;
     clearKey == 'email' ? '' : emailFocusNode.unfocus();
+    clearKey == 'confirmPassword' ? '' : confirmPasswordErrorBool = false;
+    clearKey == 'confirmPassword' ? '' : confirmPasswordFocusNode.unfocus();
   }
 
   // validate email

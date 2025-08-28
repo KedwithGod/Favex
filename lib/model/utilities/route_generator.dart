@@ -1,4 +1,6 @@
 
+
+
 import 'imports/shared.dart';
 
 final navigatorKey = GlobalKey<NavigatorState>();
@@ -34,14 +36,19 @@ final router = GoRouter(
         builder: (context, state) => const EmailEntryPage(
                          )),
      GoRoute(
-        name: verifyEmailPageRoute,
-        path: '/verify_email',
-        builder: (context, state) => const VerifyEmailPage(
+        name: emailVeificationPageRoute,
+        path: '/email_verification',
+        builder: (context, state) => const EmailVerificationPage(
                          )),
      GoRoute(
         name: enterOTPCodePageRoute,
         path: '/enter_otp_code',
         builder: (context, state) => const EnterOTPCodePage(
+                         )),
+     GoRoute(
+        name: createPasswordPageRoute,
+        path: '/create_password',
+        builder: (context, state) => const CreatePasswordPage(
                          )),
 
   ],

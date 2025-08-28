@@ -121,17 +121,20 @@ class LoginPage extends StatelessWidget {
                               S(
                                 h: 24,
                               ),
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  InterText(textBucket!.forgotPassword),
-                                  S(w: 5),
-                                  InterText(
-                                    textBucket!.resetIt,
-                                    textColor: colorsBucket!.primary,
-                                    textFontWeight: FontWeight.w600,
-                                  ),
-                                ],
+                              GestureDetector(
+                                onTap: (){context.goNamed(emailEntryPageRoute);},
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    InterText(textBucket!.forgotPassword),
+                                    S(w: 5),
+                                    InterText(
+                                      textBucket!.resetIt,
+                                      textColor: colorsBucket!.primary,
+                                      textFontWeight: FontWeight.w600,
+                                    ),
+                                  ],
+                                ),
                               ),
                               // button
                               S(

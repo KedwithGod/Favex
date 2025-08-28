@@ -1,7 +1,5 @@
 // Adjust this import according to your structure
 
-
-
 import '../../../model/utilities/imports/shared.dart';
 
 class PinEntryScreen extends StatefulWidget {
@@ -11,6 +9,7 @@ class PinEntryScreen extends StatefulWidget {
   final String errortext;
   final int length;
   final VoidCallback resendFunction;
+  final VoidCallback actionButtonFunction;
 
   PinEntryScreen({
     Key? key,
@@ -19,6 +18,7 @@ class PinEntryScreen extends StatefulWidget {
     required this.errorTextActive,
     required this.errortext,
     required this.resendFunction,
+    required this.actionButtonFunction,
     this.length = 6,
   }) : super(key: key);
 
@@ -194,13 +194,17 @@ class _PinEntryScreenState extends State<PinEntryScreen> {
             buttonColor: allFieldFilled && widget.errorTextActive == false
                 ? colorsBucket!.primary
                 : colorsBucket!.disabled, navigator: () {
-          ConfirmationSheet.show(
-            context,
-            onPressed: () {
-              Navigator.pop(context); // Close sheet/dialog
-              // Navigate or perform your action
-            },
-          );
+          if (allFieldFilled && widget.errorTextActive == false) {
+            ConfirmationSheet.show(
+              context,
+              onPressed: () {
+                // Navigator.pop(context); // Close sheet/dialog
+
+                // Navigate or perform your action
+                widget.actionButtonFunction();
+              },
+            );
+          }
         }),
 
         S(h: 16),
@@ -210,17 +214,16 @@ class _PinEntryScreenState extends State<PinEntryScreen> {
             reload();
           },
           child: Row(
-            
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               InterText(textBucket!.didntReceiveAnything),
-              S(w:5),
+              S(w: 5),
               ImageAvatar(
                 image: 'resend',
                 imageRadius: 7.5,
                 backgroundColor: colorsBucket!.primaryLemon,
               ),
-              S(w:5),
+              S(w: 5),
               InterText(
                 textBucket!.resend,
                 textColor: colorsBucket!.primary,
