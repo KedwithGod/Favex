@@ -12,7 +12,7 @@ class EmailEntryPage extends StatelessWidget {
         builder: (context, model, child) {
           return BaseUi(
             children: [
-                rowPositioned(
+              rowPositioned(
                   top: 0,
                   bottom: 20,
                   child: S(
@@ -29,17 +29,20 @@ class EmailEntryPage extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 GestureDetector(
-                                    onTap: (){
-                                router.goNamed(loginPageRoute);
-                              },
+                                  onTap: () {
+                                    router.goNamed(loginPageRoute);
+                                  },
                                   child: GeneralContainer(
                                     height: 34,
-                                    width:
-                                        51 * sS(context).removeWidthAdjustment(),
+                                    width: 51 *
+                                        sS(context).removeWidthAdjustment(),
                                     color: colorsBucket!.backgroundMid,
                                     borderRadius: 16,
-                                    child: GeneralIconDisplay(LineIcons.arrowLeft,
-                                        colorsBucket!.title, UniqueKey(), 25),
+                                    child: GeneralIconDisplay(
+                                        LineIcons.arrowLeft,
+                                        colorsBucket!.title,
+                                        UniqueKey(),
+                                        25),
                                   ),
                                 ),
                                 S(w: 57),
@@ -66,15 +69,15 @@ class EmailEntryPage extends StatelessWidget {
                                 noOfTextLine: 2,
                               )),
                           S(h: 40),
-                            Row(
-                                  children: [
-                                    InterText(
-                                      textBucket!.emailAddress,
-                                      textFontSize: 12,
-                                    ),
-                                  ],
-                                ),
-                                S(h: 10),
+                          Row(
+                            children: [
+                              InterText(
+                                textBucket!.emailAddress,
+                                textFontSize: 12,
+                              ),
+                            ],
+                          ),
+                          S(h: 10),
 
                           // email address label
                           S(
@@ -83,7 +86,6 @@ class EmailEntryPage extends StatelessWidget {
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                              
                                 FormattedTextFields(
                                   textFieldController: model.emailController,
                                   textFieldHint: textBucket!.emailHint,
@@ -113,17 +115,25 @@ class EmailEntryPage extends StatelessWidget {
                                 // get otp button
 
                                 buttonNoPositioned(context,
-                                    text: textBucket!.getOTP, 
-                                  textColor:  model.emailNotValid ==false ? colorsBucket!.primarySoft:colorsBucket!.subtitle,
-                                  buttonColor: model.emailNotValid ==false ?colorsBucket!.primary: colorsBucket!.disabled,
-                                   navigator:(){
-                                          if(model.emailNotValid == false){
-                                               context.goNamed(enterOTPCodePageRoute,   extra: {
-    'nextPage': createPasswordPageRoute,
-    'bottomSheetSubtitle': textBucket!.verificationCompletedNextStepButton,
-  }, );
-                                          }}
-                                    )
+                                    text: textBucket!.getOTP,
+                                    textColor: model.emailNotValid == false
+                                        ? colorsBucket!.primarySoft
+                                        : colorsBucket!.subtitle,
+                                    buttonColor: model.emailNotValid == false
+                                        ? colorsBucket!.primary
+                                        : colorsBucket!.disabled,
+                                    navigator: () {
+                                  if (model.emailNotValid == false) {
+                                    context.goNamed(
+                                      enterOTPCodePageRoute,
+                                      extra: {
+                                        'nextPage': createNewPasswordPage,
+                                        'bottomSheetSubtitle': textBucket!
+                                            .verificationCompletedNextStepButton,
+                                      },
+                                    );
+                                  }
+                                })
                               ],
                             ),
                           ),

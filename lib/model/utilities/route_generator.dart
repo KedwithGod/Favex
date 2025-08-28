@@ -33,9 +33,9 @@ final router = GoRouter(
         path: '/create_account',
         builder: (context, state) => const CreateAccountPage()),
     GoRoute(
-        name: createNewPasswordPage,
-        path: '/create_new_password',
-        builder: (context, state) => const CreateNewPasswordPage()),
+        name: createPasswordPageRoute,
+        path: '/create_password',
+        builder: (context, state) => const CreatePasswordPage()),
     GoRoute(
         name: emailVeificationPageRoute,
         path: '/email_verification',
@@ -54,8 +54,8 @@ final router = GoRouter(
               nextPage: nextPage, bottomSheetSubtitle: bottomSheetSubtitle);
         }),
     GoRoute(
-        name: createPasswordPageRoute,
-        path: '/create_password',
-        builder: (context, state) => const CreatePasswordPage()),
+        name: createNewPasswordPage ,
+        path: '/create_new_password',
+        builder: (context, state) => const CreateNewPasswordPage()),
   ],
 );

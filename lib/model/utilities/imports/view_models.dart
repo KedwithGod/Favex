@@ -7,7 +7,7 @@ export '/view_models/authentication/lock_screen.dart';
 
 // forgot password
 export '/view_models/forgot_password/email_entry.dart';
-export '/view_models/forgot_password/create_password.dart';
+export '../../../view_models/forgot_password/create_new_password.dart';
 
 // sign up 
 

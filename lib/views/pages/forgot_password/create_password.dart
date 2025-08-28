@@ -2,13 +2,13 @@
 
 import '../../../model/utilities/imports/shared.dart';
 
-class CreatePasswordPage extends StatelessWidget {
-  const CreatePasswordPage({super.key});
+class CreateNewPasswordPage extends StatelessWidget {
+  const CreateNewPasswordPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return ViewModelBuilder<CreatePasswordViewMoel>.reactive(
-        viewModelBuilder: () => CreatePasswordViewMoel(),
+    return ViewModelBuilder<CreateNewPasswordViewMoel>.reactive(
+        viewModelBuilder: () => CreateNewPasswordViewMoel(),
         onViewModelReady: (model) {},
         builder: (context, model, child) {
           return BaseUi(

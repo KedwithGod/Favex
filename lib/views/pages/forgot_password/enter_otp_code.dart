@@ -3,7 +3,7 @@ import '/model/utilities/imports/shared.dart';
 class EnterOTPCodePage extends StatelessWidget {
   final String? nextPage;
   final String bottomSheetSubtitle;
-  const EnterOTPCodePage({super.key, this.nextPage = createPasswordPageRoute, required this.bottomSheetSubtitle});
+  const EnterOTPCodePage({super.key, this.nextPage = createNewPasswordPage, required this.bottomSheetSubtitle});
 
   @override
   @override

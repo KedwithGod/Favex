@@ -1,6 +1,6 @@
 import '/model/utilities/imports/shared.dart';
 
-class CreatePasswordViewMoel extends BaseModel{
+class CreateNewPasswordViewMoel extends BaseModel{
 
 
 
