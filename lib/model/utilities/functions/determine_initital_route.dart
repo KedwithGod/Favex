@@ -11,5 +11,5 @@ Future<String> determineInitialRoute() async {
     }
 
     // Check if user is admin by looking at user data
-  return '/create_password';
+  return '/create_transaction_pin';
 }

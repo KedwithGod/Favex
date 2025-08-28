@@ -9,3 +9,6 @@ const String enterOTPCodePageRoute = 'enterOTPCodePageRoute';
 const String createPasswordPageRoute = 'createPasswordPageRoute';
 const String createAccountPageRoute = 'createAccountPageRoute';
 const String createNewPasswordPage = 'createNewPasswordPage';
+const String createTransactionPIndPage = 'createTransactionPIndPage';
+const String confirmTransactionPinPage = 'confirmTransactionPinPage';
+const String enableBiometricPage = 'enableBiometricPage';

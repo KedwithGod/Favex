@@ -75,6 +75,19 @@ class AppTexts {
   final String createPassword;
   final String createPasswordForAccountAccessInSecureLocation;
   final String confirmPassword;
+  final String createTransactionPin;
+  final String setTransactionPin;
+  final String transactionPinSecurityLevel;
+  final String enterTransactionPinAgain;
+  final String transactionPinCreated;
+  final String pinCreatedSuccessfully;
+  final String notRightNow;
+  final String yesEnableBiometrics;
+  final String signInInstantlyWithTouchFaceID;
+  final String wouldLikeToUseTouchFaceIDToSignIntoFavex;
+  final String pinNotMatchError;
+  final String confirmTransactionPin;
+  final String enableBiometric;
   const AppTexts( {
     required this.welcomeMessage,
     required this.emailAddress,
@@ -144,6 +157,19 @@ class AppTexts {
     required this.createPassword,
     required this.createPasswordForAccountAccessInSecureLocation,
     required this.confirmPassword,
+    required this.createTransactionPin,
+    required this.setTransactionPin,
+    required this.transactionPinSecurityLevel,
+    required this.enterTransactionPinAgain,
+    required this.transactionPinCreated,
+    required this.pinCreatedSuccessfully,
+    required this.notRightNow,
+    required this.yesEnableBiometrics,
+    required this.signInInstantlyWithTouchFaceID,
+    required this.wouldLikeToUseTouchFaceIDToSignIntoFavex,
+    required this.pinNotMatchError,
+    required this.confirmTransactionPin,
+    required this.enableBiometric,
   });
 
   // English Language
@@ -216,6 +242,19 @@ class AppTexts {
     createPassword: 'Create Password',
     createPasswordForAccountAccessInSecureLocation: 'Kindly create your password to access account. Please ensure you are in a secure location.',
     confirmPassword: 'Confirm password',
+    createTransactionPin: 'Create Transaction Pin',
+    setTransactionPin: 'Set transaction PIN',
+    transactionPinSecurityLevel: 'Transaction pin adds extra layer of security when using the favex app.',
+    enterTransactionPinAgain: 'Enter transaction pin again.',
+    transactionPinCreated: 'Transaction PIN Created',
+    pinCreatedSuccessfully: 'Pin created successfully. Your PIN helps to add extra layer of security when using Favex',
+    notRightNow: 'Not Right now',
+    yesEnableBiometrics: 'Yes, Enable Biometrics',
+    signInInstantlyWithTouchFaceID: 'Sign in Instantly with Touch / Face ID',
+    wouldLikeToUseTouchFaceIDToSignIntoFavex: 'Would you like to use Touch/face ID to sign in to Favex?',
+    pinNotMatchError: 'PIN not match, please try again.',
+    confirmTransactionPin: 'Confirm Transaction Pin',
+    enableBiometric: 'Enable Biometric',
   );
 
   // Spanish Language (example)
@@ -288,6 +327,19 @@ class AppTexts {
     createPassword: 'Crea contraseña',
     createPasswordForAccountAccessInSecureLocation: 'Por favor, cree su contraseña para acceder a la cuenta. Asegúrese de estar en un lugar seguro.',
     confirmPassword: 'Confirmar contraseña',
+    createTransactionPin: 'Crear PIN de Transacción (Spanish)',
+    setTransactionPin: 'Establecer PIN de transacción',
+    transactionPinSecurityLevel: '¡La clave de transacción añade una capa adicional de seguridad al usar la aplicación Favex!',
+    enterTransactionPinAgain: 'Introduce la clave de transacción nuevamente.',
+    transactionPinCreated: 'Clave de Transacción creada',
+    pinCreatedSuccessfully: '¡Clave creada correctamente! Tu clave ayuda a sumar una capa adicional de seguridad al usar Favex.',
+    notRightNow: 'No ahora',
+    yesEnableBiometrics: '¡Sí, Habilitar Biométrica',
+    signInInstantlyWithTouchFaceID: 'Inicia sesión inmediatamente con Touch ID / Identificación Facial',
+    wouldLikeToUseTouchFaceIDToSignIntoFavex: '¿Le gustaría utilizar la Identificación por Táctil/Identificación Facial para iniciar sesión en Favex?',
+    pinNotMatchError: 'La clave de PIN no coincide, por favor inténtalo de nuevo.',
+    confirmTransactionPin: 'Confirmar Transacción PIN: \\*Para confirmar la transacción, ingrese su PIN\\*.',
+    enableBiometric: 'Habilitar Biométrica',
   );
 
   // Add more languages as needed

@@ -59,7 +59,7 @@ class CreatePasswordViewModel extends CreateNewPasswordViewMoel {
     }
     // If all fields are valid, store them in signUpBucket
     else {
-      
+      router.goNamed(createTransactionPIndPage);
     }
   }
 }

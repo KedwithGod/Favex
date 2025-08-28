@@ -14,8 +14,11 @@ export '/views/pages/forgot_password/create_password.dart';
 // sign up
 
 export '/views/pages/sign_up/email_verificaton.dart';
-export '../../../views/pages/sign_up/create_password.dart';
+export '/views/pages/sign_up/create_password.dart';
 export '/views/pages/sign_up/create_account.dart';
-
+export '/views/pages/sign_up/create_transaction_pin.dart';
+export '/views/pages/sign_up/confirm_transaction_pin.dart';
+export '/views/pages/sign_up/enable_biomteric.dart';
+export '/view_models/sign_up/enable_biometric.dart';
 
 

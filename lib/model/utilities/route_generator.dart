@@ -1,3 +1,5 @@
+
+
 import 'imports/shared.dart';
 
 final navigatorKey = GlobalKey<NavigatorState>();
@@ -36,6 +38,18 @@ final router = GoRouter(
         name: createPasswordPageRoute,
         path: '/create_password',
         builder: (context, state) => const CreatePasswordPage()),
+    GoRoute(
+        name: createTransactionPIndPage,
+        path: '/create_transaction_pin',
+        builder: (context, state) => const CreateTransactionPinPage()),
+    GoRoute(
+        name: confirmTransactionPinPage,
+        path: '/confirm_transaction_pin',
+        builder: (context, state) => const ConfirmTransactonPage()),
+    GoRoute(
+        name: enableBiometricPage,
+        path: '/enable_biometric',
+        builder: (context, state) => const EnableBiometricPage()),
     GoRoute(
         name: emailVeificationPageRoute,
         path: '/email_verification',
