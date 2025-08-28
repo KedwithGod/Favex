@@ -15,7 +15,7 @@ class StepTracker extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           InterText(
-            "${textBucket!.step} 1 ${textBucket!.of} $totalStep",
+            "${textBucket!.step} $currentStep ${textBucket!.of} $totalStep",
             textFontSize: 12,
           ),
           Row(

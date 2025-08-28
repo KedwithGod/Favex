@@ -59,6 +59,19 @@ class AppTexts {
   final String privacyPolicy;
   final String TermsAndConditions;
   final String verificationCompletedNextStepButton;
+  final String createAnAccount;
+  final String correctDetailsFlag;
+  final String howDoYouHearAboutUsOptional;
+  final String createUsername;
+  final String username;
+  final String firstName;
+  final String lastName;
+  final String selectOption;
+  final String referralTagOptional;
+  final String enterReferralTag;
+  final String phoneNumber;
+  final String others;
+  final String Influencer;
   const AppTexts( {
     required this.welcomeMessage,
     required this.emailAddress,
@@ -112,6 +125,19 @@ class AppTexts {
     required this.privacyPolicy,
     required this.TermsAndConditions,
     required this.verificationCompletedNextStepButton,
+    required this.createAnAccount,
+    required this.correctDetailsFlag,
+    required this.howDoYouHearAboutUsOptional,
+    required this.createUsername,
+    required this.username,
+    required this.firstName,
+    required this.lastName,
+    required this.selectOption,
+    required this.referralTagOptional,
+    required this.enterReferralTag,
+    required this.phoneNumber,
+    required this.others,
+    required this.Influencer,
   });
 
   // English Language
@@ -168,6 +194,19 @@ class AppTexts {
     privacyPolicy: 'Privacy Policy',
     TermsAndConditions: 'Terms & Conditions',
     verificationCompletedNextStepButton: 'Verification completed, click continue to go the next step of account creation',
+    createAnAccount: 'Create an account',
+    correctDetailsFlag: 'It’s free. Be sure to provide correct details',
+    howDoYouHearAboutUsOptional: 'How do you hear about us (Optional)',
+    createUsername: 'Create username',
+    username: 'Username',
+    firstName: 'First name',
+    lastName: 'Last name',
+    selectOption: 'Select Option',
+    referralTagOptional: 'Referral tag (optional)',
+    enterReferralTag: 'Enter referral tag',
+    phoneNumber: 'Phone Number',
+    others: 'Others',
+    Influencer: 'Influencer',
   );
 
   // Spanish Language (example)
@@ -224,6 +263,19 @@ class AppTexts {
     privacyPolicy: 'Política de Privacidad',
     TermsAndConditions: 'Términos y Condiciones del Servicio',
     verificationCompletedNextStepButton: 'La verificación se ha completado, haga clic en "Continuar" para pasar al siguiente paso de la creación de cuenta.',
+    createAnAccount: 'Crear una cuenta',
+    correctDetailsFlag: '¡Es gratuito. Asegúrate de proporcionar los detalles correctos.',
+    howDoYouHearAboutUsOptional: '¿Cómo te enteraste de nosotros? (Opcional)',
+    createUsername: 'Crear nombre de usuario (Crear un nombre de usuario)',
+    username: 'Nombre de Usuario',
+    firstName: 'Nombre de pila (primer nombre) o nombre corto (apodo)',
+    lastName: 'Apellido (masculino) o Apellido materno (femenino): _______________',
+    selectOption: 'Selecciona Opción',
+    referralTagOptional: 'Etiqueta de referencia (opcional)',
+    enterReferralTag: 'Introduzca la etiqueta de referido (o código promocional)',
+    phoneNumber: 'Número de Teléfono',
+    others: 'Otros (masculine plural) or Otras (feminine plural), depending on whether the word that follows is masculine or feminine in gender.',
+    Influencer: 'Influenciador (influencer masculino) / Influenciana (influencer femenino)',
   );
 
   // Add more languages as needed

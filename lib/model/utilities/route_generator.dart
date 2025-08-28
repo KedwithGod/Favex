@@ -33,6 +33,10 @@ final router = GoRouter(
         path: '/create_account',
         builder: (context, state) => const CreateAccountPage()),
     GoRoute(
+        name: createNewPasswordPage,
+        path: '/create_new_password',
+        builder: (context, state) => const CreateNewPasswordPage()),
+    GoRoute(
         name: emailVeificationPageRoute,
         path: '/email_verification',
         builder: (context, state) => const EmailVerificationPage()),

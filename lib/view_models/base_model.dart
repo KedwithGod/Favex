@@ -1,9 +1,7 @@
 import '../model/utilities/imports/shared.dart';
 
 class BaseModel extends ChangeNotifier {
-  // timer
-  int counter = 5 * 60; // 5 minutes in seconds
-  Timer? timer;
+
   String testUser = 'Kingdammy';
 
   // Maps for colors
@@ -34,7 +32,6 @@ class BaseModel extends ChangeNotifier {
   String passwordErrorText = '';
   bool passwordNotValid = true;
 
-  
   // confirmPassword
   TextEditingController confirmPasswordController = TextEditingController();
   bool confirmPasswordErrorBool = false;
@@ -42,6 +39,39 @@ class BaseModel extends ChangeNotifier {
   bool confirmPasswordNotValid = true;
   FocusNode confirmPasswordFocusNode = FocusNode();
   bool showConfirmPasswordBool = true;
+
+  TextEditingController phonenumberController = TextEditingController();
+  bool phonenumberErrorBool = false;
+  String phoneErrorText = "";
+  FocusNode phonenumberFocusNode = FocusNode();
+  bool phoneNotValid = true;
+
+  TextEditingController firstNameController = TextEditingController();
+  bool firstNameErrorBool = false;
+  String firstNameErrorText = "";
+  FocusNode firstNameFocusNode = FocusNode();
+  bool showfnSuffixIcon = false;
+  bool firstNameNotValid = true;
+  
+  TextEditingController lastNameController = TextEditingController();
+  bool lastNameErrorBool = false;
+  String lastNameErrorText = "";
+  FocusNode lastNameFocusNode = FocusNode();
+  bool showlnSuffixIcon = false;
+  bool lastNameNotValid = true;
+
+   
+  TextEditingController usernameController = TextEditingController();
+  bool usernameErrorBool = false;
+  String usernameErrorText = "";
+  FocusNode usernameFocusNode = FocusNode();
+  bool usernameNotValid = true;
+
+  TextEditingController referralTagController = TextEditingController();
+  bool referralTagErrorBool = false;
+  String referralTagErrorText = "";
+  FocusNode referralTagFocusNode = FocusNode();
+  bool referralTagNotValid = false;
 
   showPassword() {
     showPasswordBool = !showPasswordBool;
@@ -57,6 +87,16 @@ class BaseModel extends ChangeNotifier {
     clearKey == 'email' ? '' : emailFocusNode.unfocus();
     clearKey == 'confirmPassword' ? '' : confirmPasswordErrorBool = false;
     clearKey == 'confirmPassword' ? '' : confirmPasswordFocusNode.unfocus();
+    clearKey == 'firstName' ? '' : firstNameErrorBool = false;
+    clearKey == 'firstName' ? '' : firstNameFocusNode.unfocus();
+    clearKey == 'lastName' ? '' : lastNameErrorBool = false;
+    clearKey == 'lastName' ? '' : lastNameFocusNode.unfocus();
+    clearKey == 'username' ? '' : usernameErrorBool = false;
+    clearKey == 'username' ? '' : usernameFocusNode.unfocus();
+    clearKey == 'phone' ? '' : phonenumberErrorBool = false;
+    clearKey == 'phone' ? '' : phonenumberFocusNode.unfocus();
+    clearKey == 'referralTag' ? '' : referralTagErrorBool = false;
+    clearKey == 'referralTag' ? '' : referralTagFocusNode.unfocus();
   }
 
   // validate email
@@ -136,13 +176,6 @@ class BaseModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  // remember me logic
-  bool rememberme = true;
-
-  switchRememberMe() {
-    rememberme = !rememberme;
-    notifyListeners();
-  }
 
   // login function
 
@@ -167,17 +200,6 @@ class BaseModel extends ChangeNotifier {
     }
   }
 
-  String formatDuration(Duration duration) {
-    String twoDigits(int n) {
-      if (n >= 10) return "$n";
-      return "0$n";
-    }
-
-    String twoDigitMinutes = twoDigits(duration.inMinutes.remainder(60));
-    String twoDigitSeconds = twoDigits(duration.inSeconds.remainder(60));
-
-    return "$twoDigitMinutes:$twoDigitSeconds";
-  }
 
   // otp variables
   TextEditingController? otpController;

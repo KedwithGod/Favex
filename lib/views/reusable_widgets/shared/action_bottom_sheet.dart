@@ -46,6 +46,7 @@ class ConfirmationSheet {
       showDialog(
         context: context,
         builder: (_) => AlertDialog(
+           backgroundColor: colorsBucket!.white,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(24),
           ),
@@ -56,6 +57,45 @@ class ConfirmationSheet {
       // Show bottom sheet
       showModalBottomSheet(
         context: context,
+         backgroundColor: colorsBucket!.white,
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
+        ),
+        isScrollControlled: true,
+        builder: (_) => Padding(
+          padding: const EdgeInsets.all(20),
+          child: content,
+        ),
+      );
+    }
+  }
+}
+class GeneralBottomSheet {
+  static void show(
+    BuildContext context, {
+    required Widget content,
+  }) {
+    
+    final isDesktop = MediaQuery.of(context).size.width > 600;
+
+    if (isDesktop) {
+      // Show dialog
+      showDialog(
+        context: context,
+        
+        builder: (_) => AlertDialog(
+           backgroundColor: colorsBucket!.white,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(24),
+          ),
+          content: content,
+        ),
+      );
+    } else {
+      // Show bottom sheet
+      showModalBottomSheet(
+        context: context,
+        backgroundColor: colorsBucket!.white,
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
         ),

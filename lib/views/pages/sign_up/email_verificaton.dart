@@ -24,7 +24,7 @@ class EmailVerificationPage extends StatelessWidget {
                             currentStep: 1,
                           ),
                           S(h: 30),
-                          // forgot password text
+                          //  title
                           Row(
                             children: [
                               InterText(
@@ -34,7 +34,7 @@ class EmailVerificationPage extends StatelessWidget {
                               ),
                             ],
                           ),
-                          // forgot password subtitle
+                          //  subtitle
                           S(h: 12),
                           Row(
                             children: [

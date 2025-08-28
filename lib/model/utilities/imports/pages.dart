@@ -14,7 +14,7 @@ export '/views/pages/forgot_password/create_password.dart';
 // sign up
 
 export '/views/pages/sign_up/email_verificaton.dart';
-
+export '/views/pages/sign_up/create_new_password.dart';
 export '/views/pages/sign_up/create_account.dart';
 
 
