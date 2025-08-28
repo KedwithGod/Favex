@@ -72,6 +72,9 @@ class AppTexts {
   final String phoneNumber;
   final String others;
   final String Influencer;
+  final String createPassword;
+  final String createPasswordForAccountAccessInSecureLocation;
+  final String confirmPassword;
   const AppTexts( {
     required this.welcomeMessage,
     required this.emailAddress,
@@ -138,6 +141,9 @@ class AppTexts {
     required this.phoneNumber,
     required this.others,
     required this.Influencer,
+    required this.createPassword,
+    required this.createPasswordForAccountAccessInSecureLocation,
+    required this.confirmPassword,
   });
 
   // English Language
@@ -207,6 +213,9 @@ class AppTexts {
     phoneNumber: 'Phone Number',
     others: 'Others',
     Influencer: 'Influencer',
+    createPassword: 'Create Password',
+    createPasswordForAccountAccessInSecureLocation: 'Kindly create your password to access account. Please ensure you are in a secure location.',
+    confirmPassword: 'Confirm password',
   );
 
   // Spanish Language (example)
@@ -276,6 +285,9 @@ class AppTexts {
     phoneNumber: 'Número de Teléfono',
     others: 'Otros (masculine plural) or Otras (feminine plural), depending on whether the word that follows is masculine or feminine in gender.',
     Influencer: 'Influenciador (influencer masculino) / Influenciana (influencer femenino)',
+    createPassword: 'Crea contraseña',
+    createPasswordForAccountAccessInSecureLocation: 'Por favor, cree su contraseña para acceder a la cuenta. Asegúrese de estar en un lugar seguro.',
+    confirmPassword: 'Confirmar contraseña',
   );
 
   // Add more languages as needed

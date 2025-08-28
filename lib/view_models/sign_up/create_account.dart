@@ -215,7 +215,7 @@ class CreateAccountViewModel extends BaseModel {
     } else if (referralTagNotValid == true) {
       validateReferralTag();
     } else {
-      router.goNamed(createNewPasswordPage);
+      router.goNamed(createPasswordPageRoute);
     }
   }
 }

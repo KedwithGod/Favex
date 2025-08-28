@@ -19,3 +19,5 @@ export '/views/reusable_widgets/shared/action_bottom_sheet.dart';
 // sign up 
 export '/views/reusable_widgets/sign_up/step.dart';
 
+export 'package:favex/views/reusable_widgets/sign_up/password_check.dart';
+
