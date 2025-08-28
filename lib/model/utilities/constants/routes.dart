@@ -7,3 +7,4 @@ const String dashboardPageRoute = 'dashboardPageRoute';
 const String emailEntryPageRoute = 'emailEntryPageRoute';
 const String enterOTPCodePageRoute = 'enterOTPCodePageRoute';
 const String createPasswordPageRoute = 'createPasswordPageRoute';
+const String createAccountPageRoute = 'createAccountPageRoute';

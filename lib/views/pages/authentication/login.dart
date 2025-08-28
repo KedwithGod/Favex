@@ -195,21 +195,26 @@ class LoginPage extends StatelessWidget {
                               ),
 
                               // sign up
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  InterText(
-                                    textBucket!.noAccount,
-                                    textFontSize: 12,
-                                  ),
-                                  S(w: 5),
-                                  InterText(
-                                    textBucket!.signUp,
-                                    textColor:  colorsBucket!.primary,
-                                    textFontSize: 12,
-                                    textFontWeight: FontWeight.w600,
-                                  ),
-                                ],
+                              GestureDetector(
+                                onTap: (){
+                                  context.goNamed(emailVeificationPageRoute);
+                                },
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    InterText(
+                                      textBucket!.noAccount,
+                                      textFontSize: 12,
+                                    ),
+                                    S(w: 5),
+                                    InterText(
+                                      textBucket!.signUp,
+                                      textColor:  colorsBucket!.primary,
+                                      textFontSize: 12,
+                                      textFontWeight: FontWeight.w600,
+                                    ),
+                                  ],
+                                ),
                               ),
                             ],
                           )
@@ -222,3 +227,5 @@ class LoginPage extends StatelessWidget {
         });
   }
 }
+
+

@@ -6,12 +6,12 @@ class PinEntryScreen extends StatefulWidget {
   final ValueChanged<String> onChanged;
   final ValueChanged<String> onCompleted;
   final bool errorTextActive;
-  final String errortext;
+  final String errortext, bottomSheetSubtitle;
   final int length;
   final VoidCallback resendFunction;
   final VoidCallback actionButtonFunction;
 
-  PinEntryScreen({
+ const PinEntryScreen({
     Key? key,
     required this.onChanged,
     required this.onCompleted,
@@ -19,7 +19,7 @@ class PinEntryScreen extends StatefulWidget {
     required this.errortext,
     required this.resendFunction,
     required this.actionButtonFunction,
-    this.length = 6,
+    this.length = 6, required this.bottomSheetSubtitle,
   }) : super(key: key);
 
   @override
@@ -197,6 +197,7 @@ class _PinEntryScreenState extends State<PinEntryScreen> {
           if (allFieldFilled && widget.errorTextActive == false) {
             ConfirmationSheet.show(
               context,
+              subtitle: widget.bottomSheetSubtitle,
               onPressed: () {
                 // Navigator.pop(context); // Close sheet/dialog
 

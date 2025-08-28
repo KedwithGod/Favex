@@ -1,7 +1,9 @@
 import '/model/utilities/imports/shared.dart';
 
 class EnterOTPCodePage extends StatelessWidget {
-  const EnterOTPCodePage({super.key});
+  final String? nextPage;
+  final String bottomSheetSubtitle;
+  const EnterOTPCodePage({super.key, this.nextPage = createPasswordPageRoute, required this.bottomSheetSubtitle});
 
   @override
   @override
@@ -64,12 +66,13 @@ class EnterOTPCodePage extends StatelessWidget {
                               model.otpOnCompleteFunction(value);
                             },
                             errorTextActive: model.otpErrorBool,
+                            bottomSheetSubtitle:bottomSheetSubtitle,
                             errortext: model.otpErrorText,
                             resendFunction: () {
                               model.sendOtp(context);
                             },
                             actionButtonFunction:(){
-                              context.goNamed(createPasswordPageRoute);
+                              context.goNamed(nextPage!);
                             }
                           ),
                         ],

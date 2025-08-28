@@ -1,6 +1,3 @@
-
-
-
 import 'imports/shared.dart';
 
 final navigatorKey = GlobalKey<NavigatorState>();
@@ -15,41 +12,46 @@ final router = GoRouter(
     return null;
   },
   routes: [
-     GoRoute(
+    GoRoute(
         name: loginPageRoute,
         path: '/',
-        builder: (context, state) => const LoginPage(
-                         )),
-     GoRoute(
+        builder: (context, state) => const LoginPage()),
+    GoRoute(
         name: lockScreenPageRoute,
         path: '/lock_screen',
-        builder: (context, state) => const LockScreenPage(
-                         )),
-     GoRoute(
+        builder: (context, state) => const LockScreenPage()),
+    GoRoute(
         name: dashboardPageRoute,
         path: '/dashboard',
-        builder: (context, state) => const DashboardPage(
-                         )),
-     GoRoute(
+        builder: (context, state) => const DashboardPage()),
+    GoRoute(
         name: emailEntryPageRoute,
         path: '/email_entry',
-        builder: (context, state) => const EmailEntryPage(
-                         )),
-     GoRoute(
+        builder: (context, state) => const EmailEntryPage()),
+    GoRoute(
+        name: createAccountPageRoute,
+        path: '/create_account',
+        builder: (context, state) => const CreateAccountPage()),
+    GoRoute(
         name: emailVeificationPageRoute,
         path: '/email_verification',
-        builder: (context, state) => const EmailVerificationPage(
-                         )),
-     GoRoute(
+        builder: (context, state) => const EmailVerificationPage()),
+    GoRoute(
         name: enterOTPCodePageRoute,
         path: '/enter_otp_code',
-        builder: (context, state) => const EnterOTPCodePage(
-                         )),
-     GoRoute(
+        builder: (context, state) {
+          final Map<String, dynamic>? args =
+              state.extra as Map<String, dynamic>?;
+          final String? nextPage = args?['nextPage'] as String?;
+          final String bottomSheetSubtitle =
+              args?['bottomSheetSubtitle'] as String;
+
+          return EnterOTPCodePage(
+              nextPage: nextPage, bottomSheetSubtitle: bottomSheetSubtitle);
+        }),
+    GoRoute(
         name: createPasswordPageRoute,
         path: '/create_password',
-        builder: (context, state) => const CreatePasswordPage(
-                         )),
-
+        builder: (context, state) => const CreatePasswordPage()),
   ],
 );

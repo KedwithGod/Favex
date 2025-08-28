@@ -50,6 +50,15 @@ class AppTexts {
   final String newPasswordCreated;
   final String newPasswordCreationCompleted;
   final String logOut;
+  final String step;
+  final String of;
+  final String createAccount;
+  final String signUpEmailAddressForOTPVerification;
+  final String continueAgreeingToFavex;
+  final String and;
+  final String privacyPolicy;
+  final String TermsAndConditions;
+  final String verificationCompletedNextStepButton;
   const AppTexts( {
     required this.welcomeMessage,
     required this.emailAddress,
@@ -94,6 +103,15 @@ class AppTexts {
     required this.newPasswordCreated,
     required this.newPasswordCreationCompleted,
     required this.logOut,
+    required this.step,
+    required this.of,
+    required this.createAccount,
+    required this.signUpEmailAddressForOTPVerification,
+    required this.continueAgreeingToFavex,
+    required this.and,
+    required this.privacyPolicy,
+    required this.TermsAndConditions,
+    required this.verificationCompletedNextStepButton,
   });
 
   // English Language
@@ -141,6 +159,15 @@ class AppTexts {
     newPasswordCreated: 'New password created',
     newPasswordCreationCompleted: 'New password creation completed. Click logout and login with your new password',
     logOut: 'Log out',
+    step: 'Step',
+    of: 'of',
+    createAccount: 'Create Account',
+    signUpEmailAddressForOTPVerification: 'Sign up with your email address. You’ll receive 6-digit OTP for email verification.',
+    continueAgreeingToFavex: 'By clicking on continue, I agree to Favex',
+    and: 'and',
+    privacyPolicy: 'Privacy Policy',
+    TermsAndConditions: 'Terms & Conditions',
+    verificationCompletedNextStepButton: 'Verification completed, click continue to go the next step of account creation',
   );
 
   // Spanish Language (example)
@@ -188,6 +215,15 @@ class AppTexts {
     newPasswordCreated: 'Contraseña nueva creada (Spanish)',
     newPasswordCreationCompleted: '¡La creación de tu contraseña ha sido completada! Haz clic en "Cerrar sesión" e inicia sesión con tu nueva contraseña.',
     logOut: 'Cerrar sesión',
+    step: 'Paso',
+    of: 'de',
+    createAccount: 'Crear Cuenta',
+    signUpEmailAddressForOTPVerification: 'Regístrese con su dirección de correo electrónico. Recibirá un código OTP de seis dígitos para la verificación por correo electrónico.',
+    continueAgreeingToFavex: 'Pulsa en continuar para aceptar Favex.',
+    and: 'y en español: y',
+    privacyPolicy: 'Política de Privacidad',
+    TermsAndConditions: 'Términos y Condiciones del Servicio',
+    verificationCompletedNextStepButton: 'La verificación se ha completado, haga clic en "Continuar" para pasar al siguiente paso de la creación de cuenta.',
   );
 
   // Add more languages as needed

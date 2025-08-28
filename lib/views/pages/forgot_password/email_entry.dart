@@ -116,7 +116,13 @@ class EmailEntryPage extends StatelessWidget {
                                     text: textBucket!.getOTP, 
                                   textColor:  model.emailNotValid ==false ? colorsBucket!.primarySoft:colorsBucket!.subtitle,
                                   buttonColor: model.emailNotValid ==false ?colorsBucket!.primary: colorsBucket!.disabled,
-                                  navigateTo: model.emailNotValid ==false ?enterOTPCodePageRoute:null
+                                   navigator:(){
+                                          if(model.emailNotValid == false){
+                                               context.goNamed(enterOTPCodePageRoute,   extra: {
+    'nextPage': createPasswordPageRoute,
+    'bottomSheetSubtitle': textBucket!.verificationCompletedNextStepButton,
+  }, );
+                                          }}
                                     )
                               ],
                             ),
