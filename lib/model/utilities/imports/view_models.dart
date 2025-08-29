@@ -17,4 +17,5 @@ export '/view_models/sign_up/create_password.dart';
 export '/view_models/sign_up/create_transaction_pin.dart';
 
 // dashboard
-export 'package:favex/view_models/dashboard/home.dart';
+export '/view_models/dashboard/home.dart';
+export '/view_models/dashboard/sell_gift_card.dart';

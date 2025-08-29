@@ -21,4 +21,6 @@ export '/views/pages/sign_up/confirm_transaction_pin.dart';
 export '/views/pages/sign_up/enable_biomteric.dart';
 export '/view_models/sign_up/enable_biometric.dart';
 
+export 'package:favex/views/pages/dashboard/sell_gift_card.dart';
+
 

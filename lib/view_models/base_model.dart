@@ -4,6 +4,7 @@ class BaseModel extends ChangeNotifier {
 
   String testUser = 'Kingdammy';
   String naira = 'NGN';
+  String nfx = 'NFX';
   String walletBalance = '560000';
   String nfxBalance = '140000';
 
@@ -34,6 +35,13 @@ class BaseModel extends ChangeNotifier {
   bool showPasswordBool = true;
   String passwordErrorText = '';
   bool passwordNotValid = true;
+
+
+  TextEditingController searchController = TextEditingController();
+  bool searchErrorBool = false;
+  FocusNode searchFocusNode = FocusNode();
+  String searchErrorText = '';
+  bool searchNotValid = true;
 
   // confirmPassword
   TextEditingController confirmPasswordController = TextEditingController();

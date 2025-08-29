@@ -14,7 +14,7 @@ class LockScreenViewModel extends BaseModel {
       return;
     }
   // else navigate to dashboard
-      context.goNamed(HomePageRoute);
+      context.goNamed(homePageRoute);
 
     
   }

@@ -9,15 +9,9 @@ class DividerWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Container(
-          width: sS(context).cW(width: width ?? 358),
-          height: sS(context).cH(height: height ?? 1),
-          color: color ?? const Color.fromRGBO(22, 32, 130, 0.15),
-        ),
-      ],
+    return GeneralContainer(color: color??colorsBucket!.borderDisabled,
+    height: height??1.0,
+    width: width?? 335,
     );
   }
 }

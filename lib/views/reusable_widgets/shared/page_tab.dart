@@ -2,7 +2,7 @@ import '../../../model/utilities/imports/shared.dart';
 
 Widget pageTab(BuildContext context, {double? top, required TabEnum tabEnum}) {
   return Container(
-    height: sS(context).cH(height: 80),
+    height: sS(context).cH(height: 82),
     width: 375,
     color: colorsBucket!.white,
     child: Row(
@@ -61,7 +61,7 @@ Widget _buildTab(BuildContext context, {required TabEnum tabEnum, required TabEn
     },
     child: S(
       w: 55,
-      h: 63,
+      h: 70,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

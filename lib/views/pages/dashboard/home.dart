@@ -91,8 +91,7 @@ class HomePage extends StatelessWidget {
                               borderRadius: BorderRadius.circular(
                                   12), // Optional: rounded corners
                             ),
-                            height: sS(context).cH(height: 145),
-                            width: sS(context).cW(width: 335),
+                            
                             padding: EdgeInsets.symmetric(
                                 vertical: sS(context).cH(height: 15),
                                 horizontal: sS(context).cW(width: 15)),
@@ -103,7 +102,9 @@ class HomePage extends StatelessWidget {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     InterText(
-                                      textBucket!.walletBalance,
+                                     model.selectedWallet ==
+                                                      WalletTypeEnum.wallet
+                                                  ? textBucket!.walletBalance: textBucket!.nfxWalletBalance ,
                                       textColor: colorsBucket!.titleSoft,
                                     ),
                                     GestureDetector(
@@ -341,8 +342,7 @@ class HomePage extends StatelessWidget {
                                             ));
                                       },
                                       child: GeneralContainer(
-                                        height: 33,
-                                        width: 59,
+                                       
                                         color: colorsBucket!.primary2,
                                         borderRadius: 6,
                                         allSide: 6,
@@ -351,11 +351,12 @@ class HomePage extends StatelessWidget {
                                               MainAxisAlignment.spaceBetween,
                                           children: [
                                             InterText(
-                                              model.naira,
-                                              textFontSize: 12,
+                                            model.selectedWallet == WalletTypeEnum.wallet?  model.naira:model.nfx,
+                                             textFontSize: 12,
                                               textColor:
                                                   colorsBucket!.titleSoft,
                                             ),
+                                            S(w:5),
                                             const SvgPngImage(
                                                 path: 'down',
                                                 height: 6,
@@ -422,8 +423,7 @@ class HomePage extends StatelessWidget {
                                     // add money
 
                                     GeneralContainer(
-                                      height: 36,
-                                      width: 112,
+                                     left: 14.5, right: 14.5, top: 9,bottom: 9,
                                       color: colorsBucket!.primary2,
                                       borderRadius: 6,
                                       child: Row(
@@ -448,8 +448,7 @@ class HomePage extends StatelessWidget {
                                     S(w: 12),
                                     // transfer
                                     GeneralContainer(
-                                      height: 36,
-                                      width: 112,
+                                      left: 14.5, right: 14.5, top: 9,bottom: 9,
                                       color: colorsBucket!.primary2,
                                       borderRadius: 6,
                                       child: Row(
@@ -481,8 +480,6 @@ class HomePage extends StatelessWidget {
                           S(h: 20),
 
                           GeneralContainer(
-                            height: 225,
-                            width: 335,
                             color: colorsBucket!.white,
                             borderRadius: 12,
                             allSide: 18,
@@ -502,40 +499,46 @@ class HomePage extends StatelessWidget {
                                     for (int index in List.generate(
                                         model.quickActions.length,
                                         (index) => index)) ...[
-                                      GeneralContainer(
-                                        height: 70,
-                                        width: 88,
-                                        color: colorsBucket!.primaryLemon,
-                                        borderRadius: 8,
-                                        child: Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          children: [
-                                            Stack(
-                                              alignment: Alignment.center,
-                                              children: [
-                                                ImageAvatar(
-                                                  imageRadius: 15,
-                                                  backgroundColor:
-                                                      colorsBucket!.white,
-                                                ),
-                                                SvgPngImage(
-                                                    path: model
-                                                            .quickActions[index]
-                                                        ['icon'],
-                                                    height: 15,
-                                                    width: 15),
-                                              ],
-                                            ),
-                                            S(h: 3),
-                                            InterText(
-                                              model.quickActions[index]['name'],
-                                              textFontSize: 10,
-                                              textFontWeight: FontWeight.w600,
-                                              textColor: colorsBucket!.primary,
-                                              textAlign: TextAlign.center,
-                                            )
-                                          ],
+                                      GestureDetector(
+                                        onTap: () {
+                                         context.goNamed( model.quickActions[index]['navigateTo']);
+                                        },
+                                        child: GeneralContainer(
+                                          height: 70,
+                                          width: 88,
+                                          color: colorsBucket!.primaryLemon,
+                                          borderRadius: 8,
+                                          child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Stack(
+                                                alignment: Alignment.center,
+                                                children: [
+                                                  ImageAvatar(
+                                                    imageRadius: 12,
+                                                    backgroundColor:
+                                                        colorsBucket!.white,
+                                                  ),
+                                                  SvgPngImage(
+                                                      path: model.quickActions[
+                                                          index]['icon'],
+                                                      height: 15,
+                                                      width: 15),
+                                                ],
+                                              ),
+                                              S(h: 3),
+                                              InterText(
+                                                model.quickActions[index]
+                                                    ['name'],
+                                                textFontSize: 10,
+                                                textFontWeight: FontWeight.w600,
+                                                textColor:
+                                                    colorsBucket!.primary,
+                                                textAlign: TextAlign.center,
+                                              )
+                                            ],
+                                          ),
                                         ),
                                       )
                                     ]
@@ -560,15 +563,14 @@ class HomePage extends StatelessWidget {
                               borderRadius: BorderRadius.circular(
                                   8), // Optional: rounded corners
                             ),
-                            height: sS(context).cH(height: 87),
-                            width: sS(context).cW(width: 335),
+                          
                             padding: EdgeInsets.symmetric(
                                 horizontal: sS(context).cW(width: 15)),
                             child: Row(
                               children: [
                                 S(w: 27),
                                 S(
-                                  h: 48,
+                                  h: 53,
                                   w: 113,
                                   child: InterText(
                                     textBucket!
@@ -636,8 +638,7 @@ class HomePage extends StatelessWidget {
                           S(h: 20),
 
                           GeneralContainer(
-                            height: 200,
-                            width: 335,
+                          
                             color: colorsBucket!.white,
                             left: 18,
                             top: 21,

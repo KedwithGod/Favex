@@ -119,6 +119,7 @@ class AppTexts {
   final String hello;
   final String completed;
   final String selectWallet;
+  final String nfxWalletBalance;
   const AppTexts( {
     required this.welcomeMessage,
     required this.emailAddress,
@@ -232,6 +233,7 @@ class AppTexts {
     required this.hello,
     required this.completed,
     required this.selectWallet,
+    required this.nfxWalletBalance,
   });
 
   // English Language
@@ -348,6 +350,7 @@ class AppTexts {
     hello: 'Hello',
     completed: 'Completed',
     selectWallet: 'Select Wallet',
+    nfxWalletBalance: 'NFX Wallet Balance',
   );
 
   // Spanish Language (example)
@@ -464,6 +467,7 @@ class AppTexts {
     hello: '¡Hola! (Hol-a)',
     completed: 'Completado (Masculino) - Completada (Feminino) - Completados (Plural Masculino) - Completadas (Plural Feminino)',
     selectWallet: 'Selecciona Billetera (if you\'re referring to a digital wallet) or Selecciona Cartera (if you\'re referring to a physical wallet) in Spanish. The context can influence which term is more appropriate, but both translations serve the purpose of guiding users to choose their wallet.',
+    nfxWalletBalance: 'Saldo de la cartera NFX',
   );
 
   // Add more languages as needed

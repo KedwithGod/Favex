@@ -22,15 +22,15 @@ extension TabEnumExtension on TabEnum {
   String get route {
     switch (this) {
       case TabEnum.home:
-        return HomePageRoute; // Define your routes
+        return homePageRoute; // Define your routes
       case TabEnum.history:
-        return HomePageRoute;
+        return homePageRoute;
       case TabEnum.card:
-        return HomePageRoute;
+        return homePageRoute;
       case TabEnum.rate:
-        return HomePageRoute;
+        return homePageRoute;
       case TabEnum.account:
-        return HomePageRoute;
+        return homePageRoute;
     }
   }
 }

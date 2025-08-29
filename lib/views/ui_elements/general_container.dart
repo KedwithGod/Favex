@@ -1,7 +1,11 @@
 import '../../../model/utilities/imports/shared.dart';
 
+import '../../../model/utilities/imports/shared.dart';
+
 class GeneralContainer extends StatelessWidget {
-  final double height, width, borderWidth, borderRadius;
+  final double? height; // Made optional
+  final double? width;  // Made optional
+  final double borderWidth, borderRadius;
   final double topLeft, topRight, bottomLeft, bottomRight;
   final double left, right, bottom, top, allSide;
   final double leftMargin, topMargin, rightMargin, bottomMargin;
@@ -18,13 +22,13 @@ class GeneralContainer extends StatelessWidget {
 
   const GeneralContainer({
     super.key,
-    required this.height,
-    required this.width,
+    this.height, // Optional
+    this.width,  // Optional
     required this.color,
     this.noDecoration = false,
     this.borderWidth = 0,
     this.borderStyle,
-    this.borderColor ,
+    this.borderColor,
     this.noBorderRadius = false,
     this.borderRadius = 0,
     this.child,
@@ -46,25 +50,30 @@ class GeneralContainer extends StatelessWidget {
     this.leftMargin = 0,
     this.topMargin = 0,
     this.rightMargin = 0,
-    this.bottomMargin = 0, this.noAdaptivness=false,
+    this.bottomMargin = 0,
+    this.noAdaptivness = false,
   });
 
   @override
   Widget build(BuildContext context) {
-  
     // Calculate adaptive values
-    final adaptiveHeight = sS(context).cH(height: height);
-    final adaptiveWidth = sS(context).cW(width: width);
+    final adaptiveHeight = height != null
+        ? (noAdaptivness==true ? height : sS(context).cH(height: height!))
+        : null;
+
+    final adaptiveWidth = width != null
+        ? (noAdaptivness==true ? width : sS(context).cW(width: width!))
+        : null;
+
     final adaptiveBorderRadius = sS(context).cH(height: borderRadius);
     final adaptiveTopLeft = sS(context).cH(height: topLeft);
     final adaptiveTopRight = sS(context).cH(height: topRight);
     final adaptiveBottomLeft = sS(context).cH(height: bottomLeft);
     final adaptiveBottomRight = sS(context).cH(height: bottomRight);
-   
 
     return Container(
-      height:noAdaptivness==true?height: adaptiveHeight,
-      width: noAdaptivness==true?width: adaptiveWidth,
+      height: adaptiveHeight,
+      width: adaptiveWidth,
       margin: EdgeInsets.fromLTRB(
         sS(context).cW(width: leftMargin),
         sS(context).cH(height: topMargin),
@@ -80,7 +89,6 @@ class GeneralContainer extends StatelessWidget {
       decoration: noDecoration
           ? BoxDecoration(color: color)
           : BoxDecoration(
-            
               image: image != null
                   ? DecorationImage(
                       image: (isNetworkImage
@@ -101,9 +109,8 @@ class GeneralContainer extends StatelessWidget {
                         )),
               color: color,
               boxShadow: boxShadow,
-              
               border: Border.all(
-                color: borderColor??colorsBucket!.transparent,
+                color: borderColor ?? colorsBucket!.transparent,
                 width: borderWidth,
                 style: borderStyle ?? BorderStyle.solid,
               ),
