@@ -3,8 +3,11 @@
 export '/views/pages/authentication/login.dart';
 export '/views/pages/authentication/lock_screen.dart';
 
+
 // dashboard
 export '/views/pages/dashboard/home.dart';
+export '/views/pages/dashboard/sell_gift_card.dart';
+export '/views/pages/dashboard/sell_crypto.dart';
 
 // forgot password
 export '/views/pages/forgot_password/email_entry.dart';
@@ -21,6 +24,6 @@ export '/views/pages/sign_up/confirm_transaction_pin.dart';
 export '/views/pages/sign_up/enable_biomteric.dart';
 export '/view_models/sign_up/enable_biometric.dart';
 
-export 'package:favex/views/pages/dashboard/sell_gift_card.dart';
+
 
 

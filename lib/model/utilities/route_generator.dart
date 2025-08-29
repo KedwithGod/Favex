@@ -1,6 +1,8 @@
 
 
 
+
+
 import 'imports/shared.dart';
 
 final navigatorKey = GlobalKey<NavigatorState>();
@@ -31,6 +33,10 @@ final router = GoRouter(
         name: sellGiftCardPage,
         path: '/sell_gift_card',
         builder: (context, state) => const SellGiftCard()),
+    GoRoute(
+        name: sellCrytoCurrencyPage,
+        path: '/sell_crytp',
+        builder: (context, state) => const SellCryptoPage()),
     GoRoute(
         name: emailEntryPageRoute,
         path: '/email_entry',

@@ -14,7 +14,7 @@ class HomeViewModel extends BaseModel{
   List<Map<String, dynamic>> quickActions =[
 
     {"name":textBucket!.tradeGiftcard,"icon":"trade_giftcard","navigateTo":sellGiftCardPage},
-    {"name":textBucket!.tradeCrypto,"icon":"trade_crypto","navigateTo":homePageRoute},
+    {"name":textBucket!.tradeCrypto,"icon":"trade_crypto","navigateTo":sellCrytoCurrencyPage},
     {"name":textBucket!.payBills,"icon":"pay_bills","navigateTo":homePageRoute},
     {"name":textBucket!.tasks,"icon":"task","navigateTo":homePageRoute},
     {"name":textBucket!.rewards,"icon":"reward","navigateTo":homePageRoute},
