@@ -5,5 +5,7 @@ enum TabEnum { home, history, card, rate, account }
 
 // image type
 enum ImageTypeEnum { png, svg }
+// image type
+enum WalletTypeEnum { wallet, nfx }
 
 

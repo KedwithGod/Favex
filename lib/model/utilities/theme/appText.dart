@@ -93,6 +93,32 @@ class AppTexts {
   final String card;
   final String rates;
   final String account;
+  final String sellCryptocurrency;
+  final String searchCoin;
+  final String topTradedCoin;
+  final String AllCryptoAsset;
+  final String topTradedCards;
+  final String searchCard;
+  final String sellGiftcard;
+  final String nfxWallet;
+  final String viewAll;
+  final String recentActivities;
+  final String fastAndSafe;
+  final String tasks;
+  final String tradeUSDTBTCAndAllCryptoToCashInstantly;
+  final String more;
+  final String rewards;
+  final String payBills;
+  final String tradeCrypto;
+  final String tradeGiftcard;
+  final String quickActions;
+  final String transfer;
+  final String addMoney;
+  final String walletBalance;
+  final String goodMorning;
+  final String hello;
+  final String completed;
+  final String selectWallet;
   const AppTexts( {
     required this.welcomeMessage,
     required this.emailAddress,
@@ -180,6 +206,32 @@ class AppTexts {
     required this.card,
     required this.rates,
     required this.account,
+    required this.sellCryptocurrency,
+    required this.searchCoin,
+    required this.topTradedCoin,
+    required this.AllCryptoAsset,
+    required this.topTradedCards,
+    required this.searchCard,
+    required this.sellGiftcard,
+    required this.nfxWallet,
+    required this.viewAll,
+    required this.recentActivities,
+    required this.fastAndSafe,
+    required this.tasks,
+    required this.tradeUSDTBTCAndAllCryptoToCashInstantly,
+    required this.more,
+    required this.rewards,
+    required this.payBills,
+    required this.tradeCrypto,
+    required this.tradeGiftcard,
+    required this.quickActions,
+    required this.transfer,
+    required this.addMoney,
+    required this.walletBalance,
+    required this.goodMorning,
+    required this.hello,
+    required this.completed,
+    required this.selectWallet,
   });
 
   // English Language
@@ -270,6 +322,32 @@ class AppTexts {
     card: 'Card',
     rates: 'Rates',
     account: 'Account',
+    sellCryptocurrency: 'Sell cryptocurrency',
+    searchCoin: 'Search coin',
+    topTradedCoin: 'Top Traded Coin',
+    AllCryptoAsset: 'All Crypto Asset',
+    topTradedCards: 'Top Traded Cards',
+    searchCard: 'Search card',
+    sellGiftcard: 'Sell Giftcard',
+    nfxWallet: 'NFX Wallet',
+    viewAll: 'View all',
+    recentActivities: 'Recent Activities',
+    fastAndSafe: 'Fast & Safe',
+    tasks: 'Tasks',
+    tradeUSDTBTCAndAllCryptoToCashInstantly: 'Trade USDT, BTC & all Crypto to cash Instantly',
+    more: 'More',
+    rewards: 'Rewards',
+    payBills: 'Pay Bills',
+    tradeCrypto: 'Trade Crypto',
+    tradeGiftcard: 'Trade Giftcard',
+    quickActions: 'Quick Actions',
+    transfer: 'Transafer',
+    addMoney: 'Add money',
+    walletBalance: 'Wallet Balance',
+    goodMorning: 'Good morning',
+    hello: 'Hello',
+    completed: 'Completed',
+    selectWallet: 'Select Wallet',
   );
 
   // Spanish Language (example)
@@ -360,6 +438,32 @@ class AppTexts {
     card: 'Tarjeta (in Spanish)',
     rates: 'Tasas',
     account: 'Cuenta (Masculino) or Cuenta (Femenino), dependiendo de su idioma.',
+    sellCryptocurrency: 'Vender criptomonedas (Spanish)',
+    searchCoin: 'Buscar moneda (Buscar monedas)',
+    topTradedCoin: 'Moneda Criptomoneda más comercializada',
+    AllCryptoAsset: 'Todos los Activos Criptomoneda',
+    topTradedCards: 'Las Tarjetas Más Comercializadas',
+    searchCard: 'Buscar tarjeta',
+    sellGiftcard: 'Vender Tarjeta Regalo (en español)',
+    nfxWallet: 'Billetera NFX (traducido): Cuenta Electrónica de Monedas NFX',
+    viewAll: 'Ver todo / Ver todas las opciones',
+    recentActivities: 'Actividades recientes',
+    fastAndSafe: 'Rápido y Seguro (in English, it means Fast and Safe)',
+    tasks: 'Tareas (singular: tarea)',
+    tradeUSDTBTCAndAllCryptoToCashInstantly: 'Intercambia USDT, BTC y todo Criptomoneda a efectivo inmediatamente',
+    more: 'Más (additional or further)',
+    rewards: 'Premios',
+    payBills: 'Pagar Cuentas (or "Pagar facturas" if you prefer)',
+    tradeCrypto: 'Comercio de Criptomonedas (traducido)',
+    tradeGiftcard: 'Tarjeta de intercambio regalo',
+    quickActions: 'Acciones Rápidas (Spanish)',
+    transfer: 'Transferencia (Titular o receptor en forma opcional)',
+    addMoney: 'Añadir dinero',
+    walletBalance: 'Saldo de Wallet',
+    goodMorning: 'Buenos días',
+    hello: '¡Hola! (Hol-a)',
+    completed: 'Completado (Masculino) - Completada (Feminino) - Completados (Plural Masculino) - Completadas (Plural Feminino)',
+    selectWallet: 'Selecciona Billetera (if you\'re referring to a digital wallet) or Selecciona Cartera (if you\'re referring to a physical wallet) in Spanish. The context can influence which term is more appropriate, but both translations serve the purpose of guiding users to choose their wallet.',
   );
 
   // Add more languages as needed

@@ -8,7 +8,9 @@ class ImageAvatar extends StatelessWidget {
   final String? image;
   final ImageTypeEnum? imageType;
   final Color? backgroundColor;
-  final double imageRadius; // Make this a required parameter
+  final double imageRadius; 
+  
+  // Make this a required parameter
 
   const ImageAvatar({
     Key? key,

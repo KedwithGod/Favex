@@ -23,14 +23,17 @@ class AppColors {
   final Color alertHard;
   final Color white;
   final Color primaryLemon;
+  final Color primary2;
   final Color primarySoft;
+  final Color successSoft;
+  final Color successHard;
   final Color borderBlack;
   final Color disabled;
   final Color contentDisabled;
 
 
 
-  const AppColors({
+  const AppColors( {
     required this.title,
     required this.titleSoft,
     required this.subtitle,
@@ -43,7 +46,7 @@ class AppColors {
     required this.alertHard,
     required this.primaryLemon,
     required this.primarySoft,
-     required this.white,required this.borderBlack,required  this.disabled
+     required this.white,required this.borderBlack,required  this.disabled, required this.primary2,required  this.successSoft, required this.successHard
   });
 
   // Light Theme
@@ -61,7 +64,10 @@ class AppColors {
     alertHard: Color.fromRGBO(248, 52, 70, 1),
     primaryLemon: Color.fromRGBO(235, 248, 238, 1),
     primarySoft: Color.fromRGBO(249, 250, 251, 1),
-    borderBlack: Color.fromRGBO(21, 27, 31, 1), contentDisabled: Color.fromRGBO(152, 162, 179, 1)
+    borderBlack: Color.fromRGBO(21, 27, 31, 1), contentDisabled: Color.fromRGBO(152, 162, 179, 1),
+     primary2: Color.fromRGBO(34, 133, 94, 1),
+     successSoft: Color.fromRGBO(230, 245, 238, 1),
+     successHard:Color.fromRGBO(0, 154, 81, 1),
     
   );
 
@@ -81,7 +87,12 @@ class AppColors {
     primaryLemon: Color.fromRGBO(70, 70, 70, 1), // Darker shade for primary lemon
     primarySoft: Color.fromRGBO(34, 43, 36, 1), // Keep primary soft color
     borderBlack: Color.fromRGBO(255, 255, 255, 0.1), // Light border for contrast
-    contentDisabled: Color.fromRGBO(71, 84, 103, 1)
+    contentDisabled: Color.fromRGBO(71, 84, 103, 1),
+    primary2: Color.fromRGBO(24, 94, 67, 1),
+    successSoft: Color.fromRGBO(230, 245, 238, 1),
+     successHard:Color.fromRGBO(0, 154, 81, 1),
+    
+
  
     
   );

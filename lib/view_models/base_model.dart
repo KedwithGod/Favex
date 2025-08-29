@@ -3,6 +3,9 @@ import '../model/utilities/imports/shared.dart';
 class BaseModel extends ChangeNotifier {
 
   String testUser = 'Kingdammy';
+  String naira = 'NGN';
+  String walletBalance = '560000';
+  String nfxBalance = '140000';
 
   // Maps for colors
   static const Map<String, AppColors> colorMap = {
