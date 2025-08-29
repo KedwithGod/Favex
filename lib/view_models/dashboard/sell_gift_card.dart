@@ -3,24 +3,7 @@ import '/model/utilities/imports/view_models.dart';
 class SellGiftCardViewModel extends BaseModel{
 
 
-  List <Map<String,dynamic>> giftCardList =[
-    {
-      "name":"Amazon",'icon':"amazon"
-    },
-    {
-      "name":"Amazon",'icon':"amazon"
-    },
-    {
-      "name":"Amazon",'icon':"amazon"
-    },
-    {
-      "name":"ebay",'icon':"amazon"
-    },
-    {
-      "name":"Nike",'icon':"amazon"
-    },
-  
-  ];
+
 
   List <Map<String,dynamic>> filteredGiftCardList = []; // Filtered list
 

@@ -3,7 +3,8 @@ import '/model/utilities/imports/shared.dart';
 class CryptoSelectorBottomSheet extends StatefulWidget {
   final List<Map<String, dynamic>> cryptoList; // List of cryptocurrencies
   final String selectText; // Text to display as the title
-  final String searchHint; // Hint for the search field
+  final String? searchHint; // Hint for the search field
+  final ImageTypeEnum imagetype;
   final Function(int) onSelect; // Callback for selection
 
   const CryptoSelectorBottomSheet({
@@ -12,10 +13,11 @@ class CryptoSelectorBottomSheet extends StatefulWidget {
     required this.selectText,
     required this.searchHint,
     required this.onSelect,
+    this.imagetype  = ImageTypeEnum.png
   }) : super(key: key);
 
   @override
-  _CryptoSelectorBottomSheetState createState() => _CryptoSelectorBottomSheetState();
+  State<CryptoSelectorBottomSheet> createState() => _CryptoSelectorBottomSheetState();
 }
 
 class _CryptoSelectorBottomSheetState extends State<CryptoSelectorBottomSheet> {
@@ -113,7 +115,7 @@ class _CryptoSelectorBottomSheetState extends State<CryptoSelectorBottomSheet> {
                           path: crypto['icon'],
                           height: 40,
                           width: 41,
-                          imageType: ImageTypeEnum.png,
+                          imageType: widget.imagetype,
                         ),
                         S(w: 10),
                         InterText(

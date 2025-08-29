@@ -147,6 +147,7 @@ class AppTexts {
   final String selectACryptoToContinue;
   final String allFieldEntriesCorrect;
   final String okay;
+  final String selectCardRange;
   const AppTexts( {
     required this.welcomeMessage,
     required this.emailAddress,
@@ -288,6 +289,7 @@ class AppTexts {
     required this.selectACryptoToContinue,
     required this.allFieldEntriesCorrect,
     required this.okay,
+    required this.selectCardRange,
   });
 
   // English Language
@@ -432,6 +434,7 @@ class AppTexts {
     selectACryptoToContinue: 'Select a crypto to continue',
     allFieldEntriesCorrect: 'All Field entries are correct',
     okay: 'Okay',
+    selectCardRange: 'Select card range',
   );
 
   // Spanish Language (example)
@@ -576,6 +579,7 @@ class AppTexts {
     selectACryptoToContinue: 'Selecciona una criptomoneda para continuar',
     allFieldEntriesCorrect: 'Todos los campos de entrada son correctos.',
     okay: '¡Bien! (or ¡Claro!) in casual or informal contexts, or ¡Estoy de acuerdo! in more formal situations.',
+    selectCardRange: 'Selecciona el rango de tarjetas (en español)',
   );
 
   // Add more languages as needed

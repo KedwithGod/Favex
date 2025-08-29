@@ -282,4 +282,23 @@ class BaseModel extends ChangeNotifier {
     },
   
   ];
+
+    List <Map<String,dynamic>> giftCardList =[
+    {
+      "name":"Amazon",'icon':"amazon"
+    },
+    {
+      "name":"Amazon",'icon':"amazon"
+    },
+    {
+      "name":"Amazon",'icon':"amazon"
+    },
+    {
+      "name":"ebay",'icon':"amazon"
+    },
+    {
+      "name":"Nike",'icon':"amazon"
+    },
+  
+  ];
 }

@@ -41,8 +41,9 @@ class RateCalculatorPage extends StatelessWidget {
                             left: 7,
                             right: 10,
                             top: 10,
-                            bottom: 10,
+                            bottom: 20,
                             child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 ...List.generate(model.rateTabList.length,
                                     (index) {
@@ -81,9 +82,9 @@ class RateCalculatorPage extends StatelessWidget {
                         S(h:12),
                           // decide what page to show
 
-                          // if(model.selectedTab == RateCalculatorTabEnum.gift)...[
-                          // const  GiftCardRate()
-                          // ],
+                          if(model.selectedTab == RateCalculatorTabEnum.gift)...[
+                          const  GiftCardRate()
+                          ],
 
                           if(model.selectedTab == RateCalculatorTabEnum.crypto)...[
                           const  CryptoRatePage()

@@ -24,7 +24,7 @@ class GeneralContainer extends StatelessWidget {
     super.key,
     this.height, // Optional
     this.width,  // Optional
-    required this.color,
+    this.color,
     this.noDecoration = false,
     this.borderWidth = 0,
     this.borderStyle,
