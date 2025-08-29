@@ -21,3 +21,6 @@ export '/views/reusable_widgets/sign_up/step.dart';
 
 export 'package:favex/views/reusable_widgets/sign_up/password_check.dart';
 
+// rates
+export '/views/reusable_widgets/rates/select_item_sheet.dart';
+

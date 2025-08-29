@@ -20,3 +20,6 @@ export '/view_models/sign_up/create_transaction_pin.dart';
 export '/view_models/dashboard/home.dart';
 export '/view_models/dashboard/sell_gift_card.dart';
 export '/view_models/dashboard/sell_crypto.dart';
+
+// rates
+export '/view_models/rate_calculator/home.dart';

@@ -24,6 +24,9 @@ export '/views/pages/sign_up/confirm_transaction_pin.dart';
 export '/views/pages/sign_up/enable_biomteric.dart';
 export '/view_models/sign_up/enable_biometric.dart';
 
+// rates
+export 'package:favex/views/pages/rates/crypto.dart';
+export 'package:favex/views/pages/rates/gift_card.dart';
 
 
 

@@ -10,7 +10,7 @@ class CreateTransactionPinViewModel extends BaseModel{
   onCompletePin(BuildContext context, inputPin) {
     pinBucket = inputPin;
     notifyListeners();
-    context.goNamed(confirmTransactionPinPage);
+    context.goNamed(confirmTransactionPinPageRoute);
 
     
   }
@@ -34,7 +34,7 @@ class CreateTransactionPinViewModel extends BaseModel{
               title: textBucket!.transactionPinCreated,
               subtitle:textBucket!.pinCreatedSuccessfully,
               onPressed: () {
-                router.goNamed(enableBiometricPage);
+                router.goNamed(enableBiometricPageRoute);
               },
             );
     }

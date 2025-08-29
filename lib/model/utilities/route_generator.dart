@@ -3,6 +3,8 @@
 
 
 
+import 'package:favex/views/pages/rates/home.dart';
+
 import 'imports/shared.dart';
 
 final navigatorKey = GlobalKey<NavigatorState>();
@@ -30,11 +32,11 @@ final router = GoRouter(
         path: '/home',
         builder: (context, state) => const HomePage()),
     GoRoute(
-        name: sellGiftCardPage,
+        name: sellGiftCardPageRoute,
         path: '/sell_gift_card',
         builder: (context, state) => const SellGiftCard()),
     GoRoute(
-        name: sellCrytoCurrencyPage,
+        name: sellCrytoCurrencyPageRoute,
         path: '/sell_crytp',
         builder: (context, state) => const SellCryptoPage()),
     GoRoute(
@@ -50,15 +52,15 @@ final router = GoRouter(
         path: '/create_password',
         builder: (context, state) => const CreatePasswordPage()),
     GoRoute(
-        name: createTransactionPIndPage,
+        name: createTransactionPinPageRoute,
         path: '/create_transaction_pin',
         builder: (context, state) => const CreateTransactionPinPage()),
     GoRoute(
-        name: confirmTransactionPinPage,
+        name: confirmTransactionPinPageRoute,
         path: '/confirm_transaction_pin',
         builder: (context, state) => const ConfirmTransactonPage()),
     GoRoute(
-        name: enableBiometricPage,
+        name: enableBiometricPageRoute,
         path: '/enable_biometric',
         builder: (context, state) => const EnableBiometricPage()),
     GoRoute(
@@ -79,8 +81,12 @@ final router = GoRouter(
               nextPage: nextPage, bottomSheetSubtitle: bottomSheetSubtitle);
         }),
     GoRoute(
-        name: createNewPasswordPage ,
+        name: createNewPasswordPageRoute ,
         path: '/create_new_password',
         builder: (context, state) => const CreateNewPasswordPage()),
+    GoRoute(
+        name: rateCalculatorPageRoute ,
+        path: '/rate_calculator',
+        builder: (context, state) => const RateCalculatorPage()),
   ],
 );

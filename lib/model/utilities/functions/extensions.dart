@@ -28,7 +28,7 @@ extension TabEnumExtension on TabEnum {
       case TabEnum.card:
         return homePageRoute;
       case TabEnum.rate:
-        return homePageRoute;
+        return rateCalculatorPageRoute;
       case TabEnum.account:
         return homePageRoute;
     }

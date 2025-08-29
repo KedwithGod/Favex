@@ -120,6 +120,33 @@ class AppTexts {
   final String completed;
   final String selectWallet;
   final String nfxWalletBalance;
+  final String tradeCard;
+  final String totalValue;
+  final String rate;
+  final String cardValue;
+  final String eCode;
+  final String noReceipt;
+  final String DebitReceipt;
+  final String cashReceipt;
+  final String cardReceiptCategory;
+  final String chooseCardRange;
+  final String cardRange;
+  final String chooseGiftcard;
+  final String otherCountries;
+  final String selectCardCountry;
+  final String checkCurrentRatesForGiftCard;
+  final String crypto;
+  final String GiftCard;
+  final String rateCalculator;
+  final String amountIn;
+  final String chooseCrypto;
+  final String selectCrypto;
+  final String checkCurrentRatesForCrypto;
+  final String enterAmount;
+  final String amountInUsdMustBeGreaterThanZero;
+  final String selectACryptoToContinue;
+  final String allFieldEntriesCorrect;
+  final String okay;
   const AppTexts( {
     required this.welcomeMessage,
     required this.emailAddress,
@@ -234,6 +261,33 @@ class AppTexts {
     required this.completed,
     required this.selectWallet,
     required this.nfxWalletBalance,
+    required this.tradeCard,
+    required this.totalValue,
+    required this.rate,
+    required this.cardValue,
+    required this.eCode,
+    required this.noReceipt,
+    required this.DebitReceipt,
+    required this.cashReceipt,
+    required this.cardReceiptCategory,
+    required this.chooseCardRange,
+    required this.cardRange,
+    required this.chooseGiftcard,
+    required this.otherCountries,
+    required this.selectCardCountry,
+    required this.checkCurrentRatesForGiftCard,
+    required this.crypto,
+    required this.GiftCard,
+    required this.rateCalculator,
+    required this.amountIn,
+    required this.chooseCrypto,
+    required this.selectCrypto,
+    required this.checkCurrentRatesForCrypto,
+    required this.enterAmount,
+    required this.amountInUsdMustBeGreaterThanZero,
+    required this.selectACryptoToContinue,
+    required this.allFieldEntriesCorrect,
+    required this.okay,
   });
 
   // English Language
@@ -351,6 +405,33 @@ class AppTexts {
     completed: 'Completed',
     selectWallet: 'Select Wallet',
     nfxWalletBalance: 'NFX Wallet Balance',
+    tradeCard: 'Trade Card',
+    totalValue: 'Total Value',
+    rate: 'Rate',
+    cardValue: 'Card Value',
+    eCode: 'E-Code',
+    noReceipt: 'No Receipt',
+    DebitReceipt: 'Debit Receipt',
+    cashReceipt: 'Cash Receipt',
+    cardReceiptCategory: 'Card Receipt Category',
+    chooseCardRange: 'Choose card range',
+    cardRange: 'Card range',
+    chooseGiftcard: 'Choose Giftcard',
+    otherCountries: 'other countries',
+    selectCardCountry: 'Select Card Country',
+    checkCurrentRatesForGiftCard: 'Check current rates for your giftcard',
+    crypto: 'Crypto',
+    GiftCard: 'Gift Card',
+    rateCalculator: 'Rate Calculator',
+    amountIn: 'Amount in',
+    chooseCrypto: 'Choose Crypto',
+    selectCrypto: 'Select Crypto',
+    checkCurrentRatesForCrypto: 'Check current rates for your crypto',
+    enterAmount: 'Enter amount',
+    amountInUsdMustBeGreaterThanZero: 'Amount in USD must be greater than 0',
+    selectACryptoToContinue: 'Select a crypto to continue',
+    allFieldEntriesCorrect: 'All Field entries are correct',
+    okay: 'Okay',
   );
 
   // Spanish Language (example)
@@ -468,6 +549,33 @@ class AppTexts {
     completed: 'Completado (Masculino) - Completada (Feminino) - Completados (Plural Masculino) - Completadas (Plural Feminino)',
     selectWallet: 'Selecciona Billetera (if you\'re referring to a digital wallet) or Selecciona Cartera (if you\'re referring to a physical wallet) in Spanish. The context can influence which term is more appropriate, but both translations serve the purpose of guiding users to choose their wallet.',
     nfxWalletBalance: 'Saldo de la cartera NFX',
+    tradeCard: 'Tarjeta de Comercio (Carta de Comercio)',
+    totalValue: 'Valor Total',
+    rate: 'Calificar (en español)',
+    cardValue: 'Valor de la Tarjeta (Más específico, "Valor de la carta" o simplemente "Valor")',
+    eCode: 'Código E-Code (en español)',
+    noReceipt: 'No Factura',
+    DebitReceipt: 'Recibo de Débito (México) or Boleto de Pago por Débito Automático (España)',
+    cashReceipt: 'Recibo de Efectivo (Caja)',
+    cardReceiptCategory: 'Categoría de Recibo de Tarjeta (Card Receipt Category) se traduce como "Categoría de Recibo de Tarjeta" en español.',
+    chooseCardRange: 'Elije el rango de tarjetas (o "elige el número de cartas" sería también aceptable)',
+    cardRange: 'Rango de tarjetas (Spanish)',
+    chooseGiftcard: 'Elige Tarjeta Regalo',
+    otherCountries: 'otros países (masculine) or otras países (feminine, if it\'s a list of countries with a gender)',
+    selectCardCountry: 'Selecciona país de la Tarjeta (Español)',
+    checkCurrentRatesForGiftCard: 'Ver tasas actuales para tu tarjeta regalo',
+    crypto: 'Criptomoneda (plural: criptomonedas) o moneda digital, es un medio de intercambio decentralizado que no está controlado por ningún gobierno ni banco central. Las criptomonedas utilizan tecnología de bloqueo en cadena, lo que les permite ser transaccionadas sin una autoridad central.',
+    GiftCard: 'Tarjeta Regalo (or simply Tarjeta de Regalo)',
+    rateCalculator: 'Calculadora de Tasa',
+    amountIn: 'Cantidad en (Spanish)',
+    chooseCrypto: 'Elija Criptomoneda (o monedas)',
+    selectCrypto: 'Selecciona Criptomoneda',
+    checkCurrentRatesForCrypto: 'Ver tasas actuales de tu criptomoneda',
+    enterAmount: 'Introduce cantidad',
+    amountInUsdMustBeGreaterThanZero: 'La cantidad en dólares debe ser mayor que cero.',
+    selectACryptoToContinue: 'Selecciona una criptomoneda para continuar',
+    allFieldEntriesCorrect: 'Todos los campos de entrada son correctos.',
+    okay: '¡Bien! (or ¡Claro!) in casual or informal contexts, or ¡Estoy de acuerdo! in more formal situations.',
   );
 
   // Add more languages as needed

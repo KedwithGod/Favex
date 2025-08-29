@@ -7,5 +7,6 @@ enum TabEnum { home, history, card, rate, account }
 enum ImageTypeEnum { png, svg }
 // image type
 enum WalletTypeEnum { wallet, nfx }
+enum RateCalculatorTabEnum { gift, crypto }
 
 

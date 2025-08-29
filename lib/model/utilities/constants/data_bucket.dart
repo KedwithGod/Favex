@@ -9,3 +9,4 @@ String? backButtonRedirectBucket;
 String? tokenKeyBucket;
 String? emailControllerBucket;
 String? pinBucket;
+List <Map<String,dynamic>>? filteredCryptoListBucket; 

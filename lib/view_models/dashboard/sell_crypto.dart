@@ -2,35 +2,7 @@ import 'package:favex/model/utilities/imports/shared.dart';
 
 class SellCryptoViewModel extends BaseModel{
 
-   List <Map<String,dynamic>> cryptoList =[
-    {
-      "name":"Bitcoin",'icon':"bitcoin"
-    },
-    {
-      "name":"Etherum",'icon':"bitcoin"
-    }
-    ,
-    {
-      "name":"Binance",'icon':"bitcoin"
-    },
-    {
-      "name":"ebay",'icon':"bitcoin"
-    },
-    {
-      "name":"Nike",'icon':"bitcoin"
-    },
-    
-    {
-      "name":"Binance",'icon':"bitcoin"
-    },
-    {
-      "name":"ebay",'icon':"bitcoin"
-    },
-    {
-      "name":"Nike",'icon':"bitcoin"
-    },
-  
-  ];
+
 
   List <Map<String,dynamic>> filteredCryptoList = []; // Filtered list
 

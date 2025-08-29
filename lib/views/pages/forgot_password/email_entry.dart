@@ -127,7 +127,7 @@ class EmailEntryPage extends StatelessWidget {
                                     context.goNamed(
                                       enterOTPCodePageRoute,
                                       extra: {
-                                        'nextPage': createNewPasswordPage,
+                                        'nextPage': createNewPasswordPageRoute,
                                         'bottomSheetSubtitle': textBucket!
                                             .verificationCompletedNextStepButton,
                                       },

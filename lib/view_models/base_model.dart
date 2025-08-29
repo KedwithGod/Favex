@@ -7,6 +7,8 @@ class BaseModel extends ChangeNotifier {
   String nfx = 'NFX';
   String walletBalance = '560000';
   String nfxBalance = '140000';
+  String usd = ' USD \$';
+  String nairaSymbol ='₦';
 
   // Maps for colors
   static const Map<String, AppColors> colorMap = {
@@ -84,6 +86,13 @@ class BaseModel extends ChangeNotifier {
   FocusNode referralTagFocusNode = FocusNode();
   bool referralTagNotValid = false;
 
+  TextEditingController cryptoController = TextEditingController();
+  bool cryptoErrorBool = false;
+  String cryptoErrorText = '';
+  bool cryptoNotValid = true;
+  FocusNode cryptoFocusNode = FocusNode();
+ 
+
   showPassword() {
     showPasswordBool = !showPasswordBool;
     notifyListeners();
@@ -108,6 +117,8 @@ class BaseModel extends ChangeNotifier {
     clearKey == 'phone' ? '' : phonenumberFocusNode.unfocus();
     clearKey == 'referralTag' ? '' : referralTagErrorBool = false;
     clearKey == 'referralTag' ? '' : referralTagFocusNode.unfocus();
+    clearKey == 'crypto_usd' ? '' : cryptoErrorBool = false;
+    clearKey == 'crypto_usd' ? '' : cryptoFocusNode.unfocus();
   }
 
   // validate email
@@ -240,4 +251,35 @@ class BaseModel extends ChangeNotifier {
     }
     notifyListeners();
   }
+
+
+  List <Map<String,dynamic>> cryptoList =[
+    {
+      "name":"Bitcoin",'icon':"bitcoin"
+    },
+    {
+      "name":"Etherum",'icon':"bitcoin"
+    }
+    ,
+    {
+      "name":"Binance",'icon':"bitcoin"
+    },
+    {
+      "name":"ebay",'icon':"bitcoin"
+    },
+    {
+      "name":"Nike",'icon':"bitcoin"
+    },
+    
+    {
+      "name":"Binance",'icon':"bitcoin"
+    },
+    {
+      "name":"ebay",'icon':"bitcoin"
+    },
+    {
+      "name":"Nike",'icon':"bitcoin"
+    },
+  
+  ];
 }
