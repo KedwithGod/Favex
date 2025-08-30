@@ -8,8 +8,9 @@ Future<String> determineInitialRoute() async {
     print('User has valid token, checking admin status');
     tokenKeyBucket = token;
     isLoggedInBucket = true;
+    // return '/home';
     }
 
     // Check if user is admin by looking at user data
-  return '/home';
+  return '/';
 }

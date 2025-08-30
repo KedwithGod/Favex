@@ -7,7 +7,7 @@ Future<bool> runFunctionForApi(
   required Function(dynamic) functionToRunAfterService,
 }) async {
   try {
-    if (noLoading == false) loadingDialog(context, text: "");
+    if (noLoading == false) loadingSnackBarWidget(context);
 
     final value = await functionToRunService;
     if (!noLoading) Navigator.pop(context);
@@ -53,8 +53,6 @@ void handleError(BuildContext context, dynamic onError, StackTrace stackTrace,
       if (code == 402 || title.toLowerCase().contains('unverified')) {
      
       }
-
-     
 
       snackBarWidget(context, text: message, );
     } else {

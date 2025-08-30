@@ -4,110 +4,97 @@ class NetworkService {
   static const int timeoutDuration = 30; // Timeout duration in seconds
 
   final Map<String, String>? headers;
+  final Dio _dio;
 
-  NetworkService({this.headers});
+  NetworkService({this.headers})
+      : _dio = Dio(
+          BaseOptions(
+            baseUrl: baseUrl(),
+            connectTimeout: const Duration(seconds: timeoutDuration),
+            receiveTimeout: const Duration(seconds: timeoutDuration),
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json',
+              'X-Requested-With': 'XMLHttpRequest',
+              ...?headers,
+            },
+          ),
+        );
 
+  // === GET ===
   Future<GeneralResponse<T>> getRequest<T>(
-      String endpoint, T Function(dynamic) create) async {
+    BuildContext context,
+    String endpoint,
+    T Function(dynamic) create,
+  ) async {
     try {
-      final mergedHeaders = {
-        'Accept': 'application/json',
-        ...?headers,
-      };
-      final response =
-          await get(Uri.parse('${baseUrl()}$endpoint'), headers: mergedHeaders)
-              .timeout(const Duration(seconds: timeoutDuration));
-      print(response.body);
-      return _handleResponse(response, create);
-    } on SocketException {
-      throw Exception(
-          jsonEncode({"title": 'Network Error', 'message': networkError}));
-    } on TimeoutException {
-      throw Exception(jsonEncode({
-        "title": 'Connection Timeout Error',
-        'message': connectionTimeoutError
-      }));
+      final response = await _dio.get(endpoint);
+      return _handleResponse(context, response, create);
+    } on DioException catch (e) {
+      _handleDioError(context, e);
+      rethrow;
     }
   }
 
-  Future<GeneralResponse<T>> postRequest<T>(String endpoint,
-      Map<String, dynamic> body, T Function(dynamic) create) async {
+  // === POST ===
+  Future<GeneralResponse<T>> postRequest<T>(
+    BuildContext context,
+    String endpoint,
+    Map<String, dynamic> body,
+    T Function(dynamic) create,
+  ) async {
     try {
-      final defaultHeaders = {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'X-Requested-With': 'XMLHttpRequest',
-      };
-      final response = await post(Uri.parse('${baseUrl()}$endpoint'),
-              headers: {...defaultHeaders, ...?headers},
-              body: json.encode(body))
-          .timeout(const Duration(seconds: timeoutDuration));
-      // debugPrint('${baseUrl()}$endpoint');
-      // debugPrint(response.body);
-      return _handleResponse(response, create);
-    } on SocketException {
-      throw Exception(
-          jsonEncode({"title": 'Network Error', 'message': networkError}));
-    } on TimeoutException {
-      throw Exception(jsonEncode({
-        "title": 'Connection Timeout Error',
-        'message': connectionTimeoutError
-      }));
+      final response = await _dio.post(endpoint, data: json.encode(body));
+      return _handleResponse(context, response, create);
+    } on DioException catch (e) {
+      _handleDioError(context, e);
+      rethrow;
     }
   }
 
-  Future<GeneralResponse<T>> putRequest<T>(String endpoint,
-      Map<String, dynamic> body, T Function(dynamic) create) async {
+  // === PUT ===
+  Future<GeneralResponse<T>> putRequest<T>(
+    BuildContext context,
+    String endpoint,
+    Map<String, dynamic> body,
+    T Function(dynamic) create,
+  ) async {
     try {
-      final defaultHeaders = {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        'X-Requested-With': 'XMLHttpRequest',
-      };
-      final response = await put(Uri.parse('${baseUrl()}$endpoint'),
-              headers: {...defaultHeaders, ...?headers},
-              body: json.encode(body))
-          .timeout(const Duration(seconds: timeoutDuration));
-      return _handleResponse(response, create);
-    } on SocketException {
-      throw Exception(
-          jsonEncode({"title": 'Network Error', 'message': networkError}));
-    } on TimeoutException {
-      throw Exception(jsonEncode({
-        "title": 'Connection Timeout Error',
-        'message': connectionTimeoutError
-      }));
+      final response = await _dio.put(endpoint, data: json.encode(body));
+      return _handleResponse(context, response, create);
+    } on DioException catch (e) {
+      _handleDioError(context, e);
+      rethrow;
     }
   }
 
+  // === DELETE ===
   Future<GeneralResponse<T>> deleteRequest<T>(
-      String endpoint, T Function(dynamic) create) async {
+    BuildContext context,
+    String endpoint,
+    T Function(dynamic) create,
+  ) async {
     try {
-      final mergedHeaders = {
-        'Accept': 'application/json',
-        ...?headers,
-      };
-      final response = await delete(Uri.parse('${baseUrl()}$endpoint'),
-              headers: mergedHeaders)
-          .timeout(const Duration(seconds: timeoutDuration));
-      return _handleResponse(response, create);
-    } on SocketException {
-      throw Exception(
-          jsonEncode({"title": 'Network Error', 'message': networkError}));
-    } on TimeoutException {
-      throw Exception(jsonEncode({
-        "title": 'Connection Timeout Error',
-        'message': connectionTimeoutError
-      }));
+      final response = await _dio.delete(endpoint);
+      return _handleResponse(context, response, create);
+    } on DioException catch (e) {
+      _handleDioError(context, e);
+      rethrow;
     }
   }
 
+  // === RESPONSE HANDLER ===
   GeneralResponse<T> _handleResponse<T>(
-      Response response, T Function(dynamic) create) {
+    BuildContext context,
+    Response response,
+    T Function(dynamic) create,
+  ) {
     if (response.statusCode == 200 || response.statusCode == 201) {
       try {
-        final jsonResponse = json.decode(response.body);
-        // Handle PHP backend response shape
+        final jsonResponse = response.data is String
+            ? json.decode(response.data)
+            : response.data;
+
         if (jsonResponse['success'] == true) {
           final dynamic payload = jsonResponse['data'];
 
@@ -123,107 +110,91 @@ class NetworkService {
             code: 0,
             error: false,
             title: 'Success',
-            message: 'Success',
+            message: jsonResponse['message'] ?? 'Success',
             data: parsedData,
           );
         } else {
           final error = jsonResponse['error'];
-          String formatType(String? type) {
-            if (type == null || type.isEmpty) return 'Error';
-            final replaced = type.replaceAll('_', ' ');
-            return replaced[0].toUpperCase() + replaced.substring(1);
-          }
+          final errorTitle = _formatType(error?['type']?.toString());
+          final errorMessage = error?['message'] ?? 'Unknown error';
 
-          throw Exception(jsonEncode({
-            "title": formatType(error?['type']?.toString()),
-            'message': error?['message'] ?? 'Unknown error',
-            'code': error?['code'] ?? response.statusCode,
-          }));
+           SchedulerBinding.instance
+              .addPostFrameCallback((_) => snackBarWidget(
+            context,
+            title: errorTitle,
+            text: errorMessage,
+            color: Colors.red,
+          ));
+
+          throw Exception(errorMessage);
         }
-      } catch (e) {
-        throw Exception(jsonEncode({
-          "title": 'JSON Parse Error',
-          'message': 'Server returned invalid JSON response'
-        }));
+      } catch (_) {
+         SchedulerBinding.instance
+              .addPostFrameCallback((_) => snackBarWidget(
+          context,
+          title: "JSON Parse Error",
+          text: "Server returned invalid JSON",
+          color: Colors.red,
+        ));
+
+        throw Exception("JSON Parse Error");
       }
     } else {
-      try {
-        // Try to read backend error payload
-        final jsonResponse = json.decode(response.body);
-        final error = jsonResponse['error'];
-        String formatType(String? type) {
-          if (type == null || type.isEmpty) return 'Error';
-          final replaced = type.replaceAll('_', ' ');
-          return replaced[0].toUpperCase() + replaced.substring(1);
-        }
+      SchedulerBinding.instance
+              .addPostFrameCallback((_) =>  snackBarWidget(
+        context,
+        title: "Server Error",
+        text: "Server returned status ${response.statusCode}",
+        color: Colors.red,
+      ));
 
-        throw Exception(jsonEncode({
-          "title": formatType(error?['type']?.toString()),
-          'message': error?['message'] ?? 'Request failed',
-          'code': error?['code'] ?? response.statusCode,
-        }));
-      } catch (_) {
-        // Fallback with status code only
-        throw Exception(jsonEncode({
-          "title": 'Server Error',
-          'message': 'Server returned status ${response.statusCode}',
-          'code': response.statusCode,
-        }));
-      }
+      throw Exception("Server Error ${response.statusCode}");
     }
   }
-}
 
-class AuthenticatedNetworkService extends NetworkService {
-  AuthenticatedNetworkService() : super();
-
-  Future<String?> _getAuthToken() async {
-    return await LocalStorage.getString(tokenKeyPS);
+  // === ERROR HANDLER ===
+  void _handleDioError(BuildContext context, DioException e) {
+    if (e.type == DioExceptionType.connectionTimeout ||
+        e.type == DioExceptionType.receiveTimeout) {
+       SchedulerBinding.instance
+              .addPostFrameCallback((_) => snackBarWidget(
+        context,
+        title: "Connection Timeout Error",
+        text: connectionTimeoutError,
+         color: colorsBucket!.backgroundDisabled,
+      ));
+    } else if (e.type == DioExceptionType.connectionError ||
+        e.error is SocketException) {
+       SchedulerBinding.instance
+              .addPostFrameCallback((_) => snackBarWidget(
+        context,
+        title: "Network Error",
+        text: networkError,
+         color: colorsBucket!.backgroundDisabled,
+      ));
+    } else if (e.response != null) {
+        SchedulerBinding.instance
+              .addPostFrameCallback((_) =>snackBarWidget(
+        context,
+        title: "Server Error",
+        text: e.response?.data.toString() ?? "Unknown server error",
+        color: colorsBucket!.white,
+      ));
+    } else {
+       SchedulerBinding.instance
+              .addPostFrameCallback((_) => snackBarWidget(
+        context,
+        title: "Unexpected Error",
+        text: e.message ?? "Unknown error",
+         color: colorsBucket!.white,
+      ));
+    }
   }
 
-  @override
-  Future<GeneralResponse<T>> getRequest<T>(
-      String endpoint, T Function(dynamic) create) async {
-    final token = await _getAuthToken();
-    final authHeaders = {
-      if (token != null && token.isNotEmpty) 'Authorization': 'Bearer $token',
-    };
-
-    return NetworkService(headers: authHeaders).getRequest(endpoint, create);
-  }
-
-  @override
-  Future<GeneralResponse<T>> postRequest<T>(String endpoint,
-      Map<String, dynamic> body, T Function(dynamic) create) async {
-    final token = await _getAuthToken();
-    final authHeaders = {
-      if (token != null && token.isNotEmpty) 'Authorization': 'Bearer $token',
-    };
-
-    return NetworkService(headers: authHeaders)
-        .postRequest(endpoint, body, create);
-  }
-
-  @override
-  Future<GeneralResponse<T>> putRequest<T>(String endpoint,
-      Map<String, dynamic> body, T Function(dynamic) create) async {
-    final token = await _getAuthToken();
-    final authHeaders = {
-      if (token != null && token.isNotEmpty) 'Authorization': 'Bearer $token',
-    };
-
-    return NetworkService(headers: authHeaders)
-        .putRequest(endpoint, body, create);
-  }
-
-  @override
-  Future<GeneralResponse<T>> deleteRequest<T>(
-      String endpoint, T Function(dynamic) create) async {
-    final token = await _getAuthToken();
-    final authHeaders = {
-      if (token != null && token.isNotEmpty) 'Authorization': 'Bearer $token',
-    };
-
-    return NetworkService(headers: authHeaders).deleteRequest(endpoint, create);
+  // === Helper ===
+  String _formatType(String? type) {
+    if (type == null || type.isEmpty) return 'Error';
+    final replaced = type.replaceAll('_', ' ');
+    return replaced[0].toUpperCase() + replaced.substring(1);
   }
 }

@@ -11,8 +11,7 @@ class EnterOTPCodePage extends StatelessWidget {
     return ViewModelBuilder<EmailEntryViewModel>.reactive(
         viewModelBuilder: () => EmailEntryViewModel(),
         onViewModelReady: (model) {
-          SchedulerBinding.instance
-              .addPostFrameCallback((_) => model.sendOtp(context));
+        
         },
         builder: (context, model, child) {
           return BaseUi(
@@ -63,7 +62,7 @@ class EnterOTPCodePage extends StatelessWidget {
                               model.otpOnChangedFunction(value);
                             },
                             onCompleted: (String value) {
-                              model.otpOnCompleteFunction(value);
+                              model.validateOtpFunction(context,value:value);
                             },
                             errorTextActive: model.otpErrorBool,
                             bottomSheetSubtitle:bottomSheetSubtitle,

@@ -7,7 +7,7 @@ export 'package:flutter_svg/flutter_svg.dart';
 export 'package:flutter_swipe_detector/flutter_swipe_detector.dart';
 export 'package:go_router/go_router.dart';
 export 'package:google_fonts/google_fonts.dart';
-export 'package:http/http.dart' hide Client;
+export 'package:dio/dio.dart';
 export 'package:keyboard_dismisser/keyboard_dismisser.dart';
 export 'package:line_icons/line_icon.dart';
 export 'package:page_transition/page_transition.dart';

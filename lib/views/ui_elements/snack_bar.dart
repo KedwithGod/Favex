@@ -28,3 +28,32 @@ void snackBarWidget(
     }
   });
 }
+
+void loadingSnackBarWidget(BuildContext context,
+  {String? text}
+){
+  Flushbar(
+    backgroundColor: colorsBucket!.backgroundMid,
+    messageText: Row(
+      children: [
+         SizedBox(
+          height: 20,
+          width: 20,
+          child: CircularProgressIndicator(
+            strokeWidth: 2,
+            valueColor: AlwaysStoppedAnimation<Color>(colorsBucket!.primary),
+          ),
+        ),
+         S(w: 16),
+        InterText(
+          text ?? "Loading...",
+          
+        ),
+      ],
+    ),
+    flushbarPosition: FlushbarPosition.TOP,
+    duration: const Duration(days: 1), // stays until dismissed
+    padding: const EdgeInsets.all(16),
+    isDismissible: false,
+  ).show(context);
+}

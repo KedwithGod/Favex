@@ -241,16 +241,7 @@ class BaseModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  // update otpvalue
-  otpOnCompleteFunction(String value) {
-    if (testOTP == value) {
-      otpErrorBool = false;
-    } else {
-      otpErrorBool = true;
-      otpErrorText = textBucket!.incorrectOTPAttempt;
-    }
-    notifyListeners();
-  }
+
 
 
   List <Map<String,dynamic>> cryptoList =[

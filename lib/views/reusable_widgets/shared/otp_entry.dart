@@ -30,7 +30,7 @@ class _PinEntryScreenState extends State<PinEntryScreen> {
   late List<TextEditingController> _controllers;
   late List<FocusNode> _focusNodes;
   int _currentIndex = 0;
-  int _start = 30;
+  int _start = 180;
   bool allFieldFilled = false;
   Timer? _timer;
 
