@@ -10,6 +10,10 @@ class CreateAccountViewModel extends BaseModel {
     {"name": textBucket!.others, "icon": "others_icon"}
   ];
 
+  bool usernameIsAvailable = false;
+  bool phoneIsAvailable = false;
+  String fullPhoneNumber = '';
+
   int? selectedSourceIndex;
 
   setSourceIndex(int index) {
@@ -22,7 +26,7 @@ class CreateAccountViewModel extends BaseModel {
     unfocusAllNodes('firstName');
     if (firstNameController.text.length <= 2) {
       firstNameErrorBool = true;
-      firstNameErrorText = "First name must be more than 3 characters.";
+      firstNameErrorText = textBucket!.firstNameValidity;
       firstNameNotValid = true;
     } else {
       firstNameErrorBool = false;
@@ -36,7 +40,7 @@ class CreateAccountViewModel extends BaseModel {
     unfocusAllNodes('lastName');
     if (lastNameController.text.length <= 2) {
       lastNameErrorBool = true;
-      lastNameErrorText = "Last name must be more than 3 characters.";
+      lastNameErrorText = textBucket!.lastNameMinLength;
       lastNameNotValid = true;
     } else {
       lastNameErrorBool = false;
@@ -53,14 +57,14 @@ class CreateAccountViewModel extends BaseModel {
     // Check if it starts with a letter
     if (!RegExp(r'^[A-Za-z]').hasMatch(username)) {
       usernameErrorBool = true;
-      usernameErrorText = "Username must start with a letter.";
+      usernameErrorText = textBucket!.usernameMustStartWithALetter;
       usernameNotValid = true;
     }
 
     // Check if username is longer than 3 characters
     else if (username.length <= 3) {
       usernameErrorBool = true;
-      usernameErrorText = "Username must be more than 3 characters.";
+      usernameErrorText = textBucket!.usernameMinLength;
       usernameNotValid = true;
     } else {
       usernameErrorBool = false;
@@ -111,7 +115,7 @@ class CreateAccountViewModel extends BaseModel {
       phoneNotValid = false;
     } else {
       phonenumberErrorBool = true;
-      phoneErrorText = "Please enter a valid phone number.";
+      phoneErrorText = textBucket!.pleaseEnterValidPhoneNumber;
       phoneNotValid = true;
     }
 
@@ -146,6 +150,7 @@ class CreateAccountViewModel extends BaseModel {
 
 // username onchanged function
   onChangedFunctionUsername() {
+    usernameIsAvailable = false;
     usernameFocusNode.addListener(() {
       if (!usernameFocusNode.hasFocus) {
         usernameErrorBool = false;
@@ -158,7 +163,10 @@ class CreateAccountViewModel extends BaseModel {
   }
 
 // phone onchanged function
-  onChangedFunctionPhone() {
+  onChangedFunctionPhone(PhoneNumber value) {
+    phoneIsAvailable = false;
+
+    fullPhoneNumber = value.phoneNumber.toString();
     phonenumberFocusNode.addListener(() {
       if (!phonenumberFocusNode.hasFocus) {
         phonenumberErrorBool = false;
@@ -198,10 +206,12 @@ class CreateAccountViewModel extends BaseModel {
     return !firstNameNotValid &&
         !lastNameNotValid &&
         !usernameNotValid &&
-        !phoneNotValid;
+        !phoneNotValid &&
+        phoneIsAvailable == true &&
+        usernameIsAvailable == true;
   }
 
-  void revalidateAllFields() async {
+  void revalidateAllFields(BuildContext context) async {
     // Revalidate full name
 
     if (firstNameNotValid == true) {
@@ -210,12 +220,101 @@ class CreateAccountViewModel extends BaseModel {
       validateLastName();
     } else if (usernameNotValid == true) {
       validateUsername();
+    } else if (usernameIsAvailable == false) {
+      validateUsernameFunction(context);
     } else if (phoneNotValid == true) {
       validatePhone();
+    } else if (phoneIsAvailable == false) {
+      validatePhoneNumberFunction(context);
     } else if (referralTagNotValid == true) {
       validateReferralTag();
     } else {
+      // save values into create account bucket
+      signUpdatabucket = User.fromJson({
+        'id': 0,
+        "first_name": firstNameController.text.trim(),
+        "last_name": lastNameController.text.trim(),
+        "username": usernameController.text.trim(),
+        "email": emailControllerBucket,
+        "phone": fullPhoneNumber,
+      });
+
+      print(signUpdatabucket!.toJson());
+      whereYouFindUsBucket = (selectedSourceIndex != null
+          ? socialSources[selectedSourceIndex!]['name']
+          : "");
+      referralTagBucket = referralTagController.text.trim();
       router.goNamed(createPasswordPageRoute);
     }
+  }
+
+  Future<void> validateUsernameFunction(BuildContext context) async {
+    await runFunctionForApi(
+      context,
+      functionToRunService: networkService.postRequest(
+        context,
+        validateUsernameUrl, // e.g. "/v1/validate/username"
+        {
+          "username": usernameController.text.trim(),
+        },
+        (data) => data, // return raw response map
+      ),
+      functionToRunAfterService: (result) async {
+        final GeneralResponse response = result;
+
+        final Map<String, dynamic> jsonData = response.data[0];
+
+        if (response.success) {
+          usernameIsAvailable = true;
+          notifyListeners();
+          snackBarWidget(
+            context,
+            text: jsonData["message"] ?? textBucket!.usernameIsAvailable,
+          );
+        } else {
+          snackBarWidget(
+            context,
+            text: response.error.toString(),
+            title: textBucket!.validationFailed,
+          );
+        }
+      },
+    );
+  }
+
+  Future<void> validatePhoneNumberFunction(
+    BuildContext context,
+  ) async {
+    await runFunctionForApi(
+      context,
+      functionToRunService: networkService.postRequest(
+        context,
+        validatePhoneUrl, // e.g. "/v1/validate/phone"
+        {
+          "phone": fullPhoneNumber,
+        },
+        (data) => data, // raw response map
+      ),
+      functionToRunAfterService: (result) async {
+        final GeneralResponse response = result;
+
+        final Map<String, dynamic> jsonData = response.data[0];
+
+        if (response.success) {
+          phoneIsAvailable = true;
+          notifyListeners();
+          snackBarWidget(
+            context,
+            text: jsonData["message"] ?? textBucket!.phoneNumberIsValid,
+          );
+        } else {
+          snackBarWidget(
+            context,
+            text: response.error.toString(),
+            title: textBucket!.validationFailed,
+          );
+        }
+      },
+    );
   }
 }

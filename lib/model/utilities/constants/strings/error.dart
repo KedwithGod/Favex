@@ -47,3 +47,5 @@ const double hPadding = 16;
 
 // credit transaction list
 const List<String> creditTransactionId = ['11', '14', '15', '16', '21'];
+
+const int timeoutDuration = 30; 

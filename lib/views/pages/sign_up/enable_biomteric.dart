@@ -63,7 +63,7 @@ class EnableBiometricPage extends StatelessWidget {
                               navigator: () {
                             openBiometric(context, action: () {
                                 // Navigate to another page or perform another action
-                              context.goNamed(homePageRoute);
+                             model.registerBiometricFunction(context);
                             });
                           }),
                           S(h: 10),

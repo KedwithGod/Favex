@@ -1,6 +1,7 @@
 import '/model/utilities/imports/shared.dart';
 
 class EmailEntryViewModel extends BaseModel {
+  bool isbusy = false;
   Future<void> sendOtpFunction(
     BuildContext context, {
     required String email,
@@ -10,7 +11,7 @@ class EmailEntryViewModel extends BaseModel {
       context,
       functionToRunService: networkService.postRequest(
         context,
-        sendOtpUrl, // e.g. "/v1/otp/send"
+        isUserGuestBucket ? sendGuestOtpUrl: sendOtpUrl, // e.g. "/v1/otp/send"
         {
           "email": email.trim(),
           "purpose": purpose.trim(),
@@ -32,11 +33,10 @@ class EmailEntryViewModel extends BaseModel {
                 extra: {
                   'nextPage': createNewPasswordPageRoute,
                   'bottomSheetSubtitle':
-                      textBucket!.verificationCompletedNextStepButton,
+                      textBucket!.verificationCompletedPassword,
                 },
               );
             }));
-
       },
     );
   }
@@ -44,7 +44,8 @@ class EmailEntryViewModel extends BaseModel {
   sendOtp(BuildContext context) {
     //  function to resend otp
     sendOtpFunction(context,
-        email: emailControllerBucket!, purpose: 'password_reset');
+        email: emailControllerBucket!, purpose:  isUserGuestBucket ? "create_account" : "password_reset");
+        print(emailControllerBucket!);
   }
 
   revalidateAllFields(BuildContext context) {
@@ -57,9 +58,9 @@ class EmailEntryViewModel extends BaseModel {
     }
   }
 
-    // update otpvalue
-  otpOnCompleteFunction(String value) {
-    if (testOTP == value) {
+  // update otpvalue
+  otpOnCompleteFunction(failed) {
+    if (failed == false) {
       otpErrorBool = false;
     } else {
       otpErrorBool = true;
@@ -68,50 +69,96 @@ class EmailEntryViewModel extends BaseModel {
     notifyListeners();
   }
 
-  Future<void> validateOtpFunction(
-  BuildContext context, {
-    String? value
-// e.g. "password_reset" or "verify_email"
-}) async {
-  await runFunctionForApi(
-    context,
-    functionToRunService: networkService.postRequest(
-      context,
-      validateOtpUrl, // e.g. "/v1/otp/validate"
-      {
-        "email": emailControllerBucket!,
-        "otp": value ,
-        "purpose": 'password_reset',
-      },
-      (data) => data,
-    ),
-    functionToRunAfterService: (result) async {
-      final GeneralResponse response = result;
+  Future<bool> validateOtpFunction(
+    BuildContext context, {
+    required String otp,
+  }) async {
+    isbusy = true;
+    notifyListeners();
+    final dio = Dio(
+      BaseOptions(
+        baseUrl: baseUrl(),
+        connectTimeout: const Duration(seconds: timeoutDuration),
+        receiveTimeout: const Duration(seconds: timeoutDuration),
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'X-Requested-With': 'XMLHttpRequest',
+        },
+      ),
+    );
 
-      if (response.success) {
-        final message = response.data[0]["message"] ?? "OTP validated successfully";
-          otpErrorBool = false;
+    final url = isUserGuestBucket ? validateGuestOtpUrl : validateOtpUrl;
 
-        snackBarWidget(
-          context,
-          text: message,
-          title: textBucket!.otpVerification,
-          action: () {
-            // For example: navigate to reset password or home
-            print("OTP validated → next action here");
-          },
-        );
+    final body = {
+      "email": emailControllerBucket!,
+      "otp": otp.trim(),
+      "purpose": isUserGuestBucket ? "create_account" : "password_reset",
+    };
+
+    try {
+      final response = await dio.post(
+        url,
+        data: body,
+        options: Options(headers: {"Content-Type": "application/json"}),
+      );
+
+      if (response.statusCode == 200) {
+        final Map<String, dynamic> jsonData = response.data;
+        print(response.data);
+
+        if (jsonData["success"] == true) {
+          final message = (jsonData["data"]?[0]?["message"]) ??
+              "OTP validated successfully";
+          otpOnCompleteFunction(false);
+          snackBarWidget(
+            context,
+            text: message,
+            title: textBucket!.otpVerification,
+          );
+
+          return true; // ✅ OTP valid
+        } else {
+          otpOnCompleteFunction(true);
+          snackBarWidget(
+            context,
+            text: jsonData["error"]?["message"] ?? "Invalid OTP",
+            title: "Validation Failed",
+          );
+          return false; // ❌ OTP invalid
+        }
       } else {
-        otpErrorBool = true;
-        otpErrorText = textBucket!.incorrectOTPAttempt;
+        otpOnCompleteFunction(true);
+
         snackBarWidget(
           context,
-          text: response.error.toString(),
+          text: "Server error: ${response.statusCode}",
           title: "Validation Failed",
         );
+        return false;
       }
-    },
-  );
-}
-
+    } on DioException catch (e) {
+      otpOnCompleteFunction(true);
+      print(e.response);
+      final errorMsg = e.response?.data?["error"]?["message"] ?? e.message;
+      snackBarWidget(
+        context,
+        text: "Unexpected error: $errorMsg",
+        title: "Validation Failed",
+      );
+      return false;
+    } catch (e) {
+      print(e);
+      otpOnCompleteFunction(true);
+      snackBarWidget(
+        context,
+        text: "Unexpected error: $e",
+        title: "Validation Failed",
+      );
+      return false;
+    } finally {
+      isbusy = false;
+      notifyListeners();
+    }
+  }
 }

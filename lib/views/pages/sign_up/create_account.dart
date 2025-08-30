@@ -186,6 +186,35 @@ class CreateAccountPage extends StatelessWidget {
                               ),
                             ),
                           ),
+
+                          if (!model.usernameNotValid) ...[
+                            S(h: 10),
+                            Row(
+                              children: [
+                                model.usernameIsAvailable
+                                    ? InterText(
+                                        textBucket!.usernameIsAvailable,
+                                        textColor: colorsBucket!.primary,
+                                      )
+                                    : GestureDetector(
+                                        onTap: () {
+                                          model.validateUsernameFunction(
+                                              context);
+                                        },
+                                        child: GeneralContainer(
+                                          left: 15,
+                                          right: 15,
+                                          top: 8,
+                                          bottom: 8,
+                                          borderRadius: 8,
+                                          color: colorsBucket!.successSoft,
+                                          child: InterText(textBucket!.checkAvailability,textFontSize: 12,),
+                                        ),
+                                      ),
+                             
+                              ],
+                            )
+                          ],
                           S(h: 24),
 
                           // phone number
@@ -203,12 +232,40 @@ class CreateAccountPage extends StatelessWidget {
                             textFieldController: model.phonenumberController,
                             focusNode: model.phonenumberFocusNode,
                             onChangedFunction: (value) {
-                              model.onChangedFunctionPhone();
+                              model.onChangedFunctionPhone(value);
                             },
                             errorTextActive: model.phonenumberErrorBool,
                             errorText: model.phoneErrorText,
                           ),
 
+                          if (!model.phoneNotValid) ...[
+                            S(h: 10),
+                            Row(
+                              children: [
+                                model.phoneIsAvailable
+                                    ? InterText(
+                                        textBucket!.phoneNumberIsAvailable,
+                                        textColor: colorsBucket!.primary,
+                                      )
+                                    : GestureDetector(
+                                        onTap: () {
+                                          model.validatePhoneNumberFunction(
+                                              context);
+                                        },
+                                        child: GeneralContainer(
+                                          left: 15,
+                                          right: 15,
+                                          top: 8,
+                                          bottom: 8,
+                                          borderRadius: 8,
+                                          color: colorsBucket!.successSoft,
+                                          child: InterText(textBucket!.checkAvailability,textFontSize: 12,),
+                                        ),
+                                      ),
+                             
+                              ],
+                            )
+                          ],
                           // text field
                           S(h: 24),
                           // how did you hear about us
@@ -220,6 +277,7 @@ class CreateAccountPage extends StatelessWidget {
                               ),
                             ],
                           ),
+
                           S(h: 10),
 
                           InkWell(
@@ -410,13 +468,13 @@ class CreateAccountPage extends StatelessWidget {
                           S(h: 30),
                           buttonNoPositioned(context,
                               text: textBucket!.continueText,
-                              textColor:model.allFieldsAreValid() == true
+                              textColor: model.allFieldsAreValid() == true
                                   ? colorsBucket!.primarySoft
                                   : colorsBucket!.subtitle,
                               buttonColor: model.allFieldsAreValid() == true
                                   ? colorsBucket!.primary
                                   : colorsBucket!.disabled, navigator: () {
-                                    model.revalidateAllFields();
+                            model.revalidateAllFields(context);
                           }),
                         ],
                       ),

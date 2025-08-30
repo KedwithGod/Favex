@@ -89,3 +89,15 @@ class DateOfBirthInputFormatter extends TextInputFormatter {
         selection: TextSelection.collapsed(offset: string.length));
   }
 }
+
+
+String formatErrorKey(String? errorKey) {
+  if (errorKey!.isEmpty) return "General Error";
+
+  // replace underscores with spaces and capitalize words
+  return errorKey
+      .split('_')
+      .map((word) =>
+          word.isNotEmpty ? "${word[0].toUpperCase()}${word.substring(1)}" : "")
+      .join(' ');
+}

@@ -59,14 +59,19 @@ class EnterOTPCodePage extends StatelessWidget {
 
                           PinEntryScreen(
                             onChanged: (String value) {
+                              print('test');
                               model.otpOnChangedFunction(value);
                             },
                             onCompleted: (String value) {
-                              model.validateOtpFunction(context,value:value);
+                               print('test');
+                               print(value);
+                              model.validateOtpFunction(context,otp:value);
+                            
                             },
                             errorTextActive: model.otpErrorBool,
                             bottomSheetSubtitle:bottomSheetSubtitle,
                             errortext: model.otpErrorText,
+                            loadingApi:model.isbusy,
                             resendFunction: () {
                               model.sendOtp(context);
                             },

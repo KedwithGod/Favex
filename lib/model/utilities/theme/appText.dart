@@ -148,6 +148,23 @@ class AppTexts {
   final String allFieldEntriesCorrect;
   final String okay;
   final String selectCardRange;
+  final String phoneNumberIsValid;
+  final String validationFailed;
+  final String usernameIsAvailable;
+  final String pleaseEnterValidPhoneNumber;
+  final String firstNameValidity;
+  final String lastNameMinLength;
+  final String usernameMustStartWithALetter;
+  final String usernameMinLength;
+  final String checkAvailability;
+  final String phoneNumberIsAvailable;
+  final String registrationFailed;
+  final String registrationSuccess;
+  final String transactionPinSetSuccessfully;
+  final String pinSetup;
+  final String pinSetupFailed;
+  final String biometricRegistrationFailed;
+  final String biometricRegistration;
   const AppTexts( {
     required this.welcomeMessage,
     required this.emailAddress,
@@ -290,6 +307,23 @@ class AppTexts {
     required this.allFieldEntriesCorrect,
     required this.okay,
     required this.selectCardRange,
+    required this.phoneNumberIsValid,
+    required this.validationFailed,
+    required this.usernameIsAvailable,
+    required this.pleaseEnterValidPhoneNumber,
+    required this.firstNameValidity,
+    required this.lastNameMinLength,
+    required this.usernameMustStartWithALetter,
+    required this.usernameMinLength,
+    required this.checkAvailability,
+    required this.phoneNumberIsAvailable,
+    required this.registrationFailed,
+    required this.registrationSuccess,
+    required this.transactionPinSetSuccessfully,
+    required this.pinSetup,
+    required this.pinSetupFailed,
+    required this.biometricRegistrationFailed,
+    required this.biometricRegistration,
   });
 
   // English Language
@@ -435,6 +469,23 @@ class AppTexts {
     allFieldEntriesCorrect: 'All Field entries are correct',
     okay: 'Okay',
     selectCardRange: 'Select card range',
+    phoneNumberIsValid: 'Phone number is valid',
+    validationFailed: 'Validation Failed',
+    usernameIsAvailable: 'Username is available',
+    pleaseEnterValidPhoneNumber: 'Please enter a valid phone number.',
+    firstNameValidity: 'First name must be more than 3 characters.',
+    lastNameMinLength: 'Last name must be more than 3 characters.',
+    usernameMustStartWithALetter: 'Username must start with a letter',
+    usernameMinLength: 'Username must be more than 3 characters.',
+    checkAvailability: 'Check availability',
+    phoneNumberIsAvailable: 'phone number is available',
+    registrationFailed: 'Registration Failed',
+    registrationSuccess: 'Registration Success',
+    transactionPinSetSuccessfully: 'Transaction PIN set successfully',
+    pinSetup: 'Pin Setup',
+    pinSetupFailed: 'Pin setup failed',
+    biometricRegistrationFailed: 'Biometric Registration Failed',
+    biometricRegistration: 'Biometric Registration',
   );
 
   // Spanish Language (example)
@@ -580,6 +631,23 @@ class AppTexts {
     allFieldEntriesCorrect: 'Todos los campos de entrada son correctos.',
     okay: '¡Bien! (or ¡Claro!) in casual or informal contexts, or ¡Estoy de acuerdo! in more formal situations.',
     selectCardRange: 'Selecciona el rango de tarjetas (en español)',
+    phoneNumberIsValid: 'Número de teléfono es válido.',
+    validationFailed: 'La validación falló.',
+    usernameIsAvailable: 'El nombre de usuario está disponible. (available = disponible)',
+    pleaseEnterValidPhoneNumber: 'Por favor, ingrese un número de teléfono válido.',
+    firstNameValidity: 'El nombre de pila debe tener más de 3 caracteres.',
+    lastNameMinLength: 'El apellido debe tener más de 3 caracteres.',
+    usernameMustStartWithALetter: 'El usuario debe comenzar con una letra. (Username debe comenzar con una letra)',
+    usernameMinLength: 'El nombre de usuario debe tener más de 3 caracteres.',
+    checkAvailability: 'ver disponibilidad (o disponibilidad)',
+    phoneNumberIsAvailable: 'Número de teléfono disponible',
+    registrationFailed: 'Registro Fallido',
+    registrationSuccess: 'Éxito en el registro',
+    transactionPinSetSuccessfully: 'clave de transacción establecida correctamente',
+    pinSetup: 'Configuración de Pin',
+    pinSetupFailed: 'Configuración de pin fallida.',
+    biometricRegistrationFailed: 'Registro Biométrico Fallido',
+    biometricRegistration: 'Registro Biométrico (Spanish)',
   );
 
   // Add more languages as needed

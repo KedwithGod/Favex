@@ -59,7 +59,62 @@ class CreatePasswordViewModel extends CreateNewPasswordViewMoel {
     }
     // If all fields are valid, store them in signUpBucket
     else {
-      router.goNamed(createTransactionPinPageRoute);
+      registerUserFunction(context);
     }
+  }
+
+  Future<void> registerUserFunction(BuildContext context) async {
+    await runFunctionForApi(
+      context,
+      functionToRunService: networkService.postRequest(
+        context,
+        signUpUrl, // e.g. "/v1/auth/register"
+        {
+          "first_name": signUpdatabucket!.firstName,
+          "last_name": signUpdatabucket!.lastName,
+          "username": signUpdatabucket!.username,
+          "email": signUpdatabucket!.email,
+          "phone": signUpdatabucket!.phone,
+          "password": passwordController.text.trim(),
+          "where_heard": whereYouFindUsBucket,
+          "referral_tag": referralTagBucket,
+        },
+        (data) => data, // raw response map
+      ),
+      functionToRunAfterService: (result) async {
+        final GeneralResponse response = result;
+
+        if (response.success) {
+          final Map<String, dynamic> jsonData = response.data[0];
+
+          final String message =
+              jsonData["message"] ?? "Account created successfully";
+          final String token = jsonData["token"];
+          final Map<String, dynamic> user = jsonData["user"];
+          await LocalStorage.setString(tokenKeyPS, token ?? "");
+          await LocalStorage.setString(userDataPS, jsonEncode(user));
+
+          // Show success feedback
+          snackBarWidget(
+            context,
+            text: message,
+            title: textBucket!.registrationSuccess,
+            action: () {
+              // For example: redirect to home page after register
+              print("User Registered: $user");
+            },
+          );
+          // go to transaction page
+          router.goNamed(createTransactionPinPageRoute);
+        } else {
+          // Handle error
+          snackBarWidget(
+            context,
+            text: response.error.toString(),
+            title: textBucket!.registrationFailed,
+          );
+        }
+      },
+    );
   }
 }

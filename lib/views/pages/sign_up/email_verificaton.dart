@@ -126,14 +126,7 @@ class EmailVerificationPage extends StatelessWidget {
                                                 ? colorsBucket!.primary
                                                 : colorsBucket!.disabled,
                                         navigator:(){
-                                          if(model.emailNotValid == false){
-                                               context.goNamed(enterOTPCodePageRoute,
-                                               extra: {
-    'nextPage': createAccountPageRoute,
-    'bottomSheetSubtitle': textBucket!.verificationCompletedNextStepButton,
-  },
-                                                );
-                                          }
+                                         model.revalidateAllFields(context);
                                         }),
                                   ],
                                 )

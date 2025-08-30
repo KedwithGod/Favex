@@ -1,7 +1,7 @@
 import '../../utilities/imports/shared.dart';
 
 class NetworkService {
-  static const int timeoutDuration = 30; // Timeout duration in seconds
+  // Timeout duration in seconds
 
   final Map<String, String>? headers;
   final Dio _dio;
@@ -115,38 +115,32 @@ class NetworkService {
           );
         } else {
           final error = jsonResponse['error'];
-          final errorTitle = _formatType(error?['type']?.toString());
+          final errorTitle = formatErrorKey(error?['type']!.toString());
           final errorMessage = error?['message'] ?? 'Unknown error';
 
-           SchedulerBinding.instance
-              .addPostFrameCallback((_) => snackBarWidget(
-            context,
-            title: errorTitle,
-            text: errorMessage,
-            color: Colors.red,
-          ));
+          SchedulerBinding.instance.addPostFrameCallback((_) => snackBarWidget(
+                context,
+                title: errorTitle,
+                text: errorMessage,
+              ));
 
           throw Exception(errorMessage);
         }
       } catch (_) {
-         SchedulerBinding.instance
-              .addPostFrameCallback((_) => snackBarWidget(
-          context,
-          title: "JSON Parse Error",
-          text: "Server returned invalid JSON",
-          color: Colors.red,
-        ));
+        SchedulerBinding.instance.addPostFrameCallback((_) => snackBarWidget(
+              context,
+              title: "JSON Parse Error",
+              text: "Server returned invalid JSON",
+            ));
 
         throw Exception("JSON Parse Error");
       }
     } else {
-      SchedulerBinding.instance
-              .addPostFrameCallback((_) =>  snackBarWidget(
-        context,
-        title: "Server Error",
-        text: "Server returned status ${response.statusCode}",
-        color: Colors.red,
-      ));
+      SchedulerBinding.instance.addPostFrameCallback((_) => snackBarWidget(
+            context,
+            title: "Server Error",
+            text: "Server returned status ${response.statusCode}",
+          ));
 
       throw Exception("Server Error ${response.statusCode}");
     }
@@ -156,38 +150,51 @@ class NetworkService {
   void _handleDioError(BuildContext context, DioException e) {
     if (e.type == DioExceptionType.connectionTimeout ||
         e.type == DioExceptionType.receiveTimeout) {
-       SchedulerBinding.instance
-              .addPostFrameCallback((_) => snackBarWidget(
-        context,
-        title: "Connection Timeout Error",
-        text: connectionTimeoutError,
-         color: colorsBucket!.backgroundDisabled,
-      ));
+      SchedulerBinding.instance.addPostFrameCallback((_) => snackBarWidget(
+            context,
+            title: "Connection Timeout Error",
+            text: connectionTimeoutError,
+            color: colorsBucket!.backgroundDisabled,
+          ));
     } else if (e.type == DioExceptionType.connectionError ||
         e.error is SocketException) {
-       SchedulerBinding.instance
-              .addPostFrameCallback((_) => snackBarWidget(
-        context,
-        title: "Network Error",
-        text: networkError,
-         color: colorsBucket!.backgroundDisabled,
-      ));
+      SchedulerBinding.instance.addPostFrameCallback((_) => snackBarWidget(
+            context,
+            title: "Network Error",
+            text: networkError,
+            color: colorsBucket!.backgroundDisabled,
+          ));
     } else if (e.response != null) {
-        SchedulerBinding.instance
-              .addPostFrameCallback((_) =>snackBarWidget(
-        context,
-        title: "Server Error",
-        text: e.response?.data.toString() ?? "Unknown server error",
-        color: colorsBucket!.white,
-      ));
+      SchedulerBinding.instance.addPostFrameCallback((_) {
+        final errorData = e.response?.data;
+
+        // Check if errorData is not null and contains the expected keys
+        final errorType = (errorData != null &&
+                errorData.containsKey('error') &&
+                errorData['error'].containsKey('type'))
+            ? formatErrorKey(errorData['error']['type'])
+            : "Server Error";
+
+        final errorMessage = (errorData != null &&
+                errorData.containsKey('error') &&
+                errorData['error'].containsKey('message'))
+            ? errorData['error']['message']
+            : "Unknown server error";
+
+        snackBarWidget(
+          context,
+          title: errorType,
+          text: errorMessage,
+          color: colorsBucket!.white,
+        );
+      });
     } else {
-       SchedulerBinding.instance
-              .addPostFrameCallback((_) => snackBarWidget(
-        context,
-        title: "Unexpected Error",
-        text: e.message ?? "Unknown error",
-         color: colorsBucket!.white,
-      ));
+      SchedulerBinding.instance.addPostFrameCallback((_) => snackBarWidget(
+            context,
+            title: "Unexpected Error",
+            text: e.message ?? "Unknown error",
+            color: colorsBucket!.white,
+          ));
     }
   }
 

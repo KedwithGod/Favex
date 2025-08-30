@@ -5,7 +5,7 @@ import '../../../model/utilities/imports/shared.dart';
 class PinEntryScreen extends StatefulWidget {
   final ValueChanged<String> onChanged;
   final ValueChanged<String> onCompleted;
-  final bool errorTextActive;
+  final bool errorTextActive,loadingApi;
   final String errortext, bottomSheetSubtitle;
   final int length;
   final VoidCallback resendFunction;
@@ -18,7 +18,7 @@ class PinEntryScreen extends StatefulWidget {
     required this.errorTextActive,
     required this.errortext,
     required this.resendFunction,
-    required this.actionButtonFunction,
+    required this.actionButtonFunction,required this.loadingApi,
     this.length = 6, required this.bottomSheetSubtitle,
   }) : super(key: key);
 
@@ -188,10 +188,10 @@ class _PinEntryScreenState extends State<PinEntryScreen> {
 
         buttonNoPositioned(context,
             text: textBucket!.continueText,
-            textColor: allFieldFilled && widget.errorTextActive == false
+            textColor: allFieldFilled && widget.errorTextActive == false && widget.loadingApi ==false
                 ? colorsBucket!.primarySoft
                 : colorsBucket!.subtitle,
-            buttonColor: allFieldFilled && widget.errorTextActive == false
+            buttonColor: allFieldFilled && widget.errorTextActive == false && widget.loadingApi ==false
                 ? colorsBucket!.primary
                 : colorsBucket!.disabled, navigator: () {
           if (allFieldFilled && widget.errorTextActive == false) {
