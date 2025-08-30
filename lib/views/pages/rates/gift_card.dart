@@ -168,7 +168,7 @@ class GiftCardRate extends StatelessWidget {
                             GeneralBottomSheet.show(context,
                                 content: GeneralContainer(
                                   width: 375,
-                                  height: 90.0 * model.cardRangeList.length,
+                                  height: 90.0 * model.cardRangeList.length + 20,
                                   color: colorsBucket!.white,
                                   allSide: 10,
                                   child: Column(

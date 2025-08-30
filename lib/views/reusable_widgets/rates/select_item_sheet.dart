@@ -113,15 +113,15 @@ class _CryptoSelectorBottomSheetState extends State<CryptoSelectorBottomSheet> {
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        SvgPngImage(
-                          path: crypto['icon'],
-                          height: 40,
-                          width: 41,
+                        ImageAvatar(
+                          isNetworkImage: true,
+                          image: crypto.image,
+                         imageRadius: 20,
                           imageType: widget.imagetype,
                         ),
                         S(w: 10),
                         InterText(
-                          crypto['name'],
+                          crypto.title,
                           textAlign: TextAlign.center,
                           textFontSize: 12,
                         ),

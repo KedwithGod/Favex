@@ -74,21 +74,22 @@ class GiftCardCaculatorVieModel extends BaseModel {
 
   void setSelectedCountryIndex(int index) {
     selectedCountryIndex = index;
-    final iso = cardCountryList[index]['iso']..toLowerCase();
+    final iso = cardCountryList[index]['iso'];
 
     print(iso);
 
     if (iso == "others") {
       giftCardLists = giftCardLists.where((g) {
         return g.countries.any((c) {
-          final cIso = c.iso.toLowerCase();
-          return !(cIso == "uk" || cIso == "us" || cIso == "ca");
+          final cIso = c.iso;
+          return !(cIso == "GB" || cIso == "US" || cIso == "CA");
         });
       }).toList();
     } else {
     
       giftCardLists = allGiftcards.where((g) {
-        return g.countries.any((c) => c.iso.toLowerCase() == iso);
+
+        return g.countries.any((c) => c.iso == iso);
       }).toList();
     }
 
@@ -99,7 +100,7 @@ class GiftCardCaculatorVieModel extends BaseModel {
     selectedCardValueIndex = null;
 
     notifyListeners();
-    print(giftCardLists);
+    
   }
 
   void setSelectedGiftCardIndex(int index) {
@@ -109,10 +110,10 @@ class GiftCardCaculatorVieModel extends BaseModel {
 
     final country = giftcard.countries.firstWhere(
       (c) => iso == "others"
-          ? !(c.iso.toLowerCase() == "uk" ||
-              c.iso.toLowerCase() == "us" ||
-              c.iso.toLowerCase() == "ca")
-          : c.iso.toLowerCase() == iso,
+          ? !(c.iso == "GB" ||
+              c.iso == "US" ||
+              c.iso == "CA")
+          : c.iso == iso,
     );
 
     cardRangeList = country.ranges.map((r) => "${r.min} - ${r.max} ").toList();
@@ -129,10 +130,10 @@ class GiftCardCaculatorVieModel extends BaseModel {
 
     final country = giftcard.countries.firstWhere(
       (c) => iso == "others"
-          ? !(c.iso.toLowerCase() == "uk" ||
-              c.iso.toLowerCase() == "us" ||
-              c.iso.toLowerCase() == "ca")
-          : c.iso.toLowerCase() == iso,
+          ? !(c.iso == "GB" ||
+              c.iso == "US" ||
+              c.iso == "CA")
+          : c.iso == iso,
     );
 
     final range = country.ranges[index];
