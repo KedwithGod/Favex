@@ -130,7 +130,7 @@ class CreateNewPasswordPage extends StatelessWidget {
                             focusNode: model.confirmPasswordFocusNode,
                             textFieldHint: textBucket!.enterPassword,
                             errorText: model.confirmPasswordErrorText,
-                            obscureText: model.confirmPasswordErrorBool,
+                            obscureText: model.showConfirmPasswordBool,
                             suffixIcon: GestureDetector(
                               onTap: () {
                                 model.showConfirmPassword();
@@ -172,19 +172,7 @@ class CreateNewPasswordPage extends StatelessWidget {
                                       model.confirmPasswordNotValid == false
                                   ? colorsBucket!.primary
                                   : colorsBucket!.disabled, navigator: () {
-                            if (model.passwordNotValid == false &&
-                                model.confirmPasswordNotValid == false) {
-                              ConfirmationSheet.show(
-                                context,
-                                title: textBucket!.newPasswordCreated,
-                                subtitle:
-                                    textBucket!.newPasswordCreationCompleted,
-                                buttonText: textBucket!.logOut,
-                                onPressed: () {
-                                  router.goNamed(loginPageRoute);
-                                },
-                              );
-                            }
+                                      model.revalidateAllFields(context);
                           }),
                         ],
                       ),

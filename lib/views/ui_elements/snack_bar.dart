@@ -14,7 +14,7 @@ void snackBarWidget(
     messageColor: colorsBucket!.title,
     message: text,
     flushbarPosition: FlushbarPosition.TOP,
-    duration: const Duration(seconds: 2),
+    duration: const Duration(seconds: 3),
     padding: EdgeInsets.symmetric(
       horizontal: sS(context).cW(width: 30),
       vertical: sS(context).cH(height: 16),
