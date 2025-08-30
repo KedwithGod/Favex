@@ -10,13 +10,13 @@ class GiftCardCaculatorVieModel extends BaseModel {
   String giftCardGeneralErrorText = '';
 
   List<Map<String, dynamic>> cardCountryList = [
-    {"name": "UK", "icon": "uk", "iso": "GB"},
-    {"name": "USA", "icon": "usa", "iso": "US"},
-    {"name": "Canada", "icon": "canada", "iso": "CA"},
-    {"name": "Others", "icon": "arrow_right", "iso": "others"},
+    {"name": "UK", "icon": "uk", "iso": "GB","currency":"£"},
+    {"name": "USA", "icon": "usa", "iso": "US","currency":"\$"},
+    {"name": "Canada", "icon": "canada", "iso": "CA","currency":"\$"},
+    {"name": "Others", "icon": "arrow_right", "iso": "others","currency":""},
   ];
 
-  List<String> cardValueList = ["100", "150", "200", "others"];
+  List<String> cardValueList = [];
 
   List<GiftCard> allGiftcards = [];
 
@@ -86,9 +86,7 @@ class GiftCardCaculatorVieModel extends BaseModel {
         });
       }).toList();
     } else {
-    
       giftCardLists = allGiftcards.where((g) {
-
         return g.countries.any((c) => c.iso == iso);
       }).toList();
     }
@@ -100,7 +98,6 @@ class GiftCardCaculatorVieModel extends BaseModel {
     selectedCardValueIndex = null;
 
     notifyListeners();
-    
   }
 
   void setSelectedGiftCardIndex(int index) {
@@ -110,9 +107,7 @@ class GiftCardCaculatorVieModel extends BaseModel {
 
     final country = giftcard.countries.firstWhere(
       (c) => iso == "others"
-          ? !(c.iso == "GB" ||
-              c.iso == "US" ||
-              c.iso == "CA")
+          ? !(c.iso == "GB" || c.iso == "US" || c.iso == "CA")
           : c.iso == iso,
     );
 
@@ -130,9 +125,7 @@ class GiftCardCaculatorVieModel extends BaseModel {
 
     final country = giftcard.countries.firstWhere(
       (c) => iso == "others"
-          ? !(c.iso == "GB" ||
-              c.iso == "US" ||
-              c.iso == "CA")
+          ? !(c.iso == "GB" || c.iso == "US" || c.iso == "CA")
           : c.iso == iso,
     );
 
@@ -144,10 +137,15 @@ class GiftCardCaculatorVieModel extends BaseModel {
     selectedCardValueIndex = null;
 
     notifyListeners();
+    if (selectedCardRangeIndex != null && cardRangeList.isNotEmpty) {
+      cardValueList =
+          generateGiftCardSteps(cardRangeList[selectedCardRangeIndex!]);
+    }
   }
 
   void setSelectedCardRecieptIndex(int index) {
     selectedCardRecieptIndex = index;
+
     notifyListeners();
   }
 
@@ -162,4 +160,43 @@ class GiftCardCaculatorVieModel extends BaseModel {
     snackBarWidget(context,
         text: textBucket!.allFieldEntriesCorrect, title: textBucket!.okay);
   }
+
+  String getSymbol(){
+     return selectedCountryIndex!=null && cardCountryList.isNotEmpty ?cardCountryList[selectedCountryIndex!]['currency']:'';
+  }
+
+  // calculate rate and total value
+  String calculateRate() {
+    String rate = "Nil";
+    if (selectedCardRecieptIndex != null &&
+        giftCardLists.isNotEmpty &&
+        selectedCountryIndex != null &&
+        selectedCardRangeIndex != null &&
+        selectedGiftCardIndex != null ) {
+      rate = (giftCardLists[selectedGiftCardIndex!]
+              .countries[selectedCountryIndex!]
+              .ranges[selectedCardRangeIndex!]
+              .receiptCategories[selectedCardRecieptIndex!]
+              .amount) 
+          .toString();
+    }
+
+    return rate;
+  }
+
+  String calculateTotalValue() {
+    String totalValue = "Nil";
+    String rate = calculateRate();
+    if (calculateRate() != 'Nil' &&
+        selectedCardValueIndex != null &&
+        cardValueList.isNotEmpty) {
+      totalValue = (double.parse(rate) *
+              double.parse(cardValueList[selectedCardValueIndex!]))
+          .toString();
+    }
+
+    return totalValue;
+  }
+
+  
 }

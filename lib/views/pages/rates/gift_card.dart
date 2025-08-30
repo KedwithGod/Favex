@@ -243,7 +243,15 @@ class GiftCardRate extends StatelessWidget {
                         ),
                         S(h: 10),
 
-                        S(
+                        if(model.cardReciptList.isEmpty)...[
+                            Row(
+                              children: [
+                                InterText(textBucket!.noCardReceiptCategory, textFontSize: 10,),
+                              ],
+                            ),   S(h: 10),
+                        ],
+                        if(model.cardReciptList.isNotEmpty)...[
+                           S(
                           w: 335,
                           h: 92,
                           child: Wrap(
@@ -300,6 +308,7 @@ class GiftCardRate extends StatelessWidget {
                             ],
                           ),
                         ),
+                        ],
 
                         // card value
                         Row(
@@ -311,6 +320,16 @@ class GiftCardRate extends StatelessWidget {
                           ],
                         ),
                         S(h: 10),
+
+                        
+                        if(model.cardValueList.isEmpty)...[
+                          Row(
+                            children: [
+                              InterText(textBucket!.noCardValue, textFontSize: 10,),
+                            ],
+                          ),
+                        ],
+                        if(model.cardValueList.isNotEmpty)...[
                         Row(
                           spacing: sS(context).cW(width: 16),
                           children: [
@@ -342,7 +361,7 @@ class GiftCardRate extends StatelessWidget {
                               );
                             })
                           ],
-                        ),
+                        ),],
 
                         // rate details
                         S(h: 24),
@@ -364,7 +383,7 @@ class GiftCardRate extends StatelessWidget {
                                     textFontSize: 12,
                                   ),
                                   InterText(
-                                    "${model.nairaSymbol}1500",
+                                    displayWithComma(model.calculateRate()) + (model.calculateRate()!="Nil" && model.getSymbol().isNotEmpty?"/${model.getSymbol()}":""),
                                     textFontSize: 12,
                                   ),
                                 ],
@@ -381,7 +400,7 @@ class GiftCardRate extends StatelessWidget {
                                     textFontSize: 12,
                                   ),
                                   InterText(
-                                    "${model.nairaSymbol}${displayWithComma('104000')}}",
+                                   (model.calculateTotalValue()!="Nil" &&model.getSymbol().isNotEmpty?model.getSymbol():"") +  displayWithComma(model.calculateTotalValue()),
                                     textFontSize: 12,
                                   ),
                                 ],

@@ -168,6 +168,8 @@ class AppTexts {
   final String goodAfternoon;
   final String goodEvening;
   final String noGiftCardDataFound;
+  final String noCardValue;
+  final String noCardReceiptCategory;
   const AppTexts( {
     required this.welcomeMessage,
     required this.emailAddress,
@@ -330,6 +332,8 @@ class AppTexts {
     required this.goodAfternoon,
     required this.goodEvening,
     required this.noGiftCardDataFound,
+    required this.noCardValue,
+    required this.noCardReceiptCategory,
   });
 
   // English Language
@@ -495,6 +499,8 @@ class AppTexts {
     goodAfternoon: 'Good afternoon',
     goodEvening: 'Good evening',
     noGiftCardDataFound: 'No Gift Card Data Found',
+    noCardValue: 'No Card Value',
+    noCardReceiptCategory: 'No Card Reciept Category',
   );
 
   // Spanish Language (example)
@@ -660,6 +666,8 @@ class AppTexts {
     goodAfternoon: 'Buenos tardes',
     goodEvening: 'Buenas noches',
     noGiftCardDataFound: 'No se encontraron datos de tarjeta de regalo',
+    noCardValue: 'Sin Valor de Tarjeta',
+    noCardReceiptCategory: '¡Sin Recibo de Categoría de Tarjeta! (Card Receipt Category in Spanish)',
   );
 
   // Add more languages as needed
