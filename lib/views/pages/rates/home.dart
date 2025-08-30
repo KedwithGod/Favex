@@ -9,7 +9,8 @@ class RateCalculatorPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<RateCalculatorViewModel>.reactive(
         viewModelBuilder: () => RateCalculatorViewModel(),
-        onViewModelReady: (model) {},
+        onViewModelReady: (model) {
+        },
         builder: (context, model, child) {
           return BaseUi(
             bottomNavigationBar: pageTab(context, tabEnum: TabEnum.rate),

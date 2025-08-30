@@ -18,12 +18,12 @@ class EnableBiometricViewModel extends BaseModel{
       final GeneralResponse response = result;
 
       if (response.success) {
-        final message = response.data[0]["message"] ?? "Biometric registered";
+        final message = response.data[0]["message"] ?? textBucket!.biometricRegistrationFailed;
 
         snackBarWidget(
           context,
           text: message,
-          title: "Biometric Registration",
+          title: textBucket!.biometricRegistration,
           action: () {
             print("Biometric registered successfully ✅");
             // You can navigate or trigger next steps here
@@ -34,7 +34,7 @@ class EnableBiometricViewModel extends BaseModel{
         snackBarWidget(
           context,
           text: response.error.toString(),
-          title: "Biometric Registration Failed",
+          title: textBucket!.biometricRegistrationFailed,
         );
       }
     },

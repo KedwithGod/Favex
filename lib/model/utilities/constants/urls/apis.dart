@@ -29,6 +29,8 @@ const String registerBiometricUrl = "auth/biometric/register";
 const String setTransactionPinUrl = "auth/set-pin";
 const String validateUsernameUrl = "unique/username";
 const String validatePhoneUrl = "unique/phone";
+const String getGiftCardListUrl = "giftcards";
+
 
 
 

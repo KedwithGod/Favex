@@ -1,7 +1,7 @@
 import '/model/utilities/imports/shared.dart';
 
 class CryptoSelectorBottomSheet extends StatefulWidget {
-  final List<Map<String, dynamic>> cryptoList; // List of cryptocurrencies
+  final List cryptoList; // List of cryptocurrencies
   final String selectText; // Text to display as the title
   final String? searchHint; // Hint for the search field
   final ImageTypeEnum imagetype;
@@ -21,7 +21,7 @@ class CryptoSelectorBottomSheet extends StatefulWidget {
 }
 
 class _CryptoSelectorBottomSheetState extends State<CryptoSelectorBottomSheet> {
-  List<Map<String, dynamic>> filteredCryptoList = [];
+  List filteredCryptoList = [];
   final TextEditingController searchController = TextEditingController();
     FocusNode searchFocusNode = FocusNode();
   int? selectedCryptoIndex;
@@ -36,9 +36,11 @@ class _CryptoSelectorBottomSheetState extends State<CryptoSelectorBottomSheet> {
   void _filterCryptoList() {
     final query = searchController.text.toLowerCase();
     setState(() {
-      filteredCryptoList = widget.cryptoList
-          .where((crypto) => crypto['name'].toLowerCase().contains(query))
+      if (widget.cryptoList.isNotEmpty && widget.cryptoList.first is GiftCard){
+         filteredCryptoList = widget.cryptoList
+          .where((crypto) => crypto.title.toLowerCase().contains(query))
           .toList();
+      }
     });
   }
 

@@ -9,7 +9,9 @@ class LockScreenPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<LockScreenViewModel>.reactive(
         viewModelBuilder: () => LockScreenViewModel(),
-        onViewModelReady: (model) {},
+        onViewModelReady: (model) {
+          model.setUsername();
+        },
         builder: (context, model, child) {
           return BaseUi(
             children: [
@@ -32,7 +34,7 @@ class LockScreenPage extends StatelessWidget {
                           S(h: 20),
                           // hi
                           InterText(
-                            "${textBucket!.hi}@${model.testUser}",
+                            "${textBucket!.hi}@${model.username}",
                             textFontSize: 18,
                             textFontWeight: FontWeight.w700,
                           ),
@@ -68,7 +70,7 @@ class LockScreenPage extends StatelessWidget {
                               context.goNamed(emailVeificationPageRoute);
                             },
                             child: InterText(
-                              textBucket!.iAmNot + model.testUser,
+                              textBucket!.iAmNot + model.username,
                               textFontSize: 12,
                               textColor: colorsBucket!.primary,
                             ),

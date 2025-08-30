@@ -2,13 +2,25 @@ import '../model/utilities/imports/shared.dart';
 
 class BaseModel extends ChangeNotifier {
 
-  String testUser = 'Kingdammy';
+  String username = '';
   String naira = 'NGN';
   String nfx = 'NFX';
   String walletBalance = '560000';
   String nfxBalance = '140000';
   String usd = ' USD \$';
   String nairaSymbol ='₦';
+  bool isLoading = false;
+
+  setLoading(bool value){
+    isLoading = value;
+    notifyListeners();
+  }
+
+
+  setUsername()async{
+      username = (await LocalStorage.getUsernameFromPrefs())!;
+      notifyListeners();
+  }
 
   // Maps for colors
   static const Map<String, AppColors> colorMap = {

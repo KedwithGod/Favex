@@ -15,4 +15,4 @@ export '../functions/validate_phone_number.dart';
 export '../functions/determine_initital_route.dart';
 export '../functions/biometric.dart';
 export '../functions/text_height.dart';
-
+export '../functions/get_greeting.dart';

@@ -25,10 +25,14 @@ class NetworkService {
   Future<GeneralResponse<T>> getRequest<T>(
     BuildContext context,
     String endpoint,
-    T Function(dynamic) create,
-  ) async {
+    T Function(dynamic) create, {
+    Map<String, dynamic>? headers,
+  }) async {
     try {
-      final response = await _dio.get(endpoint);
+      final response = await _dio.get(
+        endpoint,
+        options: Options(headers: headers),
+      );
       return _handleResponse(context, response, create);
     } on DioException catch (e) {
       _handleDioError(context, e);

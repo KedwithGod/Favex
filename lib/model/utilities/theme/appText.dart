@@ -165,6 +165,9 @@ class AppTexts {
   final String pinSetupFailed;
   final String biometricRegistrationFailed;
   final String biometricRegistration;
+  final String goodAfternoon;
+  final String goodEvening;
+  final String noGiftCardDataFound;
   const AppTexts( {
     required this.welcomeMessage,
     required this.emailAddress,
@@ -324,6 +327,9 @@ class AppTexts {
     required this.pinSetupFailed,
     required this.biometricRegistrationFailed,
     required this.biometricRegistration,
+    required this.goodAfternoon,
+    required this.goodEvening,
+    required this.noGiftCardDataFound,
   });
 
   // English Language
@@ -486,6 +492,9 @@ class AppTexts {
     pinSetupFailed: 'Pin setup failed',
     biometricRegistrationFailed: 'Biometric Registration Failed',
     biometricRegistration: 'Biometric Registration',
+    goodAfternoon: 'Good afternoon',
+    goodEvening: 'Good evening',
+    noGiftCardDataFound: 'No Gift Card Data Found',
   );
 
   // Spanish Language (example)
@@ -648,6 +657,9 @@ class AppTexts {
     pinSetupFailed: 'Configuración de pin fallida.',
     biometricRegistrationFailed: 'Registro Biométrico Fallido',
     biometricRegistration: 'Registro Biométrico (Spanish)',
+    goodAfternoon: 'Buenos tardes',
+    goodEvening: 'Buenas noches',
+    noGiftCardDataFound: 'No se encontraron datos de tarjeta de regalo',
   );
 
   // Add more languages as needed

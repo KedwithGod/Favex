@@ -59,7 +59,7 @@ class CreateTransactionPinViewModel extends BaseModel {
           snackBarWidget(
             context,
             text: response.error.toString(),
-            title: "Failed",
+            title: textBucket!.pinSetupFailed,
           );
         }
       },

@@ -135,4 +135,8 @@ class RateCalculatorViewModel extends BaseModel{
     }
   }
 
+
+
+
+
 }

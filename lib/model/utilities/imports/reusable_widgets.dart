@@ -20,4 +20,5 @@ export '/views/reusable_widgets/sign_up/password_check.dart';
 
 // rates
 export '/views/reusable_widgets/rates/select_item_sheet.dart';
+export '/views/reusable_widgets/shared/shimmer.dart';
 

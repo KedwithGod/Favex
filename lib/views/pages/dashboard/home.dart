@@ -1,3 +1,5 @@
+
+
 import '/model/utilities/imports/shared.dart';
 
 class HomePage extends StatelessWidget {
@@ -7,7 +9,9 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<HomeViewModel>.reactive(
         viewModelBuilder: () => HomeViewModel(),
-        onViewModelReady: (model) {},
+        onViewModelReady: (model) {
+          model.setUsername();
+        },
         builder: (context, model, child) {
           return BaseUi(
             bottomNavigationBar: pageTab(context, tabEnum: TabEnum.home),
@@ -56,12 +60,12 @@ class HomePage extends StatelessWidget {
                                         CrossAxisAlignment.start,
                                     children: [
                                       InterText(
-                                        "${model.testUser}👋",
+                                        "${model.username ?? 'User'} 👋",
                                         textFontWeight: FontWeight.w700,
                                         textFontSize: 12,
                                       ),
                                       InterText(
-                                        textBucket!.goodMorning,
+                                        getGreeting(),
                                         textColor: colorsBucket!.subtitle,
                                         textFontSize: 12,
                                       ),
@@ -91,7 +95,6 @@ class HomePage extends StatelessWidget {
                               borderRadius: BorderRadius.circular(
                                   12), // Optional: rounded corners
                             ),
-                            
                             padding: EdgeInsets.symmetric(
                                 vertical: sS(context).cH(height: 15),
                                 horizontal: sS(context).cW(width: 15)),
@@ -102,9 +105,10 @@ class HomePage extends StatelessWidget {
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     InterText(
-                                     model.selectedWallet ==
-                                                      WalletTypeEnum.wallet
-                                                  ? textBucket!.walletBalance: textBucket!.nfxWalletBalance ,
+                                      model.selectedWallet ==
+                                              WalletTypeEnum.wallet
+                                          ? textBucket!.walletBalance
+                                          : textBucket!.nfxWalletBalance,
                                       textColor: colorsBucket!.titleSoft,
                                     ),
                                     GestureDetector(
@@ -342,7 +346,6 @@ class HomePage extends StatelessWidget {
                                             ));
                                       },
                                       child: GeneralContainer(
-                                       
                                         color: colorsBucket!.primary2,
                                         borderRadius: 6,
                                         allSide: 6,
@@ -351,12 +354,15 @@ class HomePage extends StatelessWidget {
                                               MainAxisAlignment.spaceBetween,
                                           children: [
                                             InterText(
-                                            model.selectedWallet == WalletTypeEnum.wallet?  model.naira:model.nfx,
-                                             textFontSize: 12,
+                                              model.selectedWallet ==
+                                                      WalletTypeEnum.wallet
+                                                  ? model.naira
+                                                  : model.nfx,
+                                              textFontSize: 12,
                                               textColor:
                                                   colorsBucket!.titleSoft,
                                             ),
-                                            S(w:5),
+                                            S(w: 5),
                                             const SvgPngImage(
                                                 path: 'down',
                                                 height: 6,
@@ -423,7 +429,10 @@ class HomePage extends StatelessWidget {
                                     // add money
 
                                     GeneralContainer(
-                                     left: 14.5, right: 14.5, top: 9,bottom: 9,
+                                      left: 14.5,
+                                      right: 14.5,
+                                      top: 9,
+                                      bottom: 9,
                                       color: colorsBucket!.primary2,
                                       borderRadius: 6,
                                       child: Row(
@@ -448,7 +457,10 @@ class HomePage extends StatelessWidget {
                                     S(w: 12),
                                     // transfer
                                     GeneralContainer(
-                                      left: 14.5, right: 14.5, top: 9,bottom: 9,
+                                      left: 14.5,
+                                      right: 14.5,
+                                      top: 9,
+                                      bottom: 9,
                                       color: colorsBucket!.primary2,
                                       borderRadius: 6,
                                       child: Row(
@@ -501,7 +513,9 @@ class HomePage extends StatelessWidget {
                                         (index) => index)) ...[
                                       GestureDetector(
                                         onTap: () {
-                                         context.goNamed( model.quickActions[index]['navigateTo']);
+                                          context.goNamed(
+                                              model.quickActions[index]
+                                                  ['navigateTo']);
                                         },
                                         child: GeneralContainer(
                                           height: 70,
@@ -563,7 +577,6 @@ class HomePage extends StatelessWidget {
                               borderRadius: BorderRadius.circular(
                                   8), // Optional: rounded corners
                             ),
-                          
                             padding: EdgeInsets.symmetric(
                                 horizontal: sS(context).cW(width: 15)),
                             child: Row(
@@ -638,7 +651,6 @@ class HomePage extends StatelessWidget {
                           S(h: 20),
 
                           GeneralContainer(
-                          
                             color: colorsBucket!.white,
                             left: 18,
                             top: 21,

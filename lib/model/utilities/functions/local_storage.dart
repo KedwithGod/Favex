@@ -1,5 +1,3 @@
-
-
 import '../imports/shared.dart';
 
 class LocalStorage {
@@ -63,9 +61,26 @@ class LocalStorage {
   //clear Preferences preferences
   static Future<bool?> clear() async {
     final SharedPreferences pref = await SharedPreferences.getInstance();
-   
+
     bool? cleared;
     cleared = await pref.clear();
     return cleared;
+  }
+
+  static Future<String?> getUsernameFromPrefs() async {
+    final prefs = await SharedPreferences.getInstance();
+    final userData = prefs.getString(userDataPS); // stored as JSON string?
+
+    if (userData != null) {
+      final Map<String, dynamic> userMap = jsonDecode(userData);
+      return userMap["username"];
+    }
+    return null;
+  }
+  static Future<String?> getToken() async {
+    final prefs = await SharedPreferences.getInstance();
+    final token = prefs.getString(tokenKeyPS); // stored as JSON string?
+    return token;
+   
   }
 }

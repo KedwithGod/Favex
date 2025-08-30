@@ -1,16 +1,98 @@
 # favex
+📖 Overview
 
-A new Flutter project.
+This guide explains how to set up, run, and debug your Flutter application. It covers environment setup, dependencies, building the app, and additional notes for development and testing.
 
-## Getting Started
+Tip: Follow each step carefully to avoid common setup issues.
 
-This project is a starting point for a Flutter application.
+⚙️ Prerequisites
 
-A few resources to get you started if this is your first Flutter project:
+Ensure your system has the following installed:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Flutter SDK (stable channel recommended)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Dart SDK (included with Flutter)
+
+Android Studio or VS Code (for IDE support)
+
+Xcode (for iOS development on macOS)
+
+Git (for cloning the repository)
+
+Note: Make sure your Flutter installation is complete and added to your PATH. Run flutter doctor to check for missing dependencies.
+
+🛠️ Setup Steps
+1. Clone the Repository
+
+Clone your Flutter project and navigate into the project folder:
+
+Tip: Use a descriptive folder name to avoid confusion with other projects.
+
+2. Install Dependencies
+
+Fetch all required Flutter and Dart packages:
+
+flutter pub get
+
+
+Note: This installs packages listed in pubspec.yaml.
+
+3. Configure Environment
+
+If your application uses environment variables or .env files (via flutter_dotenv or similar):
+
+Copy the example .env file if available
+
+Update API keys, endpoints, or other environment-specific settings
+
+Tip: Do not commit sensitive keys to version control. Use a .gitignore file for .env.
+
+4. Run the Application
+
+Run the application on your desired platform:
+
+Android: Connect an Android device or start an emulator
+
+iOS: Connect an iPhone or start a simulator
+
+Web: Run in the browser
+
+Command:
+
+flutter run
+
+
+Tip: Use flutter run -d <device_id> to specify a device if multiple are available.
+
+5. Build the Application
+
+Generate platform-specific builds for deployment:
+
+Android APK:
+
+flutter build apk
+
+
+iOS App:
+
+flutter build ios
+
+
+Web Build:
+
+flutter build web
+
+
+Note: Make sure you have the required platform SDKs installed (Android Studio for Android, Xcode for iOS).
+
+🐞 Debugging
+
+Flutter comes with built-in debugging tools:
+
+Hot Reload / Hot Restart: Quickly apply code changes
+
+Flutter DevTools: Inspect UI, performance, and network requests
+
+Logging: Use debugPrint for console logs
+
+Tip: Use flutter run --verbose to see detailed logs for troubleshooting.
