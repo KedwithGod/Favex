@@ -400,7 +400,7 @@ class GiftCardRate extends StatelessWidget {
                                     textFontSize: 12,
                                   ),
                                   InterText(
-                                   (model.calculateTotalValue()!="Nil" &&model.getSymbol().isNotEmpty?model.getSymbol():"") +  displayWithComma(model.calculateTotalValue()),
+                                   (model.calculateTotalValue()!="Nil" ? model.nairaSymbol:"") +  displayWithComma(model.calculateTotalValue()),
                                     textFontSize: 12,
                                   ),
                                 ],
