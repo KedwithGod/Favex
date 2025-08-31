@@ -14,7 +14,6 @@ class BaseModel extends ChangeNotifier {
   setLoading(bool value){
     isLoading = value;
     notifyListeners();
-     isLoadingBucket =value;
   }
 
 
