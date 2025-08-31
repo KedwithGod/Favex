@@ -55,8 +55,8 @@ class GiftCardCaculatorVieModel extends BaseModel {
 
           snackBarWidget(
             context,
-            text: "Giftcards fetched successfully",
-            title: "Giftcards",
+            text:  textBucket!.giftcardsFetchedSuccessfully ,
+            title: textBucket!.giftCard,
           );
           setLoading(false);
         } else {

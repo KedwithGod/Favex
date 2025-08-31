@@ -1,3 +1,5 @@
+
+
 import '/model/utilities/imports/shared.dart';
 
 class CryptoRatePage extends StatelessWidget {
@@ -5,11 +7,17 @@ class CryptoRatePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ViewModelBuilder<RateCalculatorViewModel>.reactive(
-        viewModelBuilder: () => RateCalculatorViewModel(),
-        onViewModelReady: (model) {},
+    return ViewModelBuilder<CryptoVieweModel>.reactive(
+        viewModelBuilder: () => CryptoVieweModel(),
+        onViewModelReady: (model) {
+          model.fetchCryptoDataFunction(context);
+        },
         builder: (context, model, child) {
-          return Column(
+          return model.isLoading
+              ? const ShimmerLoader()
+              : model.cryptoLists.isEmpty
+                  ? InterText(textBucket!.noGiftCardDataFound)
+                  : Column(
             children: [
               // heading
               Row(
@@ -37,7 +45,7 @@ class CryptoRatePage extends StatelessWidget {
                 onTap: () {
                   GeneralBottomSheet.show(context,
                       content: CryptoSelectorBottomSheet(
-                        cryptoList: model.cryptoList,
+                        cryptoList: model.cryptoLists,
                         selectText: textBucket!.selectCrypto, // Title text
                         searchHint:
                             textBucket!.searchCoin, // Search field hint
@@ -60,8 +68,8 @@ class CryptoRatePage extends StatelessWidget {
                     children: [
                       InterText(model.selectedCryptoIndex == null
                           ? textBucket!.chooseCrypto
-                          : model.cryptoList[model.selectedCryptoIndex!]
-                              ['name']),
+                          : model.cryptoLists[model.selectedCryptoIndex!]
+                              .name),
                       S(
                         h: 13,
                         w: 13,
@@ -133,7 +141,7 @@ class CryptoRatePage extends StatelessWidget {
                           textFontSize: 12,
                         ),
                         InterText(
-                          "${model.nairaSymbol}1500",
+                           "${displayWithComma(model.rate)}" "${model.rate!='Nil'?'/\$':""}",
                           textFontSize: 12,
                         ),
                       ],
@@ -149,7 +157,7 @@ class CryptoRatePage extends StatelessWidget {
                           textFontSize: 12,
                         ),
                         InterText(
-                          "${model.nairaSymbol}${displayWithComma('104000')}}",
+                          "${model.totalValue!='Nil'?model.nairaSymbol:""}${displayWithComma(model.totalValue)}",
                           textFontSize: 12,
                         ),
                       ],
@@ -176,7 +184,7 @@ class CryptoRatePage extends StatelessWidget {
                       )
                     ],
                     buttonNoPositioned(context,
-                        text: textBucket!.tradeCard,
+                        text: textBucket!.tradeCrypto,
                         textColor: model.cryptoNotValid ||
                                 model.selectedCryptoIndex == null
                             ? colorsBucket!.subtitle

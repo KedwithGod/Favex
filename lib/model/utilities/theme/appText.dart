@@ -57,7 +57,7 @@ class AppTexts {
   final String continueAgreeingToFavex;
   final String and;
   final String privacyPolicy;
-  final String TermsAndConditions;
+  final String termsAndConditions;
   final String verificationCompletedNextStepButton;
   final String createAnAccount;
   final String correctDetailsFlag;
@@ -71,7 +71,7 @@ class AppTexts {
   final String enterReferralTag;
   final String phoneNumber;
   final String others;
-  final String Influencer;
+  final String influencer;
   final String createPassword;
   final String createPasswordForAccountAccessInSecureLocation;
   final String confirmPassword;
@@ -126,7 +126,7 @@ class AppTexts {
   final String cardValue;
   final String eCode;
   final String noReceipt;
-  final String DebitReceipt;
+  final String debitReceipt;
   final String cashReceipt;
   final String cardReceiptCategory;
   final String chooseCardRange;
@@ -136,7 +136,7 @@ class AppTexts {
   final String selectCardCountry;
   final String checkCurrentRatesForGiftCard;
   final String crypto;
-  final String GiftCard;
+  final String giftCard;
   final String rateCalculator;
   final String amountIn;
   final String chooseCrypto;
@@ -170,6 +170,11 @@ class AppTexts {
   final String noGiftCardDataFound;
   final String noCardValue;
   final String noCardReceiptCategory;
+  final String NoCryptoDataList;
+  final String Giftcards;
+  final String giftcardsFetchedSuccessfully;
+  final String Crypto;
+  final String cryptoFetchedSuccessfully;
   const AppTexts( {
     required this.welcomeMessage,
     required this.emailAddress,
@@ -221,7 +226,7 @@ class AppTexts {
     required this.continueAgreeingToFavex,
     required this.and,
     required this.privacyPolicy,
-    required this.TermsAndConditions,
+    required this.termsAndConditions,
     required this.verificationCompletedNextStepButton,
     required this.createAnAccount,
     required this.correctDetailsFlag,
@@ -235,7 +240,7 @@ class AppTexts {
     required this.enterReferralTag,
     required this.phoneNumber,
     required this.others,
-    required this.Influencer,
+    required this.influencer,
     required this.createPassword,
     required this.createPasswordForAccountAccessInSecureLocation,
     required this.confirmPassword,
@@ -290,7 +295,7 @@ class AppTexts {
     required this.cardValue,
     required this.eCode,
     required this.noReceipt,
-    required this.DebitReceipt,
+    required this.debitReceipt,
     required this.cashReceipt,
     required this.cardReceiptCategory,
     required this.chooseCardRange,
@@ -300,7 +305,7 @@ class AppTexts {
     required this.selectCardCountry,
     required this.checkCurrentRatesForGiftCard,
     required this.crypto,
-    required this.GiftCard,
+    required this.giftCard,
     required this.rateCalculator,
     required this.amountIn,
     required this.chooseCrypto,
@@ -334,6 +339,11 @@ class AppTexts {
     required this.noGiftCardDataFound,
     required this.noCardValue,
     required this.noCardReceiptCategory,
+    required this.NoCryptoDataList,
+    required this.Giftcards,
+    required this.giftcardsFetchedSuccessfully,
+    required this.Crypto,
+    required this.cryptoFetchedSuccessfully,
   });
 
   // English Language
@@ -388,7 +398,7 @@ class AppTexts {
     continueAgreeingToFavex: 'By clicking on continue, I agree to Favex',
     and: 'and',
     privacyPolicy: 'Privacy Policy',
-    TermsAndConditions: 'Terms & Conditions',
+    termsAndConditions: 'Terms & Conditions',
     verificationCompletedNextStepButton: 'Verification completed, click continue to go the next step of account creation',
     createAnAccount: 'Create an account',
     correctDetailsFlag: 'It’s free. Be sure to provide correct details',
@@ -402,7 +412,7 @@ class AppTexts {
     enterReferralTag: 'Enter referral tag',
     phoneNumber: 'Phone Number',
     others: 'Others',
-    Influencer: 'Influencer',
+    influencer: 'Influencer',
     createPassword: 'Create Password',
     createPasswordForAccountAccessInSecureLocation: 'Kindly create your password to access account. Please ensure you are in a secure location.',
     confirmPassword: 'Confirm password',
@@ -457,7 +467,7 @@ class AppTexts {
     cardValue: 'Card Value',
     eCode: 'E-Code',
     noReceipt: 'No Receipt',
-    DebitReceipt: 'Debit Receipt',
+    debitReceipt: 'Debit Receipt',
     cashReceipt: 'Cash Receipt',
     cardReceiptCategory: 'Card Receipt Category',
     chooseCardRange: 'Choose card range',
@@ -467,7 +477,7 @@ class AppTexts {
     selectCardCountry: 'Select Card Country',
     checkCurrentRatesForGiftCard: 'Check current rates for your giftcard',
     crypto: 'Crypto',
-    GiftCard: 'Gift Card',
+    giftCard: 'Gift Card',
     rateCalculator: 'Rate Calculator',
     amountIn: 'Amount in',
     chooseCrypto: 'Choose Crypto',
@@ -501,6 +511,11 @@ class AppTexts {
     noGiftCardDataFound: 'No Gift Card Data Found',
     noCardValue: 'No Card Value',
     noCardReceiptCategory: 'No Card Reciept Category',
+    NoCryptoDataList: 'No Crypto Data List',
+    Giftcards: 'Giftcards',
+    giftcardsFetchedSuccessfully: 'Giftcards fetched successfully',
+    Crypto: 'Crypto',
+    cryptoFetchedSuccessfully: 'Crypto fetched successfully',
   );
 
   // Spanish Language (example)
@@ -555,7 +570,7 @@ class AppTexts {
     continueAgreeingToFavex: 'Pulsa en continuar para aceptar Favex.',
     and: 'y en español: y',
     privacyPolicy: 'Política de Privacidad',
-    TermsAndConditions: 'Términos y Condiciones del Servicio',
+    termsAndConditions: 'Términos y Condiciones del Servicio',
     verificationCompletedNextStepButton: 'La verificación se ha completado, haga clic en "Continuar" para pasar al siguiente paso de la creación de cuenta.',
     createAnAccount: 'Crear una cuenta',
     correctDetailsFlag: '¡Es gratuito. Asegúrate de proporcionar los detalles correctos.',
@@ -569,7 +584,7 @@ class AppTexts {
     enterReferralTag: 'Introduzca la etiqueta de referido (o código promocional)',
     phoneNumber: 'Número de Teléfono',
     others: 'Otros (masculine plural) or Otras (feminine plural), depending on whether the word that follows is masculine or feminine in gender.',
-    Influencer: 'Influenciador (influencer masculino) / Influenciana (influencer femenino)',
+    influencer: 'Influenciador (influencer masculino) / Influenciana (influencer femenino)',
     createPassword: 'Crea contraseña',
     createPasswordForAccountAccessInSecureLocation: 'Por favor, cree su contraseña para acceder a la cuenta. Asegúrese de estar en un lugar seguro.',
     confirmPassword: 'Confirmar contraseña',
@@ -624,7 +639,7 @@ class AppTexts {
     cardValue: 'Valor de la Tarjeta (Más específico, "Valor de la carta" o simplemente "Valor")',
     eCode: 'Código E-Code (en español)',
     noReceipt: 'No Factura',
-    DebitReceipt: 'Recibo de Débito (México) or Boleto de Pago por Débito Automático (España)',
+    debitReceipt: 'Recibo de Débito (México) or Boleto de Pago por Débito Automático (España)',
     cashReceipt: 'Recibo de Efectivo (Caja)',
     cardReceiptCategory: 'Categoría de Recibo de Tarjeta (Card Receipt Category) se traduce como "Categoría de Recibo de Tarjeta" en español.',
     chooseCardRange: 'Elije el rango de tarjetas (o "elige el número de cartas" sería también aceptable)',
@@ -634,7 +649,7 @@ class AppTexts {
     selectCardCountry: 'Selecciona país de la Tarjeta (Español)',
     checkCurrentRatesForGiftCard: 'Ver tasas actuales para tu tarjeta regalo',
     crypto: 'Criptomoneda (plural: criptomonedas) o moneda digital, es un medio de intercambio decentralizado que no está controlado por ningún gobierno ni banco central. Las criptomonedas utilizan tecnología de bloqueo en cadena, lo que les permite ser transaccionadas sin una autoridad central.',
-    GiftCard: 'Tarjeta Regalo (or simply Tarjeta de Regalo)',
+    giftCard: 'Tarjeta Regalo (or simply Tarjeta de Regalo)',
     rateCalculator: 'Calculadora de Tasa',
     amountIn: 'Cantidad en (Spanish)',
     chooseCrypto: 'Elija Criptomoneda (o monedas)',
@@ -668,6 +683,11 @@ class AppTexts {
     noGiftCardDataFound: 'No se encontraron datos de tarjeta de regalo',
     noCardValue: 'Sin Valor de Tarjeta',
     noCardReceiptCategory: '¡Sin Recibo de Categoría de Tarjeta! (Card Receipt Category in Spanish)',
+    NoCryptoDataList: 'No hay lista de datos Crypto (or Sin lista de datos de criptomonedas)',
+    Giftcards: 'Tarjetas de regalo',
+    giftcardsFetchedSuccessfully: '¡Tarjetas regalo obtenidas exitosamente!',
+    Crypto: 'Criptomoneda',
+    cryptoFetchedSuccessfully: '¡Criptomoneda cargada exitosamente!',
   );
 
   // Add more languages as needed

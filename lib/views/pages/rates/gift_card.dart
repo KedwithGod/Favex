@@ -11,7 +11,9 @@ class GiftCardRate extends StatelessWidget {
         },
         builder: (context, model, child) {
           return model.isLoading
-              ? const ShimmerLoader()
+              ? const ShimmerLoader(
+                height: 100,
+              )
               : model.allGiftcards.isEmpty
                   ? InterText(textBucket!.noGiftCardDataFound)
                   : Column(
@@ -101,7 +103,7 @@ class GiftCardRate extends StatelessWidget {
                         Row(
                           children: [
                             InterText(
-                              textBucket!.GiftCard,
+                              textBucket!.giftCard,
                               textFontSize: 12,
                             ),
                           ],

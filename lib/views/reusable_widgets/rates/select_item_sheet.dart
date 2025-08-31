@@ -41,6 +41,11 @@ class _CryptoSelectorBottomSheetState extends State<CryptoSelectorBottomSheet> {
           .where((crypto) => crypto.title.toLowerCase().contains(query))
           .toList();
       }
+      if (widget.cryptoList.isNotEmpty && widget.cryptoList.first is CryptoModel){
+         filteredCryptoList = widget.cryptoList
+          .where((crypto) => crypto.name.toLowerCase().contains(query))
+          .toList();
+      }
     });
   }
 
@@ -115,13 +120,13 @@ class _CryptoSelectorBottomSheetState extends State<CryptoSelectorBottomSheet> {
                       children: [
                         ImageAvatar(
                           isNetworkImage: true,
-                          image: crypto.image,
+                          image: widget.cryptoList.first is CryptoModel? crypto.icon: crypto.image  ,
                          imageRadius: 20,
                           imageType: widget.imagetype,
                         ),
                         S(w: 10),
                         InterText(
-                          crypto.title,
+                          widget.cryptoList.first is CryptoModel? crypto.name : crypto.title,
                           textAlign: TextAlign.center,
                           textFontSize: 12,
                         ),

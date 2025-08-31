@@ -6,7 +6,7 @@ class CreateAccountViewModel extends BaseModel {
     {"name": "Instagram", "icon": "instagram"},
     {"name": "Twitter", "icon": "twitter_icon"},
     {"name": "Google", "icon": "google_icon"},
-    {"name": textBucket!.Influencer, "icon": "influencer_icon"},
+    {"name": textBucket!.influencer, "icon": "influencer_icon"},
     {"name": textBucket!.others, "icon": "others_icon"}
   ];
 

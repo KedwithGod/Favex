@@ -108,7 +108,7 @@ class EmailVerificationPage extends StatelessWidget {
                                             InterText(textBucket!
                                                 .continueAgreeingToFavex, textFontSize: 10, textColor: colorsBucket!.subtitle,),
                                             InterText(textBucket!
-                                                .TermsAndConditions, textFontSize: 10, textColor: colorsBucket!.primary, textFontWeight: FontWeight.w600,),
+                                                .termsAndConditions, textFontSize: 10, textColor: colorsBucket!.primary, textFontWeight: FontWeight.w600,),
                                             InterText(textBucket!
                                                 .and, textFontSize: 10, textColor: colorsBucket!.subtitle,),
                                             InterText(textBucket!

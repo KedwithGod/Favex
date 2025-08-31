@@ -24,3 +24,4 @@ export '/view_models/dashboard/sell_crypto.dart';
 // rates
 export '/view_models/rate_calculator/home.dart';
 export 'package:favex/view_models/rate_calculator/gift_card.dart';
+export 'package:favex/view_models/rate_calculator/crypto.dart';

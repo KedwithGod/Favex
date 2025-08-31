@@ -2,7 +2,7 @@
 
 import '../../utilities/imports/shared.dart';
 
-class Crypto {
+class CryptoModel {
   final int id;
   final String obiexId;
   final String name;
@@ -22,7 +22,7 @@ class Crypto {
   final String buyRate;
   final String usdRate;
 
-  Crypto({
+  CryptoModel({
     required this.id,
     required this.obiexId,
     required this.name,
@@ -43,8 +43,8 @@ class Crypto {
     required this.usdRate,
   });
 
-  factory Crypto.fromJson(Map<String, dynamic> json) {
-    return Crypto(
+  factory CryptoModel.fromJson(Map<String, dynamic> json) {
+    return CryptoModel(
       id: json['id'],
       obiexId: json['obiex_id'],
       name: json['name'],
@@ -91,8 +91,8 @@ class Crypto {
     };
   }
 
-  static List<Crypto> fromJsonList(String str) =>
-      List<Crypto>.from(json.decode(str).map((x) => Crypto.fromJson(x)));
+  static List<CryptoModel> fromJsonList(String str) =>
+      List<CryptoModel>.from(json.decode(str).map((x) => CryptoModel.fromJson(x)));
 }
 
 class Network {
