@@ -36,7 +36,7 @@ class InterText extends StatelessWidget {
               color: textColor??colorsBucket!.title,
               letterSpacing: letterSpacing ?? 0,
               shadows: shadow,
-               fontSize: sS(context).tsf.scale((textFontSize??14)*0.8),
+               fontSize: sS(context).tsf.scale((textFontSize??14)*1),
               fontWeight: textFontWeight?? FontWeight.w400,
               decoration: textDecoration ?? TextDecoration.none,
               decorationColor: decorationColor ?? colorsBucket!.borderMid,
