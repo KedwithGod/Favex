@@ -60,7 +60,7 @@ class HomePage extends StatelessWidget {
                                         CrossAxisAlignment.start,
                                     children: [
                                       InterText(
-                                        "${model.username ?? 'User'} 👋",
+                                        "${model.username} 👋",
                                         textFontWeight: FontWeight.w700,
                                         textFontSize: 12,
                                       ),
@@ -537,8 +537,8 @@ class HomePage extends StatelessWidget {
                                                   SvgPngImage(
                                                       path: model.quickActions[
                                                           index]['icon'],
-                                                      height: 15,
-                                                      width: 15),
+                                                      height: 18,
+                                                      width: 18),
                                                 ],
                                               ),
                                               S(h: 3),

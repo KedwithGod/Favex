@@ -57,12 +57,9 @@ class BaseUi extends StatelessWidget {
                              SystemUiOverlayStyle(statusBarColor:  colorsBucket!.white),
                         child: Scaffold(
                           appBar: appBar,
-                          drawer: isLoggedInBucket == true
-                              ?  const Drawer(child: SideDrawer())
-                              : null,
                           body: SafeArea(
                             bottom: safeBottom ?? true,
-                            top: safeTop ?? false,
+                            top: safeTop ?? true,
                             child: GestureDetector(
                               onHorizontalDragEnd: (details) {
                                 final double horizontalVelocity =

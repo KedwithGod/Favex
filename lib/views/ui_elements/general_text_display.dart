@@ -2,10 +2,9 @@ import '../../../model/utilities/imports/shared.dart';
 
 
 // rubik text
-
 class InterText extends StatelessWidget {
   final String inputText;
-  final double? textFontSize, letterSpacing;
+  final double? textFontSize, letterSpacing, lineHeight;
   final FontWeight? textFontWeight;
   final int? noOfTextLine;
   final String? textSemanticLabel;
@@ -15,37 +14,46 @@ class InterText extends StatelessWidget {
   final Color? decorationColor;
   final List<Shadow>? shadow;
 
-  const InterText(this.inputText,
-      {super.key,
-      this.textDecoration,
-      this.textColor, this.noOfTextLine,
-      this.textFontSize, this.textFontWeight, this.textSemanticLabel,
-      this.shadow,
-      this.textAlign,
-      this.decorationColor,
-      this.letterSpacing});
+  const InterText(
+    this.inputText, {
+    super.key,
+    this.textDecoration,
+    this.textColor,
+    this.noOfTextLine,
+    this.textFontSize,
+    this.textFontWeight,
+    this.textSemanticLabel,
+    this.shadow,
+    this.textAlign,
+    this.decorationColor,
+    this.letterSpacing,
+    this.lineHeight,
+  });
 
   @override
   Widget build(BuildContext context) {
+    final scaleFactor = MediaQuery.of(context).textScaleFactor; // ✅ respect device scaling
 
     return Text(
       inputText,
       style: GoogleFonts.inter(
-          textStyle: TextStyle(
-              // add line height to the text widget if the design look different
-              color: textColor??colorsBucket!.title,
-              letterSpacing: letterSpacing ?? 0,
-              shadows: shadow,
-               fontSize: sS(context).tsf.scale((textFontSize??14)*1.3),
-              fontWeight: textFontWeight?? FontWeight.w400,
-              decoration: textDecoration ?? TextDecoration.none,
-              decorationColor: decorationColor ?? colorsBucket!.borderMid,
-              decorationStyle: TextDecorationStyle.solid)),
+        textStyle: TextStyle(
+          color: textColor ?? colorsBucket!.title,
+          letterSpacing: letterSpacing ?? 0,
+          shadows: shadow,
+          fontSize: (textFontSize ?? 14) * scaleFactor, // ✅ scale properly
+          fontWeight: textFontWeight ?? FontWeight.w400,
+          height: lineHeight, // ✅ allow custom line height if needed
+          decoration: textDecoration ?? TextDecoration.none,
+          decorationColor: decorationColor ?? colorsBucket!.borderMid,
+          decorationStyle: TextDecorationStyle.solid,
+        ),
+      ),
       maxLines: noOfTextLine,
-      semanticsLabel: textSemanticLabel??inputText,
+      overflow: noOfTextLine != null ? TextOverflow.ellipsis : null, // ✅ safe cut-off
+      semanticsLabel: textSemanticLabel ?? inputText,
       textAlign: textAlign ?? TextAlign.left,
     );
   }
 }
 
-// text span\

@@ -18,7 +18,7 @@ class SellCryptoPage extends StatelessWidget {
                       children: [
                         GestureDetector(
                           onTap: () {
-                            router.goNamed(homePageRoute);
+                            context.goNamed(homePageRoute);
                           },
                           child: GeneralContainer(
                             height: 34,

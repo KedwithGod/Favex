@@ -1,5 +1,3 @@
-
-
 import '../../utilities/imports/shared.dart';
 
 class CryptoModel {
@@ -45,26 +43,26 @@ class CryptoModel {
 
   factory CryptoModel.fromJson(Map<String, dynamic> json) {
     return CryptoModel(
-      id: json['id'],
-      obiexId: json['obiex_id'],
-      name: json['name'],
-      code: json['code'],
-      icon: json['icon'],
-      networks: (json['networks'] as List<dynamic>)
-          .map((e) => Network.fromJson(e))
-          .toList(),
-      status: json['status'],
-      createdAt: json['created_at'],
-      updatedAt: json['updated_at'],
-      isStable: json['is_stable'],
-      color: json['color'],
-      minimumDeposit: json['minimumDeposit'],
-      maximumDecimalPlaces: json['maximumDecimalPlaces'],
-      data: json['data'],
+      id: json['id'] ?? 0,
+      obiexId: json['obiex_id'] ?? '',
+      name: json['name'] ?? '',
+      code: json['code'] ?? '',
+      icon: json['icon'] ?? '',
+      networks: (json['networks'] as List<dynamic>?)
+              ?.map((e) => Network.fromJson(e))
+              .toList() ?? [],
+      status: json['status'] ?? '',
+      createdAt: json['created_at'] ?? '',
+      updatedAt: json['updated_at'] ?? '',
+      isStable: json['is_stable'] ?? '',
+      color: json['color'] ?? '',
+      minimumDeposit: json['minimumDeposit'] ?? '',
+      maximumDecimalPlaces: json['maximumDecimalPlaces'] ?? '',
+      data: json['data'], // Assuming this can be null
       showBuy: json['show_buy'] ?? false,
-      nairaRate: json['naira_rate'],
-      buyRate: json['buy_rate'],
-      usdRate: json['usd_rate'],
+      nairaRate: json['naira_rate'] ?? '',
+      buyRate: json['buy_rate'] ?? '',
+      usdRate: json['usd_rate'] ?? '',
     );
   }
 
@@ -128,19 +126,19 @@ class Network {
 
   factory Network.fromJson(Map<String, dynamic> json) {
     return Network(
-      id: json['id'],
-      obiexCryptoId: json['obiex_crypto_id'],
-      addressRegex: json['addressRegex'],
-      memoRegex: json['memoRegex'],
-      name: json['name'],
-      code: json['code'],
-      fee: json['fee'],
-      feeType: json['feeType'],
-      minimum: json['minimum'],
-      contractAddress: json['contractAddress'],
-      explorerLink: json['explorerLink'],
-      createdAt: json['created_at'],
-      updatedAt: json['updated_at'],
+      id: json['id'] ?? 0,
+      obiexCryptoId: json['obiex_crypto_id'] ?? '',
+      addressRegex: json['addressRegex'] ?? '',
+      memoRegex: json['memoRegex'], // Assuming this can be null
+      name: json['name'] ?? '',
+      code: json['code'] ?? '',
+      fee: json['fee'] ?? '',
+      feeType: json['feeType'] ?? '',
+      minimum: json['minimum'] ?? '',
+      contractAddress: json['contractAddress'], // Assuming this can be null
+      explorerLink: json['explorerLink'], // Assuming this can be null
+      createdAt: json['created_at'] ?? '',
+      updatedAt: json['updated_at'] ?? '',
     );
   }
 
