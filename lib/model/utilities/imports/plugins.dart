@@ -20,5 +20,5 @@ export 'package:visibility_detector/visibility_detector.dart';
 export 'package:line_icons/line_icons.dart';
 export 'package:websafe_svg/websafe_svg.dart';
 export 'package:local_auth/local_auth.dart';
-export 'package:intl_phone_number_input/intl_phone_number_input.dart';
+// export 'package:intl_phone_number_input/intl_phone_number_input.dart';
 export 'package:shimmer/shimmer.dart';

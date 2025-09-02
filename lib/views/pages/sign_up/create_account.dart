@@ -228,15 +228,15 @@ class CreateAccountPage extends StatelessWidget {
                           ),
                           S(h: 10),
 
-                          PhoneNumberTextField(
-                            textFieldController: model.phonenumberController,
-                            focusNode: model.phonenumberFocusNode,
-                            onChangedFunction: (value) {
-                              model.onChangedFunctionPhone(value);
-                            },
-                            errorTextActive: model.phonenumberErrorBool,
-                            errorText: model.phoneErrorText,
-                          ),
+                          // PhoneNumberTextField(
+                          //   textFieldController: model.phonenumberController,
+                          //   focusNode: model.phonenumberFocusNode,
+                          //   onChangedFunction: (value) {
+                          //     model.onChangedFunctionPhone(value);
+                          //   },
+                          //   errorTextActive: model.phonenumberErrorBool,
+                          //   errorText: model.phoneErrorText,
+                          // ),
 
                           if (!model.phoneNotValid) ...[
                             S(h: 10),
