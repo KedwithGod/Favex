@@ -83,8 +83,7 @@ class FormattedTextFields extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final scaleFactor = MediaQuery.of(context).textScaleFactor;
-
+  
     // ✅ Adjust base font size for iOS to match other platforms
     final adjustedTextFont =
         (textFont ?? 14) * (defaultTargetPlatform == TargetPlatform.iOS ? 1.15 : 1.0);

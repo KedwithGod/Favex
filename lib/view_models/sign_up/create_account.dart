@@ -84,29 +84,28 @@ class CreateAccountViewModel extends BaseModel {
     bool isValid = false;
 
     // --- MOBILE & WEB (use plugin validation) ---
-    if (kIsWeb || Platform.isAndroid || Platform.isIOS) {
-      try {
-        PhoneNumber number = await PhoneNumber.getRegionInfoFromPhoneNumber(
-          rawInput,
-          'NG',
-        );
-        isValid = true;
-      } catch (e) {
-        isValid = false;
-      }
+    // if (kIsWeb || Platform.isAndroid || Platform.isIOS) {
+    //   try {
+    //     PhoneNumber number = await PhoneNumber.getRegionInfoFromPhoneNumber(
+    //       rawInput,
+    //       'NG',
+    //     );
+    //     isValid = true;
+    //   } catch (e) {
+    //     isValid = false;
+    //   }
+    // } else {
+    // --- DESKTOP (manual validation) ---
+    // For Nigeria: must start with 0 or +234 and length between 10–14
+    String cleaned = rawInput.replaceAll(RegExp(r'\D'), ''); // keep only digits
+    if (cleaned.startsWith("234")) {
+      isValid = cleaned.length == 10;
+    } else if (cleaned.startsWith("0")) {
+      isValid = cleaned.length == 11;
     } else {
-      // --- DESKTOP (manual validation) ---
-      // For Nigeria: must start with 0 or +234 and length between 10–14
-      String cleaned =
-          rawInput.replaceAll(RegExp(r'\D'), ''); // keep only digits
-      if (cleaned.startsWith("234")) {
-        isValid = cleaned.length == 10;
-      } else if (cleaned.startsWith("0")) {
-        isValid = cleaned.length == 11;
-      } else {
-        isValid = cleaned.length >= 7 && cleaned.length <= 12;
-      }
+      isValid = cleaned.length >= 7 && cleaned.length <= 12;
     }
+    // }
     print(isValid);
     notifyListeners();
     if (isValid) {
