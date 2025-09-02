@@ -35,10 +35,11 @@ class InterText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final scaleFactor = MediaQuery.of(context).textScaler;
+   
 
     // ✅ On iOS, boost the base font size a bit
     final adjustedFontSize = (textFontSize ?? 14) *
-        (defaultTargetPlatform == TargetPlatform.iOS ? 1.15 : 1.0);
+        (defaultTargetPlatform == TargetPlatform.iOS ? 1.15 : 1.1);
 
     return Text(
       inputText,
