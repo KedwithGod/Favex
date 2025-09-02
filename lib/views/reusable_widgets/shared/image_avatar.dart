@@ -72,6 +72,7 @@ class SvgPngImage extends StatelessWidget {
   final ColorFilter? colorFilter;
   final ImageTypeEnum? imageType;
   final bool? isNetworkImage;
+  final BoxFit? boxfit;
   const SvgPngImage(
       {super.key,
       required this.path,
@@ -79,7 +80,7 @@ class SvgPngImage extends StatelessWidget {
       required this.width,
       this.colorFilter,
       this.imageType = ImageTypeEnum.svg,
-      this.isNetworkImage});
+      this.isNetworkImage,this.boxfit});
 
   @override
   Widget build(BuildContext context) {
@@ -96,13 +97,13 @@ class SvgPngImage extends StatelessWidget {
                 width: sS(context).cW(width: width),
                 height: sS(context).cH(height: height),
                 colorFilter: colorFilter,
-                fit: BoxFit.contain,
+                fit: BoxFit.cover,
               )
             : Image.asset(
                 'assets/pngs/$path.png',
                 width: sS(context).cW(width: width),
                 height: sS(context).cH(height: height),
-                fit: BoxFit.cover,
+                fit:boxfit?? BoxFit.cover,
               ));
   }
 }

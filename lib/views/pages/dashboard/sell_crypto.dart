@@ -14,24 +14,27 @@ class SellCryptoPage extends StatelessWidget {
                 top: 0,
                 child: Column(
                   children: [
-                    Row(
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            context.goNamed(homePageRoute);
-                          },
-                          child: GeneralContainer(
-                            height: 34,
-                            width: 51 * sS(context).removeWidthAdjustment(),
-                            color: colorsBucket!.transparent,
-                            borderRadius: 16,
-                            child: GeneralIconDisplay(LineIcons.arrowLeft,
-                                colorsBucket!.title, UniqueKey(), 25),
+                    S(
+                      h:38, w:334,
+                      child: Row(
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              context.goNamed(homePageRoute);
+                            },
+                            child: GeneralContainer(
+                              height: 34,
+                              width: 51 * sS(context).removeWidthAdjustment(),
+                              color: colorsBucket!.transparent,
+                              borderRadius: 16,
+                              child: GeneralIconDisplay(LineIcons.arrowLeft,
+                                  colorsBucket!.title, UniqueKey(), 25),
+                            ),
                           ),
-                        ),
-                        S(w: 75),
-                        InterText(textBucket!.sellCryptocurrency)
-                      ],
+                          S(w: 75),
+                          InterText(textBucket!.sellCryptocurrency)
+                        ],
+                      ),
                     ),
                     S(h: 27),
                     // search field
@@ -95,7 +98,7 @@ class SellCryptoPage extends StatelessWidget {
                                     for (int index in List.generate(
                                         6, (index) => index)) ...[
                                       S(
-                                        h: 60,
+                                        h: 100,
                                         w: 61,
                                         child: Column(
                                           mainAxisAlignment:
@@ -105,8 +108,8 @@ class SellCryptoPage extends StatelessWidget {
                                           children: [
                                             const SvgPngImage(
                                               path: 'bitcoin',
-                                              height: 40,
-                                              width: 41,
+                                              height: 75,
+                                              width: 50,
                                               imageType: ImageTypeEnum.png,
                                             ),
                                             S(h: 4),
@@ -135,7 +138,7 @@ class SellCryptoPage extends StatelessWidget {
 
                         GeneralContainer(
                             color: colorsBucket!.white,
-                            height: (74.0 * model.filteredCryptoList.length) +90,
+                            height: (74.0 * model.filteredCryptoList.length) +95,
                             width: 335,
                             left: 18,
                             right: 17,
@@ -169,8 +172,8 @@ class SellCryptoPage extends StatelessWidget {
                                               SvgPngImage(
                                                 path: model.filteredCryptoList[
                                                     index]['icon'],
-                                                height: 40,
-                                                width: 41,
+                                                height: 75,
+                                                width: 50,
                                                 imageType: ImageTypeEnum.png,
                                               ),
                                               S(w: 10),

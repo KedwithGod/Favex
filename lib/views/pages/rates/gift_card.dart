@@ -76,12 +76,8 @@ class GiftCardRate extends StatelessWidget {
                                             model.selectedGiftCardIndex!)
                                         .first
                                         .title),
-                                S(
-                                  h: 13,
-                                  w: 13,
-                                  child: const SvgPngImage(
-                                      path: 'arrow_down', height: 11, width: 8),
-                                )
+                                const SvgPngImage(
+                                    path: 'arrow_down', height: 8, width: 8)
                               ],
                             ),
                           ),
@@ -248,12 +244,8 @@ class GiftCardRate extends StatelessWidget {
                                     ? textBucket!.chooseCardRange
                                     : model.cardRangeList[
                                         model.selectedCardRangeIndex!]),
-                                S(
-                                  h: 13,
-                                  w: 13,
-                                  child: const SvgPngImage(
-                                      path: 'arrow_down', height: 11, width: 8),
-                                )
+                                const SvgPngImage(
+                                    path: 'arrow_down', height: 8, width: 8)
                               ],
                             ),
                           ),

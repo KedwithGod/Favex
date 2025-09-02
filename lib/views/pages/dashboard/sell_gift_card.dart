@@ -14,24 +14,27 @@ class SellGiftCard extends StatelessWidget {
                 top: 0,
                 child: Column(
                   children: [
-                    Row(
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            router.goNamed(homePageRoute);
-                          },
-                          child: GeneralContainer(
-                            height: 34,
-                            width: 51 * sS(context).removeWidthAdjustment(),
-                            color: colorsBucket!.transparent,
-                            borderRadius: 16,
-                            child: GeneralIconDisplay(LineIcons.arrowLeft,
-                                colorsBucket!.title, UniqueKey(), 25),
+                    S(
+                       h:38, w:334,
+                      child: Row(
+                        children: [
+                          GestureDetector(
+                            onTap: () {
+                              router.goNamed(homePageRoute);
+                            },
+                            child: GeneralContainer(
+                              height: 34,
+                              width: 51 * sS(context).removeWidthAdjustment(),
+                              color: colorsBucket!.transparent,
+                              borderRadius: 16,
+                              child: GeneralIconDisplay(LineIcons.arrowLeft,
+                                  colorsBucket!.title, UniqueKey(), 25),
+                            ),
                           ),
-                        ),
-                        S(w: 75),
-                        InterText(textBucket!.sellGiftcard)
-                      ],
+                          S(w: 75),
+                          InterText(textBucket!.sellGiftcard)
+                        ],
+                      ),
                     ),
                     S(h: 27),
                     // search field

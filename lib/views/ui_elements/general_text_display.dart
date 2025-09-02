@@ -32,7 +32,7 @@ class InterText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final scaleFactor = MediaQuery.of(context).textScaleFactor; // ✅ respect device scaling
+    final scaleFactor = MediaQuery.of(context).textScaleFactor *( defaultTargetPlatform == TargetPlatform.iOS?1.2:1); // ✅ respect device scaling
 
     return Text(
       inputText,

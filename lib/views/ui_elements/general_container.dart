@@ -1,7 +1,5 @@
 import '../../../model/utilities/imports/shared.dart';
 
-import '../../../model/utilities/imports/shared.dart';
-
 class GeneralContainer extends StatelessWidget {
   final double? height; // Made optional
   final double? width;  // Made optional

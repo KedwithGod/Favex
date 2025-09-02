@@ -518,7 +518,7 @@ class HomePage extends StatelessWidget {
                                                   ['navigateTo']);
                                         },
                                         child: GeneralContainer(
-                                          height: 70,
+                                          height: 80,
                                           width: 88,
                                           color: colorsBucket!.primaryLemon,
                                           borderRadius: 8,
@@ -530,22 +530,22 @@ class HomePage extends StatelessWidget {
                                                 alignment: Alignment.center,
                                                 children: [
                                                   ImageAvatar(
-                                                    imageRadius: 12,
+                                                    imageRadius: 20,
                                                     backgroundColor:
                                                         colorsBucket!.white,
                                                   ),
                                                   SvgPngImage(
                                                       path: model.quickActions[
                                                           index]['icon'],
-                                                      height: 18,
-                                                      width: 18),
+                                                      height: 25,
+                                                      width: 25),
                                                 ],
                                               ),
                                               S(h: 3),
                                               InterText(
                                                 model.quickActions[index]
                                                     ['name'],
-                                                textFontSize: 10,
+                                                textFontSize: 11,
                                                 textFontWeight: FontWeight.w600,
                                                 textColor:
                                                     colorsBucket!.primary,
@@ -605,8 +605,8 @@ class HomePage extends StatelessWidget {
                                           right: 10,
                                           child: const SvgPngImage(
                                             path: 'bitcoin',
-                                            height: 32,
-                                            width: 32,
+                                            height: 40,
+                                            width: 40,
                                             imageType: ImageTypeEnum.png,
                                           )),
                                       const SvgPngImage(
@@ -617,11 +617,11 @@ class HomePage extends StatelessWidget {
                                       ),
                                       rowPositioned(
                                         top: 52,
-                                        left: -1,
+                                        left: -2,
                                         child: const SvgPngImage(
                                           path: 'usdt',
-                                          height: 32,
-                                          width: 32,
+                                          height: 40,
+                                          width: 40,
                                           imageType: ImageTypeEnum.png,
                                         ),
                                       ),
@@ -637,7 +637,7 @@ class HomePage extends StatelessWidget {
                                                 child: InterText(
                                               textBucket!.fastAndSafe,
                                               textFontWeight: FontWeight.w300,
-                                              textFontSize: 8,
+                                              textFontSize: 10,
                                             )),
                                           ))
                                     ],

@@ -70,11 +70,9 @@ class CryptoRatePage extends StatelessWidget {
                           ? textBucket!.chooseCrypto
                           : model.cryptoLists.where((crypto) => crypto.id == model.selectedCryptoIndex).first
                               .name),
-                      S(
-                        h: 13,
-                        w: 13,
+                      const Center(
                         child: const SvgPngImage(
-                            path: 'arrow_down', height: 11, width: 8),
+                            path: 'arrow_down', height: 8, width: 8),
                       )
                     ],
                   ),
