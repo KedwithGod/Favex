@@ -1,7 +1,9 @@
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+
 import '../../../model/utilities/imports/shared.dart';
 
-
-// rubik text
 class InterText extends StatelessWidget {
   final String inputText;
   final double? textFontSize, letterSpacing, lineHeight;
@@ -32,7 +34,11 @@ class InterText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final scaleFactor = MediaQuery.of(context).textScaleFactor *( defaultTargetPlatform == TargetPlatform.iOS?1.2:1); // ✅ respect device scaling
+    final scaleFactor = MediaQuery.of(context).textScaler;
+
+    // ✅ On iOS, boost the base font size a bit
+    final adjustedFontSize = (textFontSize ?? 14) *
+        (defaultTargetPlatform == TargetPlatform.iOS ? 1.15 : 1.0);
 
     return Text(
       inputText,
@@ -41,19 +47,19 @@ class InterText extends StatelessWidget {
           color: textColor ?? colorsBucket!.title,
           letterSpacing: letterSpacing ?? 0,
           shadows: shadow,
-          fontSize: (textFontSize ?? 14) * scaleFactor, // ✅ scale properly
+          fontSize: adjustedFontSize, // ✅ already adjusted
           fontWeight: textFontWeight ?? FontWeight.w400,
-          height: lineHeight, // ✅ allow custom line height if needed
+          height: lineHeight, // ✅ custom line height if passed
           decoration: textDecoration ?? TextDecoration.none,
           decorationColor: decorationColor ?? colorsBucket!.borderMid,
           decorationStyle: TextDecorationStyle.solid,
         ),
       ),
+      textScaler: scaleFactor, // ✅ let Flutter handle accessibility scaling
       maxLines: noOfTextLine,
-      overflow: noOfTextLine != null ? TextOverflow.ellipsis : null, // ✅ safe cut-off
+      overflow: noOfTextLine != null ? TextOverflow.ellipsis : null,
       semanticsLabel: textSemanticLabel ?? inputText,
       textAlign: textAlign ?? TextAlign.left,
     );
   }
 }
-

@@ -83,7 +83,14 @@ class FormattedTextFields extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-     final scaleFactor = MediaQuery.of(context).textScaleFactor; 
+    final scaleFactor = MediaQuery.of(context).textScaleFactor;
+
+    // ✅ Adjust base font size for iOS to match other platforms
+    final adjustedTextFont =
+        (textFont ?? 14) * (defaultTargetPlatform == TargetPlatform.iOS ? 1.15 : 1.0);
+
+    final adjustedHintFont =
+        (hintFont ?? 14) * (defaultTargetPlatform == TargetPlatform.iOS ? 1.15 : 1.0);
     // import dart:math as math at top via generalImport? If not, rely on prefixed usage.
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -143,9 +150,11 @@ class FormattedTextFields extends StatelessWidget {
                 style: GoogleFonts.inter(
                     textStyle: TextStyle(
                         color:  colorsBucket!.title,
-                        fontSize: (textFont ?? 14) * scaleFactor,
+                        fontSize: adjustedTextFont,
+                        
                         height: 1.5,
                         fontWeight: textFontWeight ?? FontWeight.w400)),
+                
                 decoration: InputDecoration(
                     prefixIcon: prefixIcon,
                     filled: filled??false,
@@ -155,7 +164,7 @@ class FormattedTextFields extends StatelessWidget {
                     prefix: prefix,
                     hintStyle: GoogleFonts.inter(
                         textStyle: TextStyle(
-                            fontSize: (hintFont ?? 14) * scaleFactor, 
+                            fontSize: adjustedHintFont, 
                             color: hintColor ??  colorsBucket!.subtitle,
                             fontWeight: hintFontWeight ?? FontWeight.normal)),
                     hintText: textFieldHint,
