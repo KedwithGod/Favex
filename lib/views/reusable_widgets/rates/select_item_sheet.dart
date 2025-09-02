@@ -110,7 +110,7 @@ class _CryptoSelectorBottomSheetState extends State<CryptoSelectorBottomSheet> {
                     setState(() {
                       selectedCryptoIndex = index;
                     });
-                    widget.onSelect(index); // Call the onSelect method
+                    widget.onSelect(crypto.id); // Call the onSelect method
                     Navigator.pop(context); // Close the bottom sheet
                   },
                   child: GeneralContainer(

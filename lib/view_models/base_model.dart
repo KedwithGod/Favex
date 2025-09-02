@@ -103,6 +103,12 @@ class BaseModel extends ChangeNotifier {
   String cryptoErrorText = '';
   bool cryptoNotValid = true;
   FocusNode cryptoFocusNode = FocusNode();
+
+  TextEditingController cardValueController = TextEditingController();
+  bool cardValueErrorBool = false;
+  String cardValueErrorText = '';
+  bool cardValueNotValid = true;
+  FocusNode cardValueFocusNode = FocusNode();
  
 
   showPassword() {
@@ -131,6 +137,8 @@ class BaseModel extends ChangeNotifier {
     clearKey == 'referralTag' ? '' : referralTagFocusNode.unfocus();
     clearKey == 'crypto_usd' ? '' : cryptoErrorBool = false;
     clearKey == 'crypto_usd' ? '' : cryptoFocusNode.unfocus();
+    clearKey == 'cardValue' ? '' : cardValueErrorBool = false;
+    clearKey == 'cardValue' ? '' : cardValueFocusNode.unfocus();
   }
 
   // validate email

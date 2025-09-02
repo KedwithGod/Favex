@@ -8,13 +8,9 @@ class GiftCardCaculatorVieModel extends BaseModel {
   int? selectedCardRecieptIndex;
   int? selectedCardValueIndex;
   String giftCardGeneralErrorText = '';
+  bool selectedOtherCardValue=false;
 
-  List<Map<String, dynamic>> cardCountryList = [
-    {"name": "UK", "icon": "uk", "iso": "GB","currency":"£"},
-    {"name": "USA", "icon": "usa", "iso": "US","currency":"\$"},
-    {"name": "Canada", "icon": "canada", "iso": "CA","currency":"\$"},
-    {"name": "Others", "icon": "arrow_right", "iso": "others","currency":""},
-  ];
+  List<Country> cardCountryList = [];
 
   List<String> cardValueList = [];
 
@@ -23,6 +19,7 @@ class GiftCardCaculatorVieModel extends BaseModel {
   List<GiftCard> giftCardLists = [];
   List<String> cardRangeList = [];
   List<String> cardReciptList = [];
+  
 
   // ========== SERVICES ==========
   Future<void> fetchGiftcardsFunction(BuildContext context) async {
@@ -50,12 +47,13 @@ class GiftCardCaculatorVieModel extends BaseModel {
 
           print("Fetched giftcards: $giftcards");
           allGiftcards = giftcards.map((e) => GiftCard.fromJson(e)).toList();
+          giftCardLists = giftcards.map((e) => GiftCard.fromJson(e)).toList();
 
           notifyListeners();
 
           snackBarWidget(
             context,
-            text:  textBucket!.giftcardsFetchedSuccessfully ,
+            text: textBucket!.giftcardsFetchedSuccessfully,
             title: textBucket!.giftCard,
           );
           setLoading(false);
@@ -72,47 +70,36 @@ class GiftCardCaculatorVieModel extends BaseModel {
     setLoading(false);
   }
 
-  void setSelectedCountryIndex(int index) {
-    selectedCountryIndex = index;
-    final iso = cardCountryList[index]['iso'];
-
-    print(iso);
-
-    if (iso == "others") {
-      giftCardLists = giftCardLists.where((g) {
-        return g.countries.any((c) {
-          final cIso = c.iso;
-          return !(cIso == "GB" || cIso == "US" || cIso == "CA");
-        });
-      }).toList();
-    } else {
-      giftCardLists = allGiftcards.where((g) {
-        return g.countries.any((c) => c.iso == iso);
-      }).toList();
-    }
-
+  void setSelectedGiftCardIndex(int index) {
+    selectedGiftCardIndex = index;
+    cardCountryList = giftCardLists
+        .where((card) => card.id == index)
+        .first
+        .countries; // extract the country field
     // reset selection
-    selectedGiftCardIndex = null;
+    selectedCountryIndex = null;
     selectedCardRangeIndex = null;
     selectedCardRecieptIndex = null;
     selectedCardValueIndex = null;
+      selectedOtherCardValue=false;
 
     notifyListeners();
   }
 
-  void setSelectedGiftCardIndex(int index) {
-    selectedGiftCardIndex = index;
-    final iso = cardCountryList[selectedCountryIndex!]['iso'];
-    final giftcard = giftCardLists[index];
+  void setSelectedCountryIndex(int index) {
+    selectedCountryIndex = index;
 
-    final country = giftcard.countries.firstWhere(
-      (c) => iso == "others"
-          ? !(c.iso == "GB" || c.iso == "US" || c.iso == "CA")
-          : c.iso == iso,
-    );
+    cardRangeList = cardCountryList[index]
+        .ranges
+        .map((r) => "${r.min} - ${r.max} ")
+        .toList();
 
-    cardRangeList = country.ranges.map((r) => "${r.min} - ${r.max} ").toList();
+    // reset selection
+
     selectedCardRangeIndex = null;
+    selectedCardRecieptIndex = null;
+    selectedCardValueIndex = null;
+    selectedOtherCardValue=false;
 
     notifyListeners();
   }
@@ -120,21 +107,13 @@ class GiftCardCaculatorVieModel extends BaseModel {
   void setSelectedCardRangeIndex(int index) {
     selectedCardRangeIndex = index;
 
-    final giftcard = giftCardLists[selectedGiftCardIndex!];
-    final iso = cardCountryList[selectedCountryIndex!]['iso'];
-
-    final country = giftcard.countries.firstWhere(
-      (c) => iso == "others"
-          ? !(c.iso == "GB" || c.iso == "US" || c.iso == "CA")
-          : c.iso == iso,
-    );
-
-    final range = country.ranges[index];
+    final range = cardCountryList[selectedCountryIndex!].ranges[index];
 
     cardReciptList = range.receiptCategories.map((r) => r.title).toList();
 
     selectedCardRecieptIndex = null;
     selectedCardValueIndex = null;
+    selectedOtherCardValue=false;
 
     notifyListeners();
     if (selectedCardRangeIndex != null && cardRangeList.isNotEmpty) {
@@ -145,13 +124,21 @@ class GiftCardCaculatorVieModel extends BaseModel {
 
   void setSelectedCardRecieptIndex(int index) {
     selectedCardRecieptIndex = index;
-
+      selectedOtherCardValue=false;
     notifyListeners();
   }
 
   void setSelectedCardValueIndex(int index) {
-    selectedCardValueIndex = index;
-    notifyListeners();
+         selectedCardValueIndex = index;
+      if(index == cardValueList.length-1){
+          selectedOtherCardValue =true;
+      }
+      else{
+        selectedOtherCardValue=false;
+   
+        }
+      notifyListeners();
+    
   }
 
   void revalidateAllFields(BuildContext context) async {
@@ -161,8 +148,10 @@ class GiftCardCaculatorVieModel extends BaseModel {
         text: textBucket!.allFieldEntriesCorrect, title: textBucket!.okay);
   }
 
-  String getSymbol(){
-     return selectedCountryIndex!=null && cardCountryList.isNotEmpty ?cardCountryList[selectedCountryIndex!]['currency']:'';
+  String getSymbol() {
+    return selectedCountryIndex != null && cardCountryList.isNotEmpty
+        ? cardCountryList[selectedCountryIndex!].iso
+        : '';
   }
 
   // calculate rate and total value
@@ -172,12 +161,14 @@ class GiftCardCaculatorVieModel extends BaseModel {
         giftCardLists.isNotEmpty &&
         selectedCountryIndex != null &&
         selectedCardRangeIndex != null &&
-        selectedGiftCardIndex != null ) {
-      rate = (giftCardLists[selectedGiftCardIndex!]
+        selectedGiftCardIndex != null) {
+      rate = (giftCardLists
+              .where((card) => card.id == selectedGiftCardIndex!)
+              .first
               .countries[selectedCountryIndex!]
               .ranges[selectedCardRangeIndex!]
               .receiptCategories[selectedCardRecieptIndex!]
-              .amount) 
+              .amount)
           .toString();
     }
 
@@ -187,7 +178,21 @@ class GiftCardCaculatorVieModel extends BaseModel {
   String calculateTotalValue() {
     String totalValue = "Nil";
     String rate = calculateRate();
-    if (calculateRate() != 'Nil' &&
+
+    if(selectedCardValueIndex == cardValueList.length-1 && cardValueController.text.trim().isEmpty){
+        return totalValue;
+    }
+
+    if(selectedCardValueIndex == cardValueList.length-1 && cardValueController.text.trim().isNotEmpty){
+      if(calculateRate() != 'Nil' &&
+        selectedCardValueIndex != null &&
+        cardValueList.isNotEmpty){}{
+            totalValue = (double.parse(rate) *
+              double.parse(cardValueController.text.trim().replaceAll(',', '')))
+          .toString();
+        }
+    }
+   else if (calculateRate() != 'Nil' &&
         selectedCardValueIndex != null &&
         cardValueList.isNotEmpty) {
       totalValue = (double.parse(rate) *
@@ -198,5 +203,36 @@ class GiftCardCaculatorVieModel extends BaseModel {
     return totalValue;
   }
 
-  
+    validateCardValue() {
+    unfocusAllNodes('cardValue');
+    if(selectedCardRangeIndex==null){return;}
+    else{
+     int min= int.parse(cardCountryList[selectedCountryIndex!].ranges[selectedCardRangeIndex!].min);
+     int max= int.parse(cardCountryList[selectedCountryIndex!].ranges[selectedCardRangeIndex!].max);
+     int value = int.parse(cardValueController.text.trim().replaceAll(',', ''));
+    
+    if (min<=value && max>=value) {
+      cardValueErrorBool = false;
+      cardValueErrorText = '';
+      cardValueNotValid = false;
+      calculateTotalValue();
+      notifyListeners();
+    } else {
+      cardValueErrorBool = true;
+      cardValueErrorText =
+         "${textBucket!.cardValueRange} ${displayWithComma (min.toString())}  and ${displayWithComma (max.toString())}" ;
+      cardValueNotValid = true;
+      notifyListeners();
+    }}
+  }
+
+  onChangedCardValue() {
+    cardValueFocusNode.addListener(() {
+      if (cardValueFocusNode.hasFocus == false) {
+        cardValueErrorBool = false;
+        notifyListeners();
+      }
+    });
+    validateCardValue();
+  }
 }

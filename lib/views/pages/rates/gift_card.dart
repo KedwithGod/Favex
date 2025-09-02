@@ -12,8 +12,8 @@ class GiftCardRate extends StatelessWidget {
         builder: (context, model, child) {
           return model.isLoading
               ? const ShimmerLoader(
-                height: 100,
-              )
+                  height: 100,
+                )
               : model.allGiftcards.isEmpty
                   ? InterText(textBucket!.noGiftCardDataFound)
                   : Column(
@@ -29,77 +29,9 @@ class GiftCardRate extends StatelessWidget {
                           ],
                         ),
 
-                        // card county
+                        // dift selection
                         S(h: 20),
-                        Row(
-                          children: [
-                            InterText(
-                              textBucket!.selectCardCountry,
-                              textFontSize: 12,
-                            ),
-                          ],
-                        ),
 
-                        S(h: 10),
-
-                        Row(
-                          // spacing: sS(context).cW(width: 10),
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            ...List.generate(model.cardCountryList.length,
-                                (index) {
-                              return GestureDetector(
-                                onTap: () {
-                                  model.setSelectedCountryIndex(index);
-                                },
-                                child: GeneralContainer(
-                                  color: model.selectedCountryIndex == index
-                                      ? colorsBucket!.primaryLemon
-                                      : colorsBucket!.transparent,
-                                  borderRadius: 16,
-                                  allSide: 8,
-                                  borderColor:
-                                      model.selectedCountryIndex == index
-                                          ? colorsBucket!.primary
-                                          : colorsBucket!.borderDisabled,
-                                  child: S(
-                                    h: 60,
-                                    w: 50,
-                                    child: Column(
-                                      children: [
-                                        SvgPngImage(
-                                          path: model.cardCountryList[index]
-                                              ['icon'],
-                                          height: index ==
-                                                  model.cardCountryList.length -
-                                                      1
-                                              ? 24
-                                              : 36,
-                                          width: index ==
-                                                  model.cardCountryList.length -
-                                                      1
-                                              ? 24
-                                              : 36,
-                                        ),
-                                        S(h: 5),
-                                        InterText(
-                                          model.cardCountryList[index]['name'],
-                                          textColor: colorsBucket!.subtitle,
-                                          textFontSize: 10,
-                                          noOfTextLine: 2,
-                                          textAlign: TextAlign.center,
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              );
-                            }),
-                          ],
-                        ),
-
-                        // gift card field
-                        S(h: 24),
                         Row(
                           children: [
                             InterText(
@@ -138,9 +70,11 @@ class GiftCardRate extends StatelessWidget {
                               children: [
                                 InterText(model.selectedGiftCardIndex == null
                                     ? textBucket!.chooseGiftcard
-                                    : model
-                                        .giftCardLists[
-                                            model.selectedGiftCardIndex!]
+                                    : model.giftCardLists
+                                        .where((card) =>
+                                            card.id ==
+                                            model.selectedGiftCardIndex!)
+                                        .first
                                         .title),
                                 S(
                                   h: 13,
@@ -153,6 +87,98 @@ class GiftCardRate extends StatelessWidget {
                           ),
                         ),
 
+                        S(h: 24),
+
+                        Row(
+                          children: [
+                            InterText(
+                              textBucket!.selectCardCountry,
+                              textFontSize: 12,
+                            ),
+                          ],
+                        ),
+
+                        S(h: 10),
+                        if (model.cardCountryList.isEmpty) ...[
+                          Row(
+                            children: [
+                              InterText(
+                                model.selectedCountryIndex != null
+                                    ? textBucket!.noCountryAvailable
+                                    : textBucket!.noCountrySelected,
+                                textFontSize: 10,
+                              ),
+                            ],
+                          ),
+                          S(h: 10),
+                        ],
+
+                        if (model.cardCountryList.isNotEmpty) ...[
+                          S(
+                            w: 335,
+                            h: 100,
+                            child: ListView.separated(
+                                scrollDirection: Axis.horizontal,
+                                itemBuilder: (context, index) {
+                                  return GestureDetector(
+                                    onTap: () {
+                                      model.setSelectedCountryIndex(index);
+                                    },
+                                    child: GeneralContainer(
+                                      topMargin: 5,
+                                      bottomMargin: 5,
+                                      color: model.selectedCountryIndex == index
+                                          ? colorsBucket!.primaryLemon
+                                          : colorsBucket!.transparent,
+                                      borderRadius: 16,
+                                      allSide: 8,
+                                      borderColor:
+                                          model.selectedCountryIndex == index
+                                              ? colorsBucket!.primary
+                                              : colorsBucket!.borderDisabled,
+                                      child: S(
+                                        h: 70,
+                                        w: 50,
+                                        child: Column(
+                                          children: [
+                                            SvgPngImage(
+                                              isNetworkImage: true,
+                                              path: model
+                                                  .cardCountryList[index].image,
+                                              height: index ==
+                                                      model.cardCountryList
+                                                              .length -
+                                                          1
+                                                  ? 24
+                                                  : 36,
+                                              width: index ==
+                                                      model.cardCountryList
+                                                              .length -
+                                                          1
+                                                  ? 24
+                                                  : 36,
+                                            ),
+                                            S(h: 5),
+                                            InterText(
+                                              model.cardCountryList[index].name,
+                                              textColor: colorsBucket!.subtitle,
+                                              textFontSize: 10,
+                                              noOfTextLine: 2,
+                                              textAlign: TextAlign.center,
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                },
+                                separatorBuilder: (context, index) {
+                                  return S(w: 10);
+                                },
+                                itemCount: model.cardCountryList.length),
+                          ),
+                        ],
+                        // gift card field
                         S(h: 24),
 
                         // card range
@@ -170,7 +196,8 @@ class GiftCardRate extends StatelessWidget {
                             GeneralBottomSheet.show(context,
                                 content: GeneralContainer(
                                   width: 375,
-                                  height: 90.0 * model.cardRangeList.length + 20,
+                                  height:
+                                      90.0 * model.cardRangeList.length + 20,
                                   color: colorsBucket!.white,
                                   allSide: 10,
                                   child: Column(
@@ -245,71 +272,75 @@ class GiftCardRate extends StatelessWidget {
                         ),
                         S(h: 10),
 
-                        if(model.cardReciptList.isEmpty)...[
-                            Row(
-                              children: [
-                                InterText(textBucket!.noCardReceiptCategory, textFontSize: 10,),
-                              ],
-                            ),   S(h: 10),
-                        ],
-                        if(model.cardReciptList.isNotEmpty)...[
-                           S(
-                          w: 335,
-                          h: 92,
-                          child: Wrap(
-                            spacing: sS(context).cW(width: 40),
-                            runSpacing: sS(context).cH(height: 10),
+                        if (model.cardReciptList.isEmpty) ...[
+                          Row(
                             children: [
-                              ...List.generate(model.cardReciptList.length,
-                                  (index) {
-                                return GestureDetector(
-                                  onTap: () {
-                                    model.setSelectedCardRecieptIndex(index);
-                                  },
-                                  child: GeneralContainer(
-                                    width: 120,
-                                    top: 4,
-                                    bottom: 4,
-                                    child: Row(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        GeneralIconDisplay(
-                                            model.selectedCardRecieptIndex ==
-                                                    index
-                                                ? Icons.radio_button_checked
-                                                : Icons.radio_button_off,
-                                            model.selectedCardRecieptIndex ==
-                                                    index
-                                                ? colorsBucket!.primary
-                                                : colorsBucket!.disabled,
-                                            UniqueKey(),
-                                            24),
-                                        S(w: 8),
-                                        S(
-                                          w: 77,
-                                          h: 16,
-                                          child: InterText(
-                                            model.cardReciptList[index],
-                                            textFontWeight: FontWeight.w600,
-                                            textFontSize: 12,
-                                            noOfTextLine: 2,
-                                            textColor:
-                                                model.selectedCardRecieptIndex ==
-                                                        index
-                                                    ? colorsBucket!.title
-                                                    : colorsBucket!
-                                                        .contentDisabled,
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                );
-                              }),
+                              InterText(
+                                textBucket!.noCardReceiptCategory,
+                                textFontSize: 10,
+                              ),
                             ],
                           ),
-                        ),
+                          S(h: 10),
+                        ],
+                        if (model.cardReciptList.isNotEmpty) ...[
+                          S(
+                            w: 335,
+                            h: 92,
+                            child: Wrap(
+                              spacing: sS(context).cW(width: 40),
+                              runSpacing: sS(context).cH(height: 10),
+                              children: [
+                                ...List.generate(model.cardReciptList.length,
+                                    (index) {
+                                  return GestureDetector(
+                                    onTap: () {
+                                      model.setSelectedCardRecieptIndex(index);
+                                    },
+                                    child: GeneralContainer(
+                                      width: 120,
+                                      top: 4,
+                                      bottom: 4,
+                                      child: Row(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          GeneralIconDisplay(
+                                              model.selectedCardRecieptIndex ==
+                                                      index
+                                                  ? Icons.radio_button_checked
+                                                  : Icons.radio_button_off,
+                                              model.selectedCardRecieptIndex ==
+                                                      index
+                                                  ? colorsBucket!.primary
+                                                  : colorsBucket!.disabled,
+                                              UniqueKey(),
+                                              24),
+                                          S(w: 8),
+                                          S(
+                                            w: 77,
+                                            h: 16,
+                                            child: InterText(
+                                              model.cardReciptList[index],
+                                              textFontWeight: FontWeight.w600,
+                                              textFontSize: 12,
+                                              noOfTextLine: 2,
+                                              textColor:
+                                                  model.selectedCardRecieptIndex ==
+                                                          index
+                                                      ? colorsBucket!.title
+                                                      : colorsBucket!
+                                                          .contentDisabled,
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  );
+                                }),
+                              ],
+                            ),
+                          ),
                         ],
 
                         // card value
@@ -323,50 +354,86 @@ class GiftCardRate extends StatelessWidget {
                         ),
                         S(h: 10),
 
-                        
-                        if(model.cardValueList.isEmpty)...[
+                        if (model.cardValueList.isEmpty) ...[
                           Row(
                             children: [
-                              InterText(textBucket!.noCardValue, textFontSize: 10,),
+                              InterText(
+                                textBucket!.noCardValue,
+                                textFontSize: 10,
+                              ),
                             ],
                           ),
                         ],
-                        if(model.cardValueList.isNotEmpty)...[
-                        Row(
-                          spacing: sS(context).cW(width: 16),
-                          children: [
-                            ...List.generate(model.cardValueList.length,
-                                (index) {
-                              return GestureDetector(
-                                onTap: () {
-                                  model.setSelectedCardValueIndex(index);
-                                },
-                                child: GeneralContainer(
-                                  allSide: 12,
-                                  borderColor:
-                                      model.selectedCardValueIndex == index
-                                          ? colorsBucket!.transparent
-                                          : colorsBucket!.borderDisabled,
-                                  color: model.selectedCardValueIndex == index
-                                      ? colorsBucket!.primary
-                                      : colorsBucket!.backgroundMid,
-                                  borderRadius: 8,
-                                  child: InterText(
-                                    model.cardValueList[index],
-                                    textColor:
+                        if (model.cardValueList.isNotEmpty) ...[
+                          Row(
+                            spacing: sS(context).cW(width: 16),
+                            children: [
+                              ...List.generate(model.cardValueList.length,
+                                  (index) {
+                                return GestureDetector(
+                                  onTap: () {
+                                    model.setSelectedCardValueIndex(index);
+                                  },
+                                  child: GeneralContainer(
+                                    allSide: 12,
+                                    borderColor:
                                         model.selectedCardValueIndex == index
-                                            ? colorsBucket!.white
-                                            : colorsBucket!.subtitle,
-                                    textFontSize: 12,
+                                            ? colorsBucket!.transparent
+                                            : colorsBucket!.borderDisabled,
+                                    color: model.selectedCardValueIndex == index
+                                        ? colorsBucket!.primary
+                                        : colorsBucket!.backgroundMid,
+                                    borderRadius: 8,
+                                    child: InterText(
+                                      model.cardValueList[index],
+                                      textColor:
+                                          model.selectedCardValueIndex == index
+                                              ? colorsBucket!.white
+                                              : colorsBucket!.subtitle,
+                                      textFontSize: 12,
+                                    ),
                                   ),
-                                ),
-                              );
-                            })
-                          ],
-                        ),],
+                                );
+                              })
+                            ],
+                          ),
+                        ],
 
                         // rate details
                         S(h: 24),
+                    if(model.selectedOtherCardValue==true)...[    FormattedTextFields(
+                          textFieldController: model.cardValueController,
+                          textFieldHint: textBucket!.enterAmount,
+                          onChangedFunction: (value) {
+                            model.onChangedCardValue();
+                          },
+                          errorTextActive: model.cardValueErrorBool,
+                          focusNode: model.cardValueFocusNode,
+                          errorText: model.cardValueErrorText,
+                          containerColor: colorsBucket!.borderDisabled,
+                          inputFormatters: [
+                            FilteringTextInputFormatter.digitsOnly,
+                            ThousandsSeparatorInputFormatter()
+                          ],
+                         
+                          suffixIcon: model.cardValueNotValid == true
+                              ? S()
+                              : S(
+                                  h: 56,
+                                  w: 40,
+                                  child: Row(
+                                    children: [
+                                      S(w: 10),
+                                      const SvgPngImage(
+                                          path: 'check', height: 16, width: 16),
+                                      S(w: 5),
+                                    ],
+                                  ),
+                                ),
+                        ),
+                        S(h: 24),
+                        ],
+                        
 
                         GeneralContainer(
                           color: colorsBucket!.backgroundMid,
@@ -385,7 +452,11 @@ class GiftCardRate extends StatelessWidget {
                                     textFontSize: 12,
                                   ),
                                   InterText(
-                                    displayWithComma(model.calculateRate()) + (model.calculateRate()!="Nil" && model.getSymbol().isNotEmpty?"/${model.getSymbol()}":""),
+                                    displayWithComma(model.calculateRate()) +
+                                        (model.calculateRate() != "Nil" &&
+                                                model.getSymbol().isNotEmpty
+                                            ? "/${model.getSymbol()}"
+                                            : ""),
                                     textFontSize: 12,
                                   ),
                                 ],
@@ -402,7 +473,11 @@ class GiftCardRate extends StatelessWidget {
                                     textFontSize: 12,
                                   ),
                                   InterText(
-                                   (model.calculateTotalValue()!="Nil" ? model.nairaSymbol:"") +  displayWithComma(model.calculateTotalValue()),
+                                    (model.calculateTotalValue() != "Nil"
+                                            ? model.nairaSymbol
+                                            : "") +
+                                        displayWithComma(
+                                            model.calculateTotalValue()),
                                     textFontSize: 12,
                                   ),
                                 ],
@@ -431,7 +506,7 @@ class GiftCardRate extends StatelessWidget {
                                 )
                               ],
                               buttonNoPositioned(context,
-                                  text: textBucket!.tradeCrypto, navigator: () {
+                                  text: textBucket!.tradeGiftcard, navigator: () {
                                 model.revalidateAllFields(context);
                               }),
                             ],

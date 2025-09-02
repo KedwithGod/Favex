@@ -70,7 +70,7 @@ Widget buttonNoPositioned(BuildContext context,
     width ?? 335,
     height ?? 52,
     widget ??
-        InterText(text!,textColor: textColor ??  colorsBucket!.titleSoft,textFontSize:  fontSize??14,
+        InterText(text!,textColor: textColor ??  colorsBucket!.titleSoft,textFontSize:  fontSize??15,
            textFontWeight:  fontWeight ?? FontWeight.w400,textAlign: TextAlign.center,),
     Alignment.center,
     radius ?? 10,

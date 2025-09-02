@@ -68,7 +68,7 @@ class CryptoRatePage extends StatelessWidget {
                     children: [
                       InterText(model.selectedCryptoIndex == null
                           ? textBucket!.chooseCrypto
-                          : model.cryptoLists[model.selectedCryptoIndex!]
+                          : model.cryptoLists.where((crypto) => crypto.id == model.selectedCryptoIndex).first
                               .name),
                       S(
                         h: 13,

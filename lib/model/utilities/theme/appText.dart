@@ -175,6 +175,10 @@ class AppTexts {
   final String giftcardsFetchedSuccessfully;
   final String Crypto;
   final String cryptoFetchedSuccessfully;
+  final String noCountryAvailable;
+  final String noCountrySelected;
+  final String confirmPasswordShouldMatchPassword;
+  final String cardValueRange;
   const AppTexts( {
     required this.welcomeMessage,
     required this.emailAddress,
@@ -344,6 +348,10 @@ class AppTexts {
     required this.giftcardsFetchedSuccessfully,
     required this.Crypto,
     required this.cryptoFetchedSuccessfully,
+    required this.noCountryAvailable,
+    required this.noCountrySelected,
+    required this.confirmPasswordShouldMatchPassword,
+    required this.cardValueRange,
   });
 
   // English Language
@@ -516,6 +524,10 @@ class AppTexts {
     giftcardsFetchedSuccessfully: 'Giftcards fetched successfully',
     Crypto: 'Crypto',
     cryptoFetchedSuccessfully: 'Crypto fetched successfully',
+    noCountryAvailable: 'No country availiable',
+    noCountrySelected: 'No country selected',
+    confirmPasswordShouldMatchPassword: 'Confirm Password should be the same as password',
+    cardValueRange: 'Card value must be between',
   );
 
   // Spanish Language (example)
@@ -688,6 +700,10 @@ class AppTexts {
     giftcardsFetchedSuccessfully: '¡Tarjetas regalo obtenidas exitosamente!',
     Crypto: 'Criptomoneda',
     cryptoFetchedSuccessfully: '¡Criptomoneda cargada exitosamente!',
+    noCountryAvailable: 'No país disponible',
+    noCountrySelected: '¡Ningún país seleccionado!',
+    confirmPasswordShouldMatchPassword: 'La contraseña de confirmación debe ser la misma que la contraseña',
+    cardValueRange: 'El valor de la tarjeta debe estar entre',
   );
 
   // Add more languages as needed

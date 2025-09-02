@@ -121,10 +121,11 @@ class CryptoVieweModel extends BaseModel{
 
       String rate ='Nil';
       if(selectedCryptoIndex!=null && cryptoLists.isNotEmpty){
-        rate = cryptoLists[selectedCryptoIndex!].nairaRate.toString();
+        rate = cryptoLists.where((crypto) => crypto.id == selectedCryptoIndex).first.nairaRate.toString();
       }
       return rate;
   }
+  
   String _calculateTotalValue(){
 
       String totalValue ='Nil';

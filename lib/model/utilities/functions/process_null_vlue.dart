@@ -9,10 +9,8 @@ String nvl(String? value, [String? returnValue]) {
   }
 }
 
-  
 List<String> generateGiftCardSteps(String rangeString) {
   try {
-    // Split "55-500" into [55, 500]
     final parts = rangeString.split('-');
     if (parts.length != 2) return [];
 
@@ -21,10 +19,11 @@ List<String> generateGiftCardSteps(String rangeString) {
 
     if (min == null || max == null || min >= max) return [];
 
-    // Generate 5 steps (min + 3 evenly spaced + max)
-    final step = (max - min) / 4;
+    final median = (min + max) / 2;
 
-    return List.generate(5, (i) => (min + step * i).roundToDouble().toInt().toString());
+    
+
+    return [min.toInt().toString(),median.toInt().toString(), max.toInt().toString(), 'others'];
   } catch (_) {
     return [];
   }
