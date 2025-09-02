@@ -40,7 +40,7 @@ class EmailVerificationPage extends StatelessWidget {
                             children: [
                               S(
                                   w: 237,
-                                  h: 32,
+                                  h: 40,
                                   child: InterText(
                                     textBucket!
                                         .signUpEmailAddressForOTPVerification,
@@ -64,7 +64,7 @@ class EmailVerificationPage extends StatelessWidget {
                           // email address label
                           S(
                             w: 335,
-                            h: 583,
+                            h: 550,
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [

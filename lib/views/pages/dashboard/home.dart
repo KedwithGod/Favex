@@ -157,7 +157,7 @@ class HomePage extends StatelessWidget {
                                                       context.pop();
                                                     },
                                                     child: GeneralContainer(
-                                                      height: 73,
+                                                      height: 72,
                                                       width: 335,
                                                       borderRadius: 16,
                                                       left: 24,
@@ -317,7 +317,7 @@ class HomePage extends StatelessWidget {
                                                                   ),
                                                                   S(h: 3),
                                                                   InterText(
-                                                                    "₦ ${displayWithComma(model.walletBalance)}",
+                                                                    "₦ ${displayWithComma(model.nfxBalance)}",
                                                                     textColor:
                                                                         colorsBucket!
                                                                             .subtitle,

@@ -86,10 +86,10 @@ class CreateAccountViewModel extends BaseModel {
     // --- MOBILE & WEB (use plugin validation) ---
     if (kIsWeb || Platform.isAndroid || Platform.isIOS) {
       try {
-        // // PhoneNumber number = await PhoneNumber.getRegionInfoFromPhoneNumber(
-        //   rawInput,
-        //   'NG',
-        // );
+        PhoneNumber number = await PhoneNumber.getRegionInfoFromPhoneNumber(
+          rawInput,
+          'NG',
+        );
         isValid = true;
       } catch (e) {
         isValid = false;
@@ -163,7 +163,7 @@ class CreateAccountViewModel extends BaseModel {
   }
 
 // phone onchanged function
-  onChangedFunctionPhone( value) {
+  onChangedFunctionPhone(PhoneNumber value) {
     phoneIsAvailable = false;
 
     fullPhoneNumber = value.phoneNumber.toString();

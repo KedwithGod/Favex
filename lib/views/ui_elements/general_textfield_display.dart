@@ -237,126 +237,126 @@ class FormattedTextFields extends StatelessWidget {
 
 
 
-// class PhoneNumberTextField extends StatefulWidget {
-//   final TextEditingController textFieldController;
-//   final FocusNode focusNode;
-//   final Function(PhoneNumber)? onChangedFunction;
-//   final bool errorTextActive;
-//   final String? errorText;
+class PhoneNumberTextField extends StatefulWidget {
+  final TextEditingController textFieldController;
+  final FocusNode focusNode;
+  final Function(PhoneNumber)? onChangedFunction;
+  final bool errorTextActive;
+  final String? errorText;
 
-//   // Style props
-//   final double? height, width, borderRadius, cursorHeight, textFont, hintFont;
-//   final Color? containerColor, cursorColor, hintColor, outLineBorderColor, focusBorderColor, fillColor;
-//   final bool? filled, noBorder;
-//   final Widget? prefix, suffix, suffixIcon;
-//   final EdgeInsets? contentPadding;
+  // Style props
+  final double? height, width, borderRadius, cursorHeight, textFont, hintFont;
+  final Color? containerColor, cursorColor, hintColor, outLineBorderColor, focusBorderColor, fillColor;
+  final bool? filled, noBorder;
+  final Widget? prefix, suffix, suffixIcon;
+  final EdgeInsets? contentPadding;
 
-//   const PhoneNumberTextField({
-//     super.key,
-//     required this.textFieldController,
-//     required this.focusNode,
-//     required this.onChangedFunction,
-//     required this.errorTextActive,
-//     this.errorText,
-//     this.height,
-//     this.width,
-//     this.borderRadius,
-//     this.cursorHeight,
-//     this.textFont,
-//     this.hintFont,
-//     this.containerColor,
-//     this.cursorColor,
-//     this.hintColor,
-//     this.outLineBorderColor,
-//     this.focusBorderColor,
-//     this.fillColor,
-//     this.filled,
-//     this.noBorder,
-//     this.prefix,
-//     this.suffix,
-//     this.suffixIcon,
-//     this.contentPadding,
-//   });
+  const PhoneNumberTextField({
+    super.key,
+    required this.textFieldController,
+    required this.focusNode,
+    required this.onChangedFunction,
+    required this.errorTextActive,
+    this.errorText,
+    this.height,
+    this.width,
+    this.borderRadius,
+    this.cursorHeight,
+    this.textFont,
+    this.hintFont,
+    this.containerColor,
+    this.cursorColor,
+    this.hintColor,
+    this.outLineBorderColor,
+    this.focusBorderColor,
+    this.fillColor,
+    this.filled,
+    this.noBorder,
+    this.prefix,
+    this.suffix,
+    this.suffixIcon,
+    this.contentPadding,
+  });
 
-//   @override
-//   State<PhoneNumberTextField> createState() => _PhoneNumberTextFieldState();
-// }
+  @override
+  State<PhoneNumberTextField> createState() => _PhoneNumberTextFieldState();
+}
 
-// class _PhoneNumberTextFieldState extends State<PhoneNumberTextField> {
-//   PhoneNumber _phoneNumber = PhoneNumber(isoCode: 'NG');
+class _PhoneNumberTextFieldState extends State<PhoneNumberTextField> {
+  PhoneNumber _phoneNumber = PhoneNumber(isoCode: 'NG');
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return Column(
-//       crossAxisAlignment: CrossAxisAlignment.start,
-//       mainAxisSize: MainAxisSize.min,
-//       children: [
-//         Container(
-//           height: sS(context).cH(height: widget.height ?? 56),
-//           width: sS(context).cW(width: widget.width?? 335),
-//           decoration: BoxDecoration(
-//             color: widget.containerColor ?? colorsBucket!.backgroundMid,
-//             borderRadius: BorderRadius.circular(widget.borderRadius ?? 16),
-//           ),
-//           alignment: Alignment.center,
-//           child: InternationalPhoneNumberInput(
-//             focusNode: widget.focusNode,
-//             textFieldController: widget.textFieldController,
-//             initialValue: _phoneNumber,
-//             selectorConfig: const SelectorConfig(
-//               selectorType: PhoneInputSelectorType.DROPDOWN,
-//               setSelectorButtonAsPrefixIcon: true,
-//               leadingPadding: 8,
-//             ),
-//             onInputChanged: (phone) {
-//               setState(() => _phoneNumber = phone); // ✅ updates dropdown
-//               if (widget.onChangedFunction != null) {
-//                 widget.onChangedFunction!(phone);
-//               }
-//             },
-//             inputDecoration: InputDecoration(
-//               border: InputBorder.none,
-//               filled: widget.filled ?? false,
-//               fillColor: widget.fillColor ?? colorsBucket!.transparent,
-//               suffixIcon: widget.suffixIcon,
-//               suffix: widget.suffix,
-//               prefix: widget.prefix,
-//               hintText: "8000000000",
-//               hintStyle: GoogleFonts.inter(
-//                 fontSize: widget.hintFont ?? 14,
-//                 color: widget.hintColor ?? colorsBucket!.subtitle,
-//               ),
-//               contentPadding: widget.contentPadding ??
-//                   const EdgeInsets.symmetric(horizontal: 12, vertical: 16),
-//             ),
-//             keyboardType: const TextInputType.numberWithOptions(signed: false, decimal: false),
-//             cursorColor: widget.cursorColor ?? colorsBucket!.primary,
-//             autoValidateMode: AutovalidateMode.disabled,
-//             selectorTextStyle: GoogleFonts.inter(
-//               fontSize: widget.textFont ?? 14,
-//               color: colorsBucket!.borderBlack,
-//             ),
-//           ),
-//         ),
-//          if (widget.errorTextActive == true && widget.errorText!= '') ...[
-//           Column(
-//             crossAxisAlignment: CrossAxisAlignment.start,
-//             mainAxisSize: MainAxisSize.min,
-//             children: [
-//               S(h: 5),
-//               S(
-//                 h: calculateErrorTextHeight(widget.errorText??'', context),
-//                 w:  widget.width ?? 335,
-//                 child: InterText(
-//                     widget.errorText ?? '', textColor:  colorsBucket!.alertHard, 
-//                     noOfTextLine: 6, textFontSize: 12,
-//                     textAlign: TextAlign.left),
-//               ),
-//               S(h: 4),
-//             ],
-//           )
-//         ]
-//       ],
-//     );
-//   }
-// }
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Container(
+          height: sS(context).cH(height: widget.height ?? 56),
+          width: sS(context).cW(width: widget.width?? 335),
+          decoration: BoxDecoration(
+            color: widget.containerColor ?? colorsBucket!.backgroundMid,
+            borderRadius: BorderRadius.circular(widget.borderRadius ?? 16),
+          ),
+          alignment: Alignment.center,
+          child: InternationalPhoneNumberInput(
+            focusNode: widget.focusNode,
+            textFieldController: widget.textFieldController,
+            initialValue: _phoneNumber,
+            selectorConfig: const SelectorConfig(
+              selectorType: PhoneInputSelectorType.DROPDOWN,
+              setSelectorButtonAsPrefixIcon: true,
+              leadingPadding: 8,
+            ),
+            onInputChanged: (phone) {
+              setState(() => _phoneNumber = phone); // ✅ updates dropdown
+              if (widget.onChangedFunction != null) {
+                widget.onChangedFunction!(phone);
+              }
+            },
+            inputDecoration: InputDecoration(
+              border: InputBorder.none,
+              filled: widget.filled ?? false,
+              fillColor: widget.fillColor ?? colorsBucket!.transparent,
+              suffixIcon: widget.suffixIcon,
+              suffix: widget.suffix,
+              prefix: widget.prefix,
+              hintText: "8000000000",
+              hintStyle: GoogleFonts.inter(
+                fontSize: widget.hintFont ?? 14,
+                color: widget.hintColor ?? colorsBucket!.subtitle,
+              ),
+              contentPadding: widget.contentPadding ??
+                  const EdgeInsets.symmetric(horizontal: 12, vertical: 16),
+            ),
+            keyboardType: const TextInputType.numberWithOptions(signed: false, decimal: false),
+            cursorColor: widget.cursorColor ?? colorsBucket!.primary,
+            autoValidateMode: AutovalidateMode.disabled,
+            selectorTextStyle: GoogleFonts.inter(
+              fontSize: widget.textFont ?? 14,
+              color: colorsBucket!.borderBlack,
+            ),
+          ),
+        ),
+         if (widget.errorTextActive == true && widget.errorText!= '') ...[
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              S(h: 5),
+              S(
+                h: calculateErrorTextHeight(widget.errorText??'', context),
+                w:  widget.width ?? 335,
+                child: InterText(
+                    widget.errorText ?? '', textColor:  colorsBucket!.alertHard, 
+                    noOfTextLine: 6, textFontSize: 12,
+                    textAlign: TextAlign.left),
+              ),
+              S(h: 4),
+            ],
+          )
+        ]
+      ],
+    );
+  }
+}

@@ -206,10 +206,12 @@ class GiftCardCaculatorVieModel extends BaseModel {
     validateCardValue() {
     unfocusAllNodes('cardValue');
     if(selectedCardRangeIndex==null){return;}
-    else{
+    else if (selectedCardRangeIndex!=null && cardValueController.text.trim().isNotEmpty ){
      int min= int.parse(cardCountryList[selectedCountryIndex!].ranges[selectedCardRangeIndex!].min);
      int max= int.parse(cardCountryList[selectedCountryIndex!].ranges[selectedCardRangeIndex!].max);
+
      int value = int.parse(cardValueController.text.trim().replaceAll(',', ''));
+     print(value);
     
     if (min<=value && max>=value) {
       cardValueErrorBool = false;

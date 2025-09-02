@@ -1,5 +1,5 @@
 import 'package:favex/model/utilities/imports/shared.dart';
-import 'package:flutter/material.dart';
+
 
 // Method 1: Using AnimatedContainer (Easiest)
 class SimpleAnimatedButton extends StatefulWidget {

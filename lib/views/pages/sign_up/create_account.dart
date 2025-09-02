@@ -54,7 +54,7 @@ class CreateAccountPage extends StatelessWidget {
 
                           S(
                             w: 335,
-                            h: 88 +
+                            h: 90 +
                                 (model.firstNameErrorBool
                                     ? (calculateErrorTextHeight(
                                             model.firstNameErrorText, context) +
@@ -228,15 +228,15 @@ class CreateAccountPage extends StatelessWidget {
                           ),
                           S(h: 10),
 
-                          // PhoneNumberTextField(
-                          //   textFieldController: model.phonenumberController,
-                          //   focusNode: model.phonenumberFocusNode,
-                          //   onChangedFunction: (value) {
-                          //     model.onChangedFunctionPhone(value);
-                          //   },
-                          //   errorTextActive: model.phonenumberErrorBool,
-                          //   errorText: model.phoneErrorText,
-                          // ),
+                          PhoneNumberTextField(
+                            textFieldController: model.phonenumberController,
+                            focusNode: model.phonenumberFocusNode,
+                            onChangedFunction: (value) {
+                              model.onChangedFunctionPhone(value);
+                            },
+                            errorTextActive: model.phonenumberErrorBool,
+                            errorText: model.phoneErrorText,
+                          ),
 
                           if (!model.phoneNotValid) ...[
                             S(h: 10),
@@ -426,14 +426,10 @@ class CreateAccountPage extends StatelessWidget {
                                       ],
                                     )
                                   ],
-                                  S(
-                                    h: 13,
-                                    w: 13,
-                                    child: const SvgPngImage(
-                                        path: 'arrow_down',
-                                        height: 11,
-                                        width: 8),
-                                  )
+                                  const SvgPngImage(
+                                      path: 'arrow_down',
+                                      height: 8,
+                                      width: 8)
                                 ],
                               ),
                             ),

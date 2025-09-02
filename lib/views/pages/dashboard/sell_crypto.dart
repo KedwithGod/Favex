@@ -138,7 +138,7 @@ class SellCryptoPage extends StatelessWidget {
 
                         GeneralContainer(
                             color: colorsBucket!.white,
-                            height: (74.0 * model.filteredCryptoList.length) +95,
+                            height: (110.0 * model.filteredCryptoList.length) +95,
                             width: 335,
                             left: 18,
                             right: 17,
@@ -157,34 +157,41 @@ class SellCryptoPage extends StatelessWidget {
                                 ),
                                 S(h: 30),
                                 S(
-                                  h: 75.0 * model.filteredCryptoList.length,
+                                  h: 110.0 * model.filteredCryptoList.length,
                                   w: 335,
                                   child: ListView.separated(
                                       physics:
                                           const NeverScrollableScrollPhysics(),
                                       itemBuilder: (context, index) {
-                                        return GeneralContainer(
-                                          color: colorsBucket!.white,
-                                          child: Row(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                            children: [
-                                              SvgPngImage(
-                                                path: model.filteredCryptoList[
-                                                    index]['icon'],
-                                                height: 75,
-                                                width: 50,
-                                                imageType: ImageTypeEnum.png,
+                                        return Column(
+                                          children: [
+                                            GeneralContainer(
+                                              color: colorsBucket!.white,
+                                              child: Row(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.center,
+                                                children: [
+                                                  SvgPngImage(
+                                                    path: model.filteredCryptoList[
+                                                        index]['icon'],
+                                                    height: 75,
+                                                    width: 50,
+                                                    imageType: ImageTypeEnum.png,
+                                                  ),
+                                                  S(w: 10),
+                                                  InterText(
+                                                    model.filteredCryptoList[index]
+                                                        ['name'],
+                                                    textAlign: TextAlign.center,
+                                                    textFontSize: 12,
+                                                  )
+                                                ],
                                               ),
-                                              S(w: 10),
-                                              InterText(
-                                                model.filteredCryptoList[index]
-                                                    ['name'],
-                                                textAlign: TextAlign.center,
-                                                textFontSize: 12,
-                                              )
-                                            ],
-                                          ),
+                                            ),
+                                            if(index == model.filteredCryptoList.length-1)...[
+                                              S(h:25)
+                                            ]
+                                          ],
                                         );
                                       },
                                       separatorBuilder: (context, index) {

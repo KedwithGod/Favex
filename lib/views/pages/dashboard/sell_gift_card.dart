@@ -15,7 +15,8 @@ class SellGiftCard extends StatelessWidget {
                 child: Column(
                   children: [
                     S(
-                       h:38, w:334,
+                      h: 38,
+                      w: 334,
                       child: Row(
                         children: [
                           GestureDetector(
@@ -73,7 +74,6 @@ class SellGiftCard extends StatelessWidget {
                         S(h: 16),
                         // featured
                         GeneralContainer(
-                         
                           color: colorsBucket!.white,
                           borderRadius: 12,
                           left: 29,
@@ -96,7 +96,9 @@ class SellGiftCard extends StatelessWidget {
                                   children: [
                                     for (int index in List.generate(
                                         6, (index) => index)) ...[
-                                      S( h: 60,w:61,
+                                      S(
+                                        h: 60,
+                                        w: 61,
                                         child: Column(
                                           mainAxisAlignment:
                                               MainAxisAlignment.center,
@@ -109,7 +111,8 @@ class SellGiftCard extends StatelessWidget {
                                                 width: 41),
                                             S(h: 4),
                                             S(
-                                              h:16, w:61,
+                                              h: 16,
+                                              w: 61,
                                               child: const InterText(
                                                 'Amazon',
                                                 textAlign: TextAlign.center,
@@ -128,45 +131,60 @@ class SellGiftCard extends StatelessWidget {
                         ),
 
                         // list of giftcards
-                        S(h:16),
+                        S(h: 16),
 
-                        GeneralContainer(color: colorsBucket!.white,
-                        height:75.0 * model.filteredGiftCardList.length , width: 335,
-                        left: 18, right: 17, top: 32, bottom: 5,
-                        child: ListView.separated(
-                          physics: const NeverScrollableScrollPhysics(),
-                          itemBuilder: (context,index){
-
-                          return GeneralContainer(color: colorsBucket!.white,
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                                   SvgPngImage(
-                                                path: model.filteredGiftCardList[index]['icon'],
+                        GeneralContainer(
+                            color: colorsBucket!.white,
+                            height: 90.0 * model.filteredGiftCardList.length,
+                            width: 335,
+                            left: 18,
+                            right: 17,
+                            top: 32,
+                            bottom: 5,
+                            child: ListView.separated(
+                                physics: const NeverScrollableScrollPhysics(),
+                                itemBuilder: (context, index) {
+                                  return Column(
+                                    children: [
+                                      GeneralContainer(
+                                        color: colorsBucket!.white,
+                                        child: Row(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            SvgPngImage(
+                                                path:
+                                                    model.filteredGiftCardList[
+                                                        index]['icon'],
                                                 height: 40,
                                                 width: 41),
                                             S(w: 10),
-                                             InterText(
-                                              model.filteredGiftCardList[index]['name'] ,
+                                            InterText(
+                                              model.filteredGiftCardList[index]
+                                                  ['name'],
                                               textAlign: TextAlign.center,
                                               textFontSize: 12,
-                                            )],),
-                          );
-
-                        }, separatorBuilder: (context, index){
-                          return Column(
-                            children: [
-                              S(h:16),
-                              DividerWidget(),
-                              S(h:16),
-                              // const DividerWidget(),
-                               
-                            ],
-                          );
-                        }, itemCount: model.filteredGiftCardList.length)
-                        )
-
-
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                      if (index ==
+                                          model.filteredGiftCardList.length -
+                                              1) ...[S(h: 25)]
+                                    ],
+                                  );
+                                },
+                                separatorBuilder: (context, index) {
+                                  return Column(
+                                    children: [
+                                      S(h: 16),
+                                      DividerWidget(),
+                                      S(h: 16),
+                                      // const DividerWidget(),
+                                    ],
+                                  );
+                                },
+                                itemCount: model.filteredGiftCardList.length))
                       ],
                     ),
                   ),
